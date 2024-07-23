@@ -51,7 +51,6 @@ const EndAuction = ({ endTime, id, seller }: EndAuctionProps) => {
         });
         console.log(`Auction with ID ${id} ended successfully.`);
       } catch (error) {
-        console.error(`Error ending auction ID ${id}:`, error.message);
         if (error instanceof TransactionError) {
           // Assuming TransactionError is a custom error class
           console.error("Transaction Error message:", error.message);

@@ -47,6 +47,13 @@ export default function Navbar() {
         </div>
       </Link>
 
+      <Link href={"/Tools"}>
+        {" "}
+        <div className="relative text-blue-800">
+          <p className="text-blue-800">Tools</p>
+        </div>
+      </Link>
+
       {account && (
         <div className="flex space-x-9 bg-black">
           <div>

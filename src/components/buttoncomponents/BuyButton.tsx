@@ -40,7 +40,7 @@ export default function BuyButton({
       const allowance = await readContract({
         contract: tokencontract,
         method: "allowance",
-        params: [`${address}`, config.TokenAddress as `0x${string}`],
+        params: [`${address}`, config.ContractAddress as `0x${string}`],
       });
 
       const allowed = toEther(allowance);
