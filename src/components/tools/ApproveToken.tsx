@@ -48,15 +48,17 @@ export default function ApproveToken() {
         method: "approve",
         params: [contract as `0x${string}`, price],
       })) as PreparedTransaction;
-
+      console.log("address test:", contract);
       await sendTx(transaction);
       console.log("Approved");
-      alert("Approved");
     } catch (error) {
       console.error("Error approving token:", error);
       alert("Error approving token. Please try again.");
     }
+    alert("Approved");
   };
+
+  console.log("the auction addrss", contract);
 
   return (
     <div className="bg-black w-full text-white p-6 rounded-lg max-w-md mx-auto text-center">
