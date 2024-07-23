@@ -11,6 +11,8 @@ import { auctioncontract, tokencontract } from "@/app/contract";
 import config from "@/Strings/config";
 import ApproveToken from "./ApproveToken";
 import { useState, useEffect } from "react";
+import { TransactionError } from "@thirdweb-dev/react";
+import { ErrorAlert, ErrorHandler } from "../error/error";
 
 type BidButtonProps = {
   id: bigint;
@@ -19,6 +21,7 @@ type BidButtonProps = {
 };
 
 export default function BidButton({ id, price, owner }: BidButtonProps) {
+  const transactionError = TransactionError;
   const account = useActiveAccount();
   const address = account?.address;
   const [allowance, setAllowance] = useState(0);
@@ -70,6 +73,7 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
   const parsedBidAmount = bidAmount !== "" ? BigInt(bidAmount) : BigInt(0);
 
   console.log("allowed", allowance);
+  console.log("BidAmount", parsedBidAmount);
 
   return (
     <div className="flex flex-col   w-full h-full items-center justify-center">
@@ -94,6 +98,10 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
               })
             }
             onTransactionSent={() => alert("Successfully placed a bid")}
+            onError={(error) => {
+              ErrorAlert(error);
+              ErrorHandler(error);
+            }}
           >
             Bid
           </TransactionButton>

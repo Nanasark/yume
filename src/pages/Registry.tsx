@@ -13,6 +13,7 @@ import {
 import { client } from "@/app/client";
 import { amoy } from "@/app/chain";
 import { poppins } from "@/helpers/fonts";
+import { ErrorAlert, ErrorHandler } from "@/components/error/error";
 
 type RegitryInput = {
   firstName: string;
@@ -97,7 +98,9 @@ export default function ListAuction() {
 
       await sendTransaction(transaction);
     } catch (error) {
-      console.error("Failed to List Auction:", error);
+
+      ErrorHandler(error)
+      ErrorAlert(error)
     }
   };
 

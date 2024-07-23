@@ -47,6 +47,7 @@ export default function ApproveToken() {
         contract: tokencontract,
         method: "approve",
         params: [contract as `0x${string}`, price],
+        
       })) as PreparedTransaction;
       console.log("address test:", contract);
       await sendTx(transaction);

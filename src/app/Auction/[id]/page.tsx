@@ -375,27 +375,19 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                               </tr>
                             </thead>
                             <tbody className="bg-white">
-                              <tr className="border-b-2 border-purple-900">
-                                {bids[0].map((bidder, index) => (
-                                  <td
-                                    key={index}
-                                    className="p-2 border-r-2 border-purple-900"
-                                  >
+                              {bids[0].toReversed().map((bidder, index) => (
+                                <tr
+                                  key={index}
+                                  className="border-b-2 border-purple-900"
+                                >
+                                  <td className="p-2 border-r-2 border-purple-900">
                                     {bidder.slice(0, 5)}...{bidder.slice(-8)}
                                   </td>
-                                ))}
-                                {bids[1].map((amount) => (
-                                  <td className="p-2">
-                                    {toEther(amount)} ARYM
+                                  <td className="p-2 border-l-2 border-purple-900">
+                                    {toEther(bids[1].toReversed()[index])} ARYM
                                   </td>
-                                ))}
-                              </tr>
-                              {/* <tr className="border-b-2 border-purple-900">
-                                <td className="p-2 border-r-2 border-purple-900">
-                                  bbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                                </td>
-                                <td className="p-2">456</td>
-                              </tr> */}
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </>

@@ -14,6 +14,8 @@ import { amoy } from "@/app/chain";
 import AuctionModal from "@/modals/AuctionModal";
 import { useOpenAuction } from "@/helpers/AuctionContext";
 import { Roboto, Goblin_One } from "next/font/google";
+import { ErrorHandler, ErrorAlert } from "@/components/error/error";
+
 type AuctionInput = {
   name: string;
   description: string;
@@ -125,15 +127,13 @@ export default function ListAuction() {
 
       await sendTransaction(transaction);
     } catch (error) {
-      console.error("Failed to List Auction:", error);
+      ErrorHandler(error);
+      ErrorAlert(error);
     }
   };
 
-  const {
-    register: listAuction,
-    control,
-    handleSubmit: handleListAuctionSubmit,
-  } = useForm<AuctionInput>();
+  const { register: listAuction, handleSubmit: handleListAuctionSubmit } =
+    useForm<AuctionInput>();
   const onSubmit: SubmitHandler<AuctionInput> = (data) => console.log(data);
 
   const handleAuctionSubmission = async () => {
@@ -175,7 +175,13 @@ export default function ListAuction() {
           {...listAuction("days", { required: true, max: 120 })}
         />
 
-        <button className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold" onClick={() => setIsOpenAuction(true)}> Upload Files</button>
+        <button
+          className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
+          onClick={() => setIsOpenAuction(true)}
+        >
+          {" "}
+          Upload Files
+        </button>
 
         <div
           className={`${
