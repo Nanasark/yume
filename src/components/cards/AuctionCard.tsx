@@ -2,7 +2,7 @@ import { MediaRenderer, useReadContract } from "@/app/thirdweb";
 import { client } from "@/app/client";
 import { toEther } from "@/app/thirdweb";
 import AuctionTimer from "../auctionTimer";
-import { registryContract } from "@/app/contract";
+import { auctioncontract, registryContract } from "@/app/contract";
 import { poppins, aleo } from "@/helpers/fonts";
 
 interface AuctionCardInterface {
@@ -30,6 +30,13 @@ export default function AuctionCard({
     method: "getUserDetails",
     params: [seller as `0x${string}`],
   });
+
+  const { data: auctionDetail, isLoading: isLoadingAuctionDetail } =
+    useReadContract({
+      contract: auctioncontract,
+      method: "getAuctionDetail",
+      params: [id],
+    });
 
   return (
     <div className="flex items-center justify-center borderGradient rounded-[20px] w-[282px] h-[422px]">
@@ -86,7 +93,10 @@ export default function AuctionCard({
             <p className="text-white font-extralight">
               Current Bid <br />{" "}
               <span className="font-semibold">
-                {toEther(startPrice).toString()} ARYM
+                {auctionDetail && auctionDetail.currentPrice > startPrice
+                  ? toEther(auctionDetail.currentPrice).toString()
+                  : toEther(startPrice).toString()}{" "}
+                ARYM
               </span>
             </p>
             <div className="flex font-light w-[110px] h-[40px] text-center justify-center items-center rounded-[5px]  text-white cursor-pointer hover:bg-[#F0F0F0] transition  buttonGradient">
