@@ -25,9 +25,9 @@ type RegitryInput = {
   profileImage: string; // Use string to handle datetime-local input
 };
 
-export default function ListAuction() {
+export default function Registry() {
   const account = useActiveAccount();
-  const { mutate: sendTransaction, isPending } = useSendTransaction();
+  const { mutate: sendTransaction } = useSendTransaction();
 
   const [selectedProfile, setSelectedProfile] = useState<File | null>(null);
   const [profilePreviewUrl, setProfilePreviewUrl] = useState<string | null>(
@@ -98,9 +98,8 @@ export default function ListAuction() {
 
       await sendTransaction(transaction);
     } catch (error) {
-
-      ErrorHandler(error)
-      ErrorAlert(error)
+      ErrorHandler(error);
+      ErrorAlert(error);
     }
   };
 
