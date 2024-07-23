@@ -29,6 +29,7 @@ export default function Photography() {
                 tag={product.tag}
                 id={product.id}
                 stock={product.stock}
+                seller={product.seller}
               />
             </Link>
           ))}

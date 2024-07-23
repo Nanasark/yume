@@ -29,6 +29,7 @@ export default function TwoD() {
                 tag={product.tag}
                 id={product.id}
                 stock={product.stock}
+                seller={product.seller}
               />
             </Link>
           ))}

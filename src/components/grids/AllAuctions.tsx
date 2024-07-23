@@ -26,6 +26,7 @@ export default function AllAuctions() {
                 id={auction.id}
                 endTime={auction.endTime}
                 seller={`${auction.seller}`}
+                
               />
             </Link>
           ))}
