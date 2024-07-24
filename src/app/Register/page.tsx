@@ -1,5 +1,5 @@
 "use client";
-import Registry from "@/pages/Registry";
+import Registry from "@/Uploaders/Registry";
 import config from "@/Strings/config";
 import Image from "next/image";
 export default function Register() {

@@ -4,11 +4,11 @@ import "./globals.css";
 import AuctionModalProvider from "@/helpers/AuctionContext";
 import { BuyModalProvider } from "@/helpers/BuyContext";
 import { ThirdwebProvider } from "@/app/thirdweb";
-import queryClient from "@/lib/react-query";
+// import queryClient from "@/lib/react-query";
 import Navbar from "../components/Navbar";
 import { amoy } from "./chain";
 import { Thirdwebconfig } from "../Strings/string";
-import { QueryClientProvider } from "@tanstack/react-query";
+// import { QueryClientProvider } from "@tanstack/react-query";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 const rubik = Rubik({ subsets: ["latin"], weight: "400" });
@@ -31,14 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <QueryClientProvider client={queryClient}>
           <ThirdwebProvider>
             <AuctionModalProvider>
               <Navbar />
               {children}
             </AuctionModalProvider>
           </ThirdwebProvider>
-        </QueryClientProvider>
+      
       </body>
     </html>
   );

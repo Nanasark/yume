@@ -55,7 +55,7 @@ export default function Navbar() {
       </Link>
 
       {account && (
-        <div className="flex space-x-9 bg-black">
+        <div className="flex space-x-9">
           <div>
             <Link href={"/Profile"}>
               {" "}

@@ -1,9 +1,9 @@
 "use client";
 import { lora } from "@/helpers/fonts";
 
-import ListAuction from "@/pages/ListAuction";
+import ListAuction from "@/Uploaders/ListAuction";
 // import ListBuy from "@/components/ListBuy";
-import ListBuy from "@/pages/ListBuyTest";
+import ListBuy from "@/Uploaders/ListBuyTest";
 import react, { useState } from "react";
 
 export default function Sell() {
