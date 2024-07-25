@@ -5,6 +5,7 @@ import {
   Poppins,
   Aleo,
   Inknut_Antiqua,
+  Inika,
 } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -18,6 +19,8 @@ const inknut_antiqua = Inknut_Antiqua({
   subsets: ["latin", "devanagari"],
   weight: ["800"],
 });
+
+const inika = Inika({ subsets: ["latin"], weight: ["700"] });
 // // define 2 weights of a non-variable font
 // const sourceCodePro400 = Source_Sans_3({ weight: "400" });
 // const sourceCodePro700 = Source_Sans_3({ weight: "700" });
@@ -25,4 +28,4 @@ const inknut_antiqua = Inknut_Antiqua({
 // define a custom local font where GreatVibes-Regular.ttf is stored in the styles folder
 // const greatVibes = localFont({ src: "./GreatVibes-Regular.ttf" });
 
-export { poppins, lora, aleo, inter, inknut_antiqua };
+export { poppins, lora, aleo, inter, inknut_antiqua, inika };

@@ -8,7 +8,7 @@ import { inknut_antiqua } from "@/helpers/fonts";
 import { useState } from "react";
 
 export default function Navbar() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
   const account = useActiveAccount();
 
@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${inter.className} flex w-full h-[70px] items-center text-center pr-10 p-5 justify-between space-x-5 bg-[#181934] text-white fixed z-20 drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
+      className={`${inter.className} flex w-full h-[70px] items-center text-center pr-10 p-5 justify-between space-x-5 bg-[#181934] text-white fixed z-50 drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
     >
       <div
         className={`${inknut_antiqua.className} relative font-black text-white text-[40px]`}
