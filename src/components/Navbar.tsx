@@ -5,14 +5,17 @@ import Link from "next/link";
 import SignInButton from "./buttoncomponents/SignInButton";
 import { inter } from "@/helpers/fonts";
 import { inknut_antiqua } from "@/helpers/fonts";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [active, setActive] = useState(0);
+
   const account = useActiveAccount();
 
   const address = account?.address;
   const addresses = ["0x1559572a045F8ec085FbAc8A80B399D23Ecfd01a", "", ""];
   const hover =
-    "hover:border-b-indigo-900 hover:opacity-100 hover:border-b-2 opacity-80";
+    "hover:border-b-indigo-900 hover:drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hover:opacity-90 hover:border-b-2 ";
 
   return (
     <div
@@ -24,47 +27,69 @@ export default function Navbar() {
         <h1>ARTYUME</h1>
       </div>
       <div className="flex gap-5">
-        <Link href={"/"}>
+        <div onClick={() => setActive(1)}>
           {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Home</p>
-          </div>
-        </Link>
+          <Link href={"/"}>
+            {" "}
+            <div
+              className={`${hover} ${
+                active == 1 ? "opacity-100" : "opacity-70"
+              } relative`}
+            >
+              <p className="">Home</p>
+            </div>
+          </Link>
+        </div>
+        <div onClick={() => setActive(2)}>
+          <Link href={"/Buy"}>
+            {" "}
+            <div
+              className={`${hover} ${
+                active == 2 ? "opacity-100" : "opacity-70"
+              } relative`}
+            >
+              <p className="">Direct-Buys</p>
+            </div>
+          </Link>
+        </div>
+        <div onClick={() => setActive(3)}>
+          {" "}
+          <Link href={"/Auction"}>
+            {" "}
+            <div
+              className={`${hover} ${
+                active == 3 ? "opacity-100" : "opacity-70"
+              } relative`}
+            >
+              <p className="">Auctions</p>
+            </div>
+          </Link>
+        </div>
+        <div onClick={() => setActive(4)}>
+          <Link href={"/Sell"}>
+            {" "}
+            <div
+              className={`${hover} ${
+                active == 4 ? "opacity-100" : "opacity-70"
+              } relative`}
+            >
+              <p className="">Sell</p>
+            </div>
+          </Link>
+        </div>
+        <div onClick={() => setActive(5)}>
+          <Link href={"/Tools"}>
+            {" "}
+            <div
+              className={`${hover} ${
+                active == 5 ? "opacity-100" : "opacity-70"
+              } relative`}
+            >
+              <p className="">Tools</p>
+            </div>
+          </Link>
+        </div>
 
-        <Link href={"/Register"}>
-          {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Register</p>
-          </div>
-        </Link>
-
-        <Link href={"/Buy"}>
-          {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Direct-Buys</p>
-          </div>
-        </Link>
-
-        <Link href={"/Auction"}>
-          {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Auctions</p>
-          </div>
-        </Link>
-
-        <Link href={"/Sell"}>
-          {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Sell</p>
-          </div>
-        </Link>
-
-        <Link href={"/Tools"}>
-          {" "}
-          <div className={`${hover} relative`}>
-            <p className="">Tools</p>
-          </div>
-        </Link>
         <div>
           {account && (
             <div className="flex space-x-9">
