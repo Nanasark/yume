@@ -15,7 +15,7 @@ export default function Tools() {
               <div className="w-1/3">Approve Tokens Here</div>
               <div className="flex flex-col justify-center items-center rounded-lg border-[2px] w-1/3  bg-slate-500 border-neutral-800">
                 <p>Approved Buy:</p>
-                <BuyAllowance />
+                <BuyAllowance  />
               </div>
               <div className="flex flex-col justify-center items-center rounded-lg border-[2px] w-1/3  bg-slate-500 border-neutral-800">
                 <p> Approved Auction:</p>

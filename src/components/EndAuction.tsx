@@ -56,6 +56,8 @@ const EndAuction = ({ endTime, id, seller }: EndAuctionProps) => {
           console.error("Transaction Error message:", error.message);
           console.error("Transaction Cause Details:", error.cause); // Log additional details if available
           console.error("reason", error.reason);
+          console.error("error info", error.info)
+          console.error("error info", error.raw);
         } else {
           console.error("Unexpected Error:", error);
         }

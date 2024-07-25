@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { TransactionError } from "@thirdweb-dev/react";
 import { ErrorAlert, ErrorHandler } from "../error/error";
 
+
 type BidButtonProps = {
   id: bigint;
   price: bigint;
@@ -21,7 +22,6 @@ type BidButtonProps = {
 };
 
 export default function BidButton({ id, price, owner }: BidButtonProps) {
-  const transactionError = TransactionError;
   const account = useActiveAccount();
   const address = account?.address;
   const [allowance, setAllowance] = useState(0);
@@ -82,29 +82,44 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
         <div className="">Owner cannot Bid</div>
       ) : allowance >= currentPrice ? (
         <div>
-          <input
-            type="number"
-            value={bidAmount}
-            onChange={handleBidAmountChange}
-            placeholder="Enter bid amount"
-            className="text-black"
-          />
-          <TransactionButton
-            transaction={() =>
-              prepareContractCall({
-                contract: auctioncontract,
-                method: "bid",
-                params: [id, toWei(`${parsedBidAmount}`)],
-              })
-            }
-            onTransactionSent={() => alert("Successfully placed a bid")}
-            onError={(error) => {
-              ErrorAlert(error);
-              ErrorHandler(error);
-            }}
-          >
-            Bid
-          </TransactionButton>
+          {allowance.toString() < bidAmount ? (
+            <div>
+              <p> you have only {allowance} approved, increasese allowance</p>
+              <ApproveToken
+                contractAddress={config.AuctionAddres}
+                price={price}
+                onApprovalSuccess={handleApprovalSuccess}
+              />
+            </div>
+          ) : (
+            <div>
+              <input
+                type="number"
+                value={bidAmount}
+                onChange={handleBidAmountChange}
+                placeholder="Enter bid amount"
+                className="text-black"
+              />
+              <TransactionButton
+                transaction={() =>
+                  prepareContractCall({
+                    contract: auctioncontract,
+                    method: "bid",
+                    params: [id, toWei(`${parsedBidAmount}`)],
+                  })
+                }
+                
+                    
+                onTransactionSent={() => alert("Successfully placed a bid")}
+                onError={(error) => {
+                  ErrorAlert(error);
+                  ErrorHandler(error);
+                }}
+              >
+                Bid
+              </TransactionButton>
+            </div>
+          )}
         </div>
       ) : (
         <div>

@@ -129,6 +129,7 @@ export function AuctionAllowawnce() {
         contract: tokencontract,
         method: "allowance",
         params: [`${address}`, config.AuctionAddres as `0x${string}`],
+      
       });
 
       const allowed = toEther(allowance);

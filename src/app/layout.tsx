@@ -31,13 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-          <ThirdwebProvider>
-            <AuctionModalProvider>
-              <Navbar />
-              {children}
-            </AuctionModalProvider>
-          </ThirdwebProvider>
-      
+        <ThirdwebProvider>
+          <AuctionModalProvider>
+            <Navbar />
+            <div className="relative top-10">{children}</div>
+          </AuctionModalProvider>
+        </ThirdwebProvider>
       </body>
     </html>
   );

@@ -14,12 +14,16 @@ export default function SignInButton() {
     ],
   };
   return (
-    <ConnectButton
-      client={client}
-      chain={amoy}
-      supportedTokens={ForAmoyNetWork}
-      theme="dark"
-      // accountAbstraction={{ chain: amoy, sponsorGas: true }}
-    />
+    <div>
+      <ConnectButton
+        client={client}
+        chain={amoy}
+        supportedTokens={ForAmoyNetWork}
+        theme="dark"
+        autoConnect={true}
+        
+        // accountAbstraction={{ chain: amoy, sponsorGas: true }}
+      />
+    </div>
   );
 }
