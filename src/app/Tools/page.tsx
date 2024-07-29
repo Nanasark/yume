@@ -3,6 +3,7 @@
 import ApproveToken from "@/components/tools/ApproveToken";
 import { BuyAllowance } from "@/components/tools/ApproveToken";
 import { AuctionAllowawnce } from "@/components/tools/ApproveToken";
+import ClaimYume from "@/components/tools/ClaimYume";
 
 export default function Tools() {
   return (
@@ -15,7 +16,7 @@ export default function Tools() {
               <div className="w-1/3">Approve Tokens Here</div>
               <div className="flex flex-col justify-center items-center rounded-lg border-[2px] w-1/3  bg-slate-500 border-neutral-800">
                 <p>Approved Buy:</p>
-                <BuyAllowance  />
+                <BuyAllowance />
               </div>
               <div className="flex flex-col justify-center items-center rounded-lg border-[2px] w-1/3  bg-slate-500 border-neutral-800">
                 <p> Approved Auction:</p>
@@ -28,7 +29,10 @@ export default function Tools() {
             </div>
           </div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
-          <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
+          <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900 flex justify-center items-center">
+            {" "}
+            <ClaimYume />
+          </div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
