@@ -162,7 +162,7 @@ body {
   }
 }
 
-.pulse {
+.pulse:hover {
   -webkit-animation-name: pulse;
   animation-name: pulse;
   -webkit-animation-duration: 1s;
