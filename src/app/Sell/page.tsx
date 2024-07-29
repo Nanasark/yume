@@ -10,7 +10,7 @@ export default function Sell() {
   const [auction, setAuction] = useState(false);
 
   return (
-    <div className="flex flex-col p-5 bg-gradient-to-bl from-slate-900 via-purple-900 to-slate-900">
+    <div className="flex flex-col p-5 bg-[#181934]">
       <div className=" w-full p-10 flex gap-10 items-center justify-center ">
         <button
           className="rounded-lg border-radius-[2px] w-[120px] bg-yellow-400 text-black "

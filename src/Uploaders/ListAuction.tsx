@@ -141,7 +141,7 @@ export default function ListAuction() {
   };
 
   return (
-    <div className="flex flex-col items-center border-[2px] justify-center p-5 w-[800px] border-purple-800 rounded-xl">
+    <div className="flex flex-col items-center border-[2px] justify-center p-5 w-[800px] bg-[#1F2045] rounded-xl">
       <form
         onSubmit={handleListAuctionSubmit(onSubmit)}
         className="flex mt-10 flex-col space-y-5 text-white items-center justify-center w-[600px]"

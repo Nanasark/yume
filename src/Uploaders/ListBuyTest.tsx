@@ -1,3 +1,4 @@
+"use client";
 import { contract } from "@/app/contract";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
@@ -13,7 +14,7 @@ import { client } from "@/app/client";
 import { amoy } from "@/app/chain";
 import AuctionModal from "../modals/AuctionModal";
 import { useOpenAuction } from "@/helpers/AuctionContext";
-
+import { inter } from "@/helpers/fonts";
 enum TagEnum {
   ThreeD = "ThreeD",
   TwoD = "TwoD",
@@ -151,125 +152,171 @@ export default function ListBuy() {
   };
 
   return (
-    <div className="flex flex-col items-center border-[2px] justify-center p-5 w-[800px] border-purple-800 rounded-xl">
+    <div
+      className={`${inter.className} font-thin flex flex-col items-center drop-shadow-lg justify-center p-14 w-[800px] bg-[#1F2045] rounded-xl`}
+    >
       <form
         onSubmit={handleListBuySubmit(onSubmit)}
-        className="flex mt-10 flex-col space-y-5 text-white items-center justify-center w-[600px] "
+        className=" relative flex flex-col  space-y-10  text-white  w-full "
       >
-        <label>Name:</label>
-        <input
-          className="text-black w-[350px] border-[2px] rounded-lg border-yellow-900"
-          placeholder="name of product"
-          {...listBuy("name", { required: true })}
-        />
-        <div className="text-black mr-[100px]">
-          <label>Tag Selection</label>
-          <select {...listBuy("tag", { required: true })}>
-            <option value="">Select Tag</option>
-            <option value="TwoD">2D</option>
-            <option value="TreeD">3D</option>
-            <option value="Illustration">Illustration</option>
-            <option value="Abstract"> Abstract</option>
-            <option value="Photography">Photography</option>
-            <option value="Pixel">Pixel</option>
-            <option value="other">other</option>
-          </select>
-        </div>
-        <label>Description</label>
-        <textarea
-          className=" text-black w-[350px] border-[2px] rounded-lg border-yellow-600"
-          placeholder="description"
-          {...listBuy("description", { required: true })}
-        />
-        <input
-          type="number"
-          className="text-black w-[350px] border-[2px] rounded-lg border-yellow-900"
-          placeholder="price"
-          {...listBuy("price", { required: true, min: 0.0001 })}
-        />
-        <label>Payment Option</label>
-        <Controller
-          name="isMaticPayment"
-          control={control}
-          render={({ field }) => (
-            <div className="flex space-x-5">
+        <div className="w-full flex justify-between ">
+          <div className="">
+            {" "}
+            <label>Product Name</label>
+            <div className="borderGradient flex  w-[402px] h-[37px] rounded-[11px] justify-center items-center">
               <input
-                type="radio"
-                value="true"
-                checked={field.value === true}
-                onChange={() => field.onChange(true)}
+                className="pl-5 text-white w-[400px] bg-[#1F2045] h-[35px] rounded-[10px]"
+                type="text"
+                {...listBuy("name", { required: true })}
               />
-              <span> Matic</span>
-
-              <input
-                type="radio"
-                value="false"
-                checked={field.value === false}
-                onChange={() => field.onChange(false)}
-              />
-              <span>ARYM Token</span>
             </div>
-          )}
-        />
-        <label>Stock amount</label>
-        <input
-          className="text-black w-[350px] border-[2px] rounded-lg border-yellow-900"
-          placeholder="Stock"
-          type="number"
-          {...listBuy("stock", { required: true, max: 100 })}
-        />
-
-        <button
-          className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
-          onClick={() => setIsOpenAuction(true)}
-        >
-          {" "}
-          Upload Files
-        </button>
-
-        <div
-          className={`${
-            isOpenAuction ? "visible" : "hidden"
-          } flex flex-col justify-center gap-10 absolute left-2/5 bottom-1/4 right-1/4 top-1/4 z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
-        >
-          <button
-            className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
-            onClick={() => setIsOpenAuction(false)}
-          >
-            Done
-          </button>
-          <AuctionModal
-            coverPreviewUrl={coverPreviewUrl}
-            display1PreviewUrl={display1PreviewUrl}
-            display2PreviewUrl={display2PreviewUrl}
-            display3PreviewUrl={display3PreviewUrl}
-            setDisplay2PreviewUrl={setDisplay2PreviewUrl}
-            handleFileChange={handleFileChange}
-            setselectedDisplay2={setselectedDisplay2}
-            setselectedDisplay3={setselectedDisplay3}
-            setselectedDisplay1={setselectedDisplay1}
-            selectedFile={selectedFile}
-            setCoverPreviewUrl={setCoverPreviewUrl}
-            setSelectedCover={setSelectedCover}
-            setDisplay3PreviewUrl={setDisplay3PreviewUrl}
-            setDisplay1PreviewUrl={setDisplay1PreviewUrl}
-            setPreviewUrl={setPreviewUrl}
-            setSelectedFile={setSelectedFile}
-          />
+          </div>
+          <div>
+            <label>Price</label>
+            <div className="borderGradient flex  w-[202px] h-[37px] rounded-[11px] justify-center items-center">
+              <input
+                className=" flex items-center justify-center w-[200px] pl-2 rounded-[10px] h-[35px] bg-[#1F2045] "
+                {...listBuy("price", { required: true, min: 0.0001 })}
+                placeholder="0"
+                type="number"
+              />
+            </div>
+          </div>
         </div>
-        {account ? (
-          <input
-            type="submit"
-            value="List Product"
-            className="rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black "
-            onClick={() => handleListSubmission()}
-            onLoad={() => {
-              return "Loading";
-            }}
-          />
-        ) : (
-          <ConnectButton client={client} chain={amoy} />
-        )}
+        <div className="w-full flex  flex-col gap-2">
+          {" "}
+          <label>Description</label>
+          <div className="borderGradient flex  w-full h-[117px] rounded-[11px] justify-center items-center">
+            <textarea
+              className=" pl-5 rounded-[10px] w-[684px] h-[115px] bg-[#1F2045]"
+              // placeholder="description"
+
+              {...listBuy("description", { required: true })}
+            />
+          </div>
+        </div>
+
+        <div className="w-full flex gap-5">
+          <div className=" flex flex-col gap-2">
+            <label>Category</label>
+            <div className="borderGradient flex  w-[352px] h-[37px] rounded-[11px] justify-center items-center">
+              <select
+                className="w-[350px] bg-[#1F2045] h-[35px] rounded-[10px]"
+                {...listBuy("tag", { required: true })}
+              >
+                <option value="">Select Tag</option>
+                <option value="TwoD">2D</option>
+                <option value="TreeD">3D</option>
+                <option value="Illustration">Illustration</option>
+                <option value="Abstract"> Abstract</option>
+                <option value="Photography">Photography</option>
+                <option value="Pixel">Pixel</option>
+                <option value="other">other</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label>Stock amount</label>
+            <div className="borderGradient flex  w-[302px] h-[37px] rounded-[11px] justify-center items-center">
+              {" "}
+              <input
+                className=" pl-2 w-[300px] h-[35px] rounded-[10px] bg-[#1F2045]"
+                placeholder="0"
+                type="number"
+                {...listBuy("stock", { required: true, max: 100 })}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex justify-between gap-5">
+          <div>
+            {" "}
+            <label>Payment Option</label>
+            <div>
+              {" "}
+              <Controller
+                name="isMaticPayment"
+                control={control}
+                render={({ field }) => (
+                  <div className="flex space-x-5">
+                    <input
+                      type="radio"
+                      value="true"
+                      checked={field.value === true}
+                      onChange={() => field.onChange(true)}
+                    />
+                    <span> Matic</span>
+
+                    <input
+                      className="appearance-none"
+                      type="radio"
+                      value="false"
+                      checked={field.value === false}
+                      onChange={() => field.onChange(false)}
+                    />
+                    <span>ARYM Token</span>
+                  </div>
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            {" "}
+            <button
+              className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
+              onClick={() => setIsOpenAuction(true)}
+            >
+              {" "}
+              Upload Files
+            </button>
+            <div
+              className={`${
+                isOpenAuction ? "visible" : "hidden"
+              } flex flex-col justify-center gap-10 absolute left-2/5 bottom-1/4 right-1/4 top-1/4 z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+            >
+              <button
+                className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
+                onClick={() => setIsOpenAuction(false)}
+              >
+                Done
+              </button>
+              <AuctionModal
+                coverPreviewUrl={coverPreviewUrl}
+                display1PreviewUrl={display1PreviewUrl}
+                display2PreviewUrl={display2PreviewUrl}
+                display3PreviewUrl={display3PreviewUrl}
+                setDisplay2PreviewUrl={setDisplay2PreviewUrl}
+                handleFileChange={handleFileChange}
+                setselectedDisplay2={setselectedDisplay2}
+                setselectedDisplay3={setselectedDisplay3}
+                setselectedDisplay1={setselectedDisplay1}
+                selectedFile={selectedFile}
+                setCoverPreviewUrl={setCoverPreviewUrl}
+                setSelectedCover={setSelectedCover}
+                setDisplay3PreviewUrl={setDisplay3PreviewUrl}
+                setDisplay1PreviewUrl={setDisplay1PreviewUrl}
+                setPreviewUrl={setPreviewUrl}
+                setSelectedFile={setSelectedFile}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          {account ? (
+            <input
+              type="submit"
+              value="List Product"
+              className="rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black "
+              onClick={() => handleListSubmission()}
+              onLoad={() => {
+                return "Loading";
+              }}
+            />
+          ) : (
+            <ConnectButton client={client} chain={amoy} />
+          )}
+        </div>
       </form>
     </div>
   );
