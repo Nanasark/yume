@@ -33,7 +33,7 @@ export default function Hero() {
       </div>
       {/* Hero Right */}
       <div className="flex  w-1/2 ">
-        <div className="relative z-4  pulse w-[280px] h-[450px] ">
+        <div className="relative z-20  pulse w-[280px] h-[450px] ">
           <Image
             src="/images/hp1.png"
             className="relative z-20  w-[258px] h-[438px] swing-hp1"
@@ -42,19 +42,19 @@ export default function Hero() {
             alt="face 1"
           />
         </div>
-        <div className="relative  hover:animate-pulse top-10 z-10 right-28">
+        <div className="relative  pulse top-10 z-10 right-28">
           <Image
             src="/images/hp2.png"
-            className="relative  z-3 swing-hp2"
+            className="relative  z-10 swing-hp2"
             width={215}
             height={312}
             alt="face 1"
           />
         </div>
-        <div className="relative top-[75px] z-0 right-[190px]">
+        <div className="relative top-[75px] pulse z-0 right-[190px]">
           <Image
             src="/images/hp3.png"
-            className=" relative z-2 swing-hp3"
+            className=" relative z-0 swing-hp3"
             width={167}
             height={255}
             alt="face 1"
