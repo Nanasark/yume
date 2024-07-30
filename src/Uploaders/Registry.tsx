@@ -99,7 +99,6 @@ export default function Registry() {
       await sendTransaction(transaction);
     } catch (error) {
       ErrorHandler(error);
-      ErrorAlert(error);
     }
   };
 

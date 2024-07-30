@@ -6,13 +6,20 @@ import SignInButton from "./buttoncomponents/SignInButton";
 import { inter } from "@/helpers/fonts";
 import { inknut_antiqua } from "@/helpers/fonts";
 import { useState } from "react";
+import { registryContract } from "@/app/contract";
+import { readContract } from "thirdweb";
 
 export default function Navbar() {
   const [active, setActive] = useState(1);
 
   const account = useActiveAccount();
 
-  const address = account?.address;
+  const address = account?.address ? account.address : "";
+  const registered = readContract({
+    contract: registryContract,
+    method: "checkRegistered",
+    params: [address],
+  });
   const addresses = ["0x1559572a045F8ec085FbAc8A80B399D23Ecfd01a", "", ""];
   const hover =
     "hover:border-b-indigo-900 hover:drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hover:opacity-90 hover:border-b-2 ";
@@ -93,7 +100,14 @@ export default function Navbar() {
         <div>
           {account && (
             <div className="flex space-x-9">
-              <div>
+              <div className=" flex space-x-9">
+                <Link href={"/Register"}>
+                  {" "}
+                  <div className={`${hover} relative`}>
+                    <p className="">KYC</p>
+                  </div>
+                </Link>
+
                 <Link href={"/Profile"}>
                   {" "}
                   <div className={`${hover} relative`}>
