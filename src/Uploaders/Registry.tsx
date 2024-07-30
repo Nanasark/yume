@@ -140,10 +140,18 @@ export default function Registry() {
               />
             </div>
           </div>
-          {profilePreviewUrl && (
+          {profilePreviewUrl ? (
             <Image
               className=" w-[100px] h-[100px] rounded-full"
               src={profilePreviewUrl}
+              alt="Selected Image Preview"
+              width={100}
+              height={100}
+            />
+          ) : (
+            <Image
+              className=" w-[100px] h-[100px] rounded-full"
+              src={"/images/defaultProfile.jpeg"}
               alt="Selected Image Preview"
               width={100}
               height={100}
