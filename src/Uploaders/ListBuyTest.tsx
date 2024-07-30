@@ -272,7 +272,7 @@ export default function ListBuy() {
             <div
               className={`${
                 isOpenAuction ? "visible" : "hidden"
-              } flex flex-col justify-center gap-10 absolute left-2/5 bottom-1/4 right-1/4 top-1/4 z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+              } flex flex-col justify-center gap-10 absolute left-4/5 bottom-1/4 z-40 top-1/5  items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
             >
               <button
                 className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
@@ -307,7 +307,7 @@ export default function ListBuy() {
             <input
               type="submit"
               value="List Product"
-              className="rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black "
+              className="cursor-pointer rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black "
               onClick={() => handleListSubmission()}
               onLoad={() => {
                 return "Loading";

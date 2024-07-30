@@ -30,7 +30,7 @@ export default function Sell() {
         <div>{auction ? <ListAuction /> : <ListBuy />}</div>
 
         <div
-          className={`${lora.className} bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 saturate-100 backdrop-contrast-100`}
+          className={`${lora.className} z-0 bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 saturate-100 backdrop-contrast-100`}
         >
           <h1>Welcome To our Sell Page</h1>
           <h2> You Can either List a product for Buy or List for Auction</h2>
