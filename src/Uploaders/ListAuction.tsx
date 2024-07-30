@@ -142,7 +142,7 @@ export default function ListAuction() {
   };
 
   return (
-    <div className="flex flex-col items-center border-[2px] justify-center p-5 w-[800px] bg-[#1F2045] rounded-xl">
+    <div className="h-full flex flex-col items-center border-[2px] justify-center p-5 w-[800px] bg-[#1F2045] rounded-xl">
       <form
         onSubmit={handleListAuctionSubmit(onSubmit)}
         className="flex mt-10 flex-col space-y-5 text-white items-center justify-center w-[600px]"
@@ -150,14 +150,12 @@ export default function ListAuction() {
         <label>Name:</label>
         <input
           className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          placeholder="name of product"
           {...listAuction("name", { required: true })}
         />
 
         <label>Description:</label>
         <input
           className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          placeholder="name of product"
           {...listAuction("description", { required: true })}
         />
 
@@ -165,7 +163,6 @@ export default function ListAuction() {
         <input
           type="number"
           className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          placeholder="start price"
           {...listAuction("startPrice", { required: true, min: 0.0001 })}
         />
         <label>Duration in Days </label>
@@ -187,7 +184,7 @@ export default function ListAuction() {
         <div
           className={`${
             isOpenAuction ? "visible" : "hidden"
-          } flex flex-col justify-center gap-10 absolute left-3/5 bottom-1/4 right-1/4 top-1/4 z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+          } flex flex-col justify-center gap-10 absolute left-3/5 bottom-1/4  right-1/4 top-[100px] z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
         >
           <button
             className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"

@@ -260,7 +260,7 @@ export default function ListBuy() {
               />
             </div>
           </div>
-          <div>
+          <div className="z-30">
             {" "}
             <button
               className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
@@ -272,7 +272,7 @@ export default function ListBuy() {
             <div
               className={`${
                 isOpenAuction ? "visible" : "hidden"
-              } flex flex-col justify-center gap-10 absolute left-4/5 bottom-1/4 z-40 top-1/5  items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+              } flex flex-col justify-center gap-10 absolute left-[100px] bottom-1/4  right-1/4 top-[100px] z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
             >
               <button
                 className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"

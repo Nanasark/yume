@@ -10,8 +10,8 @@ export default function Sell() {
   const [auction, setAuction] = useState(false);
 
   return (
-    <div className="flex flex-col p-5 bg-[#181934]">
-      <div className=" w-full p-10 flex gap-10 items-center justify-center ">
+    <div className="flex h-full flex-col p-5 bg-[#181934]">
+      <div className=" w-full h-full p-10 flex gap-10 items-center justify-center ">
         <button
           className="rounded-lg border-radius-[2px] w-[120px] bg-yellow-400 text-black "
           onClick={() => setAuction(false)}
@@ -30,7 +30,7 @@ export default function Sell() {
         <div>{auction ? <ListAuction /> : <ListBuy />}</div>
 
         <div
-          className={`${lora.className} z-0 bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 saturate-100 backdrop-contrast-100`}
+          className={`${lora.className}  bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-10 saturate-100 backdrop-contrast-100`}
         >
           <h1>Welcome To our Sell Page</h1>
           <h2> You Can either List a product for Buy or List for Auction</h2>
