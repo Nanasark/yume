@@ -14,6 +14,7 @@ import { client } from "@/app/client";
 import { amoy } from "@/app/chain";
 import { poppins } from "@/helpers/fonts";
 import { ErrorAlert, ErrorHandler } from "@/components/error/error";
+import config from "@/Strings/config";
 
 type RegitryInput = {
   firstName: string;
@@ -73,12 +74,14 @@ export default function Registry() {
 
   const handleListAuction = async (data: RegitryInput) => {
     try {
-      const profilehash = await uploadFileToIPFS(selectedProfile);
+      const profilehash =
+        (await uploadFileToIPFS(selectedProfile)) || config.defaultProfile;
 
       console.log("filehash:", profilehash);
 
       if (!profilehash) {
         console.error("Error: Some IPFS hashes are missing.");
+
         return;
       }
 
