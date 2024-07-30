@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { prepareContractCall, toWei } from "thirdweb";
 import { PreparedTransaction } from "thirdweb";
+import { TransactionButton } from "thirdweb/react";
 import {
   ConnectButton,
   useActiveAccount,
