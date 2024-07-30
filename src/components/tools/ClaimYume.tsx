@@ -54,7 +54,7 @@ export default function ClaimYume() {
           })
         }
         onTransactionConfirmed={() => {
-          alert("claim sucessful");
+          alert("1000 ARYM claimed successfully");
         }}
         onError={ErrorAlert}
         unstyled
