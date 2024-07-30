@@ -22,7 +22,7 @@ export default function SignInButton() {
         theme="dark"
         autoConnect={true}
         
-        // accountAbstraction={{ chain: amoy, sponsorGas: true }}
+        accountAbstraction={{ chain: amoy, sponsorGas: true }}
       />
     </div>
   );

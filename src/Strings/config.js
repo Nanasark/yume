@@ -16,6 +16,7 @@ const config = {
   AuctionAddres: String(process.env.NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS),
   RegistryAddress: String(process.env.NEXT_PUBLIC_REGISTRY_CONTRACT_ADDRESS),
   EndAuctionkey: String(process.env.NEXT_PUBLIC_END_AUCTION_KEY),
+  claimAddress: String(process.env.NEXT_PUBLIC_CLAIM_CONTRACT_ADDRESS),
 };
 
 export default config;
