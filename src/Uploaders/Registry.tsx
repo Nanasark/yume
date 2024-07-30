@@ -74,8 +74,12 @@ export default function Registry() {
 
   const handleListAuction = async (data: RegitryInput) => {
     try {
-      const profilehash =
-        (await uploadFileToIPFS(selectedProfile)) || config.defaultProfile;
+      let profilehash = config.defaultProfile;
+
+      if (profilePreviewUrl) {
+        profilehash = await uploadFileToIPFS(selectedProfile);
+        console.log("filehash:", profilehash);
+      }
 
       console.log("filehash:", profilehash);
 
