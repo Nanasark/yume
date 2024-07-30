@@ -58,7 +58,7 @@ export default function ClaimYume() {
         }}
         onError={ErrorAlert}
         unstyled
-        className="w-200px ring-black bg-green-600 h-[60px] rounded-sm"
+        className="w-250px items-center ring-1  bg-indigo-200 h-[60px] rounded-sm"
       >
         claim 1000 ARYM
       </TransactionButton>
