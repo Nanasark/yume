@@ -29,6 +29,7 @@ type RegitryInput = {
 export default function Registry() {
   const account = useActiveAccount();
   const { mutate: sendTransaction } = useSendTransaction();
+  const [profilehash, setProfilehash] = useState(config.defaultProfile);
 
   const [selectedProfile, setSelectedProfile] = useState<File | null>(null);
   const [profilePreviewUrl, setProfilePreviewUrl] = useState<string | null>(
@@ -74,19 +75,24 @@ export default function Registry() {
 
   const handleListAuction = async (data: RegitryInput) => {
     try {
-      let profilehash = config.defaultProfile;
-
-      if (profilePreviewUrl) {
-        profilehash = await uploadFileToIPFS(selectedProfile);
-        console.log("filehash:", profilehash);
-      }
-
-      console.log("filehash:", profilehash);
-
-      if (!profilehash) {
-        console.error("Error: Some IPFS hashes are missing.");
-
-        return;
+      if (profilePreviewUrl && selectedProfile) {
+        try {
+          console.log(
+            "Profile preview URL and selected profile detected. Uploading to IPFS..."
+          );
+          const uploadedHash = await uploadFileToIPFS(selectedProfile);
+          console.log("Uploaded filehash from IPFS:", uploadedHash);
+          setProfilehash(uploadedHash);
+        } catch (uploadError) {
+          console.error("Error uploading file to IPFS:", uploadError);
+          // Fall back to the default profile hash
+          setProfilehash(config.defaultProfile);
+        }
+      } else {
+        console.log(
+          "No profile preview URL or selected profile. Using default profile hash."
+        );
+        setProfilehash(config.defaultProfile);
       }
 
       const transaction = (await prepareContractCall({
@@ -105,7 +111,7 @@ export default function Registry() {
 
       await sendTransaction(transaction);
     } catch (error) {
-      ErrorHandler(error);
+      ErrorAlert(error);
     }
   };
 
