@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Rubik } from "next/font/google";
 import "./globals.css";
 import AuctionModalProvider from "@/helpers/AuctionContext";
+import { Toaster } from "react-hot-toast";
 import { BuyModalProvider } from "@/helpers/BuyContext";
 import { ThirdwebProvider } from "@/app/thirdweb";
 // import queryClient from "@/lib/react-query";
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className={rubik.className}>
         <ThirdwebProvider>
           <AuctionModalProvider>
+            <Toaster position="top-center" />
             <Navbar />
             <div className="relative top-10">{children}</div>
           </AuctionModalProvider>

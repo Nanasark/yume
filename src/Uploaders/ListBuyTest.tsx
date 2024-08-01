@@ -15,6 +15,7 @@ import { amoy } from "@/app/chain";
 import AuctionModal from "../modals/AuctionModal";
 import { useOpenAuction } from "@/helpers/AuctionContext";
 import { inter } from "@/helpers/fonts";
+import SuccessHandler from "@/components/success/success";
 enum TagEnum {
   ThreeD = "ThreeD",
   TwoD = "TwoD",
@@ -35,7 +36,13 @@ type ProductInput = {
 export default function ListBuy() {
   const { isOpenAuction, setIsOpenAuction } = useOpenAuction();
   const account = useActiveAccount();
-  const { mutate: sendTransaction, isPending } = useSendTransaction();
+  const {
+    mutate: sendTransaction,
+    isPending,
+    isError,
+    isSuccess,
+    error: errror,
+  } = useSendTransaction();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedCover, setSelectedCover] = useState<File | null>(null);
@@ -301,6 +308,18 @@ export default function ListBuy() {
             </div>
           </div>
         </div>
+
+        <SuccessHandler
+          isPending={isPending}
+          isSuccess={isSuccess}
+          isError={isError}
+          Pending="Transaction is in progress..."
+          Success="Listed for Buy successfully!"
+          Error={`${errror?.name
+            .replace(/contract:\s*[\S]+/g, "")
+            .replace(/chainId:\s*\d+/g, "")
+            .trim()}`}
+        />
 
         <div>
           {account ? (

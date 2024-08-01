@@ -16,6 +16,7 @@ import AuctionModal from "@/modals/AuctionModal";
 import { useOpenAuction } from "@/helpers/AuctionContext";
 import { Roboto, Goblin_One } from "next/font/google";
 import { ErrorHandler, ErrorAlert } from "@/components/error/error";
+import SuccessHandler from "@/components/success/success";
 
 type AuctionInput = {
   name: string;
@@ -27,7 +28,13 @@ type AuctionInput = {
 export default function ListAuction() {
   const { isOpenAuction, setIsOpenAuction } = useOpenAuction();
   const account = useActiveAccount();
-  const { mutate: sendTransaction, isPending } = useSendTransaction();
+  const {
+    mutate: sendTransaction,
+    isPending,
+    isError,
+    isSuccess,
+    error: errror,
+  } = useSendTransaction();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedCover, setSelectedCover] = useState<File | null>(null);
@@ -211,6 +218,18 @@ export default function ListAuction() {
             setSelectedFile={setSelectedFile}
           />
         </div>
+
+        <SuccessHandler
+          isPending={isPending}
+          isSuccess={isSuccess}
+          isError={isError}
+          Pending="Transaction is in progress..."
+          Success="Listed for Auction successfully!"
+          Error={`${errror?.name
+            .replace(/contract:\s*[\S]+/g, "")
+            .replace(/chainId:\s*\d+/g, "")
+            .trim()}`}
+        />
 
         {account ? (
           <input

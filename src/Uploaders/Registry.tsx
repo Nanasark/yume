@@ -15,6 +15,8 @@ import { amoy } from "@/app/chain";
 import { poppins } from "@/helpers/fonts";
 import { ErrorAlert, ErrorHandler } from "@/components/error/error";
 import config from "@/Strings/config";
+import SuccessHandler from "@/components/success/success";
+import { TransactionError, TransactionErrorInfo } from "@thirdweb-dev/react";
 
 type RegitryInput = {
   firstName: string;
@@ -28,7 +30,16 @@ type RegitryInput = {
 
 export default function Registry() {
   const account = useActiveAccount();
-  const { mutate: sendTransaction } = useSendTransaction();
+  const {
+    mutate: sendTransaction,
+    isPending,
+    isSuccess,
+    isError,
+    error: errror,
+    
+  } = useSendTransaction();
+
+  const [errorMessage, setErrorMessage] = useState("transaction error");
   const [profilehash, setProfilehash] = useState(config.defaultProfile);
 
   const [selectedProfile, setSelectedProfile] = useState<File | null>(null);
@@ -110,9 +121,7 @@ export default function Registry() {
       })) as PreparedTransaction;
 
       await sendTransaction(transaction);
-    } catch (error) {
-      ErrorAlert(error);
-    }
+    } catch (error) {}
   };
 
   const {
@@ -259,7 +268,17 @@ export default function Registry() {
               />
             )}
           </div> */}
-
+          <SuccessHandler
+            isPending={isPending}
+            isSuccess={isSuccess}
+            isError={isError}
+            Pending="Transaction is in progress..."
+            Success="Registered successfully!"
+            Error={`${errror?.name
+              .replace(/contract:\s*[\S]+/g, "")
+              .replace(/chainId:\s*\d+/g, "")
+              .trim()}`}
+          />
           <div>
             {account ? (
               <input
