@@ -55,7 +55,7 @@ export default function AuctionCard({
             <p className="font-semibold">
               {registry?.firstName} {registry?.secondName}
             </p>
-            <p className="text-sm text-[#C0C0C0]">{registry?.email}</p>
+            <p className="text-sm text-[#C0C0C0]">{registry?.userName}</p>
           </div>
         </div>
 

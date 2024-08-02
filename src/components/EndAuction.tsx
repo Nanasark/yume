@@ -16,6 +16,7 @@ import { client } from "@/app/client";
 import { privateKeyToAccount } from "thirdweb/wallets";
 import { TransactionError } from "@thirdweb-dev/react";
 import { useSendTransaction } from "thirdweb/react";
+import { ErrorAlert } from "./error/error";
 
 type EndAuctionProps = {
   endTime: bigint;
@@ -51,16 +52,7 @@ const EndAuction = ({ endTime, id, seller }: EndAuctionProps) => {
         });
         console.log(`Auction with ID ${id} ended successfully.`);
       } catch (error) {
-        if (error instanceof TransactionError) {
-          // Assuming TransactionError is a custom error class
-          console.error("Transaction Error message:", error.message);
-          console.error("Transaction Cause Details:", error.cause); // Log additional details if available
-          console.error("reason", error.reason);
-          console.error("error info", error.info)
-          console.error("error info", error.raw);
-        } else {
-          console.error("Unexpected Error:", error);
-        }
+        ErrorAlert(error);
       }
     };
 

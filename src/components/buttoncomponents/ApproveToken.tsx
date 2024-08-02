@@ -54,11 +54,10 @@ export default function ApproveToken({
 
       await sendTx(transaction);
       console.log("Approved");
-      alert("Approved");
+
       onApprovalSuccess();
     } catch (error) {
       console.error("Error approving token:", error);
-      alert("Error approving token. Please try again.");
     }
   };
 
