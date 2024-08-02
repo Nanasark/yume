@@ -13,7 +13,7 @@ import ApproveToken from "./ApproveToken";
 import { useState, useEffect } from "react";
 import { TransactionError } from "@thirdweb-dev/react";
 import { ErrorAlert, ErrorHandler } from "../error/error";
-
+import toast from "react-hot-toast";
 
 type BidButtonProps = {
   id: bigint;
@@ -108,13 +108,20 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
                     params: [id, toWei(`${parsedBidAmount}`)],
                   })
                 }
-                
-                    
-                onTransactionSent={() => alert("Successfully placed a bid")}
-                onError={(error) => {
-                  ErrorAlert(error);
-                  ErrorHandler(error);
-                }}
+                onTransactionSent={() =>
+                  toast.loading("transaction sent ...", {
+                    id: "transaction",
+                    icon: "🔥",
+                  })
+                }
+                onError={ErrorAlert}
+                onTransactionConfirmed={() =>
+                  toast.success("Bid successfull", {
+                    id: "transaction",
+                    icon: "✅",
+                    duration: 5000,
+                  })
+                }
               >
                 Bid
               </TransactionButton>

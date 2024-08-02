@@ -11,6 +11,7 @@ import { tokencontract } from "@/app/contract";
 import config from "@/Strings/config";
 import { PreparedTransaction, readContract } from "thirdweb";
 import { allowance } from "thirdweb/extensions/erc20";
+import SuccessHandler from "../success/success";
 
 export default function ApproveToken() {
   const [contractAddress, setContractAddress] = useState(0);
@@ -21,7 +22,13 @@ export default function ApproveToken() {
 
   const account = useActiveAccount();
   const address = account?.address;
-  const { mutate: sendTx } = useSendTransaction();
+  const {
+    mutate: sendTx,
+    isPending,
+    isSuccess,
+    isError,
+    error: errror,
+  } = useSendTransaction();
   const [amount, setAmount] = useState<number | string>("");
   const contract =
     contractAddress == 1
@@ -47,16 +54,11 @@ export default function ApproveToken() {
         contract: tokencontract,
         method: "approve",
         params: [contract as `0x${string}`, price],
-        
       })) as PreparedTransaction;
       console.log("address test:", contract);
       await sendTx(transaction);
       console.log("Approved");
-    } catch (error) {
-      console.error("Error approving token:", error);
-      alert("Error approving token. Please try again.");
-    }
-    alert("Approved");
+    } catch (error) {}
   };
 
   console.log("the auction addrss", contract);
@@ -112,6 +114,17 @@ export default function ApproveToken() {
           </div>
         </div>
       </div>
+      <SuccessHandler
+        isPending={isPending}
+        isSuccess={isSuccess}
+        isError={isError}
+        Pending="Transaction is in progress..."
+        Success="Registered successfully!"
+        Error={`${errror?.message
+          .replace(/contract:\s*[\S]+/g, "")
+          .replace(/chainId:\s*\d+/g, "")
+          .trim()}`}
+      />
     </div>
   );
 }
@@ -129,7 +142,6 @@ export function AuctionAllowawnce() {
         contract: tokencontract,
         method: "allowance",
         params: [`${address}`, config.AuctionAddres as `0x${string}`],
-      
       });
 
       const allowed = toEther(allowance);

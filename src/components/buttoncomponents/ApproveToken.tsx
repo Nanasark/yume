@@ -6,7 +6,7 @@ import {
   toEther,
   useSendTransaction,
 } from "@/app/thirdweb";
-
+import SuccessHandler from "../success/success";
 
 import { tokencontract } from "@/app/contract";
 import config from "@/Strings/config";
@@ -24,7 +24,13 @@ export default function ApproveToken({
   onApprovalSuccess,
 }: Approve) {
   const account = useActiveAccount();
-  const { mutate: sendTx } = useSendTransaction();
+  const {
+    mutate: sendTx,
+    isPending,
+    isSuccess,
+    isError,
+    error: errror,
+  } = useSendTransaction();
   const [amount, setAmount] = useState<number | string>(""); // State to hold user input amount
 
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +81,17 @@ export default function ApproveToken({
       >
         Approve
       </button>
+      <SuccessHandler
+        isPending={isPending}
+        isSuccess={isSuccess}
+        isError={isError}
+        Pending="Transaction is in progress..."
+        Success="Approved successfully!"
+        Error={`${errror?.message
+          .replace(/contract:\s*[\S]+/g, "")
+          .replace(/chainId:\s*\d+/g, "")
+          .trim()}`}
+      />
     </div>
   );
 }

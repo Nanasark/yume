@@ -9,6 +9,7 @@ import { ErrorAlert, ErrorHandler } from "../error/error";
 import { Account } from "thirdweb/wallets";
 import { claimcontract } from "@/app/contract";
 import { TransactionButton } from "thirdweb/react";
+import toast from "react-hot-toast";
 
 export default function ClaimYume() {
   const account = useActiveAccount();
@@ -54,10 +55,15 @@ export default function ClaimYume() {
           })
         }
         onTransactionConfirmed={() => {
-          alert("1000 ARYM claimed successfully");
+          toast.success("1000 ARYM claimed successfully", {
+            id: "transaction",
+            icon: "✅",
+            duration: 5000,
+          });
         }}
         onError={ErrorAlert}
         unstyled
+        
         className="w-250px items-center ring-1  bg-indigo-200 h-[60px] rounded-sm"
       >
         claim 1000 ARYM

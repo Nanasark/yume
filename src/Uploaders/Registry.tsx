@@ -36,7 +36,7 @@ export default function Registry() {
     isSuccess,
     isError,
     error: errror,
-    
+
   } = useSendTransaction();
 
   const [errorMessage, setErrorMessage] = useState("transaction error");
@@ -274,7 +274,7 @@ export default function Registry() {
             isError={isError}
             Pending="Transaction is in progress..."
             Success="Registered successfully!"
-            Error={`${errror?.name
+            Error={`${errror?.message
               .replace(/contract:\s*[\S]+/g, "")
               .replace(/chainId:\s*\d+/g, "")
               .trim()}`}

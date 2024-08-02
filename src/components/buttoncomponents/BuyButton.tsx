@@ -10,6 +10,9 @@ import config from "@/Strings/config";
 import ApproveToken from "./ApproveToken";
 import { useState, useEffect } from "react";
 import ToggleList from "../ToggleListing";
+import { ErrorAlert } from "../error/error";
+import SuccessHandler from "../success/success";
+import toast from "react-hot-toast";
 
 type BuyButtonProps = {
   id: bigint;
@@ -78,7 +81,20 @@ export default function BuyButton({
               value: price,
             })
           }
-          onTransactionSent={() => alert("Successfully bought")}
+          onTransactionSent={() =>
+            toast.loading("transaction sent ...", {
+              id: "transaction",
+              icon: "🔥",
+            })
+          }
+          onError={ErrorAlert}
+          onTransactionConfirmed={() =>
+            toast.success("item successfully purchased", {
+              id: "transaction",
+              icon: "✅",
+              duration: 5000,
+            })
+          }
         >
           Buy Item with MATIC
         </TransactionButton>
@@ -91,6 +107,7 @@ export default function BuyButton({
               params: [id],
             })
           }
+          onError={ErrorAlert}
           onTransactionSent={() => alert("Successfully bought")}
         >
           Buy Item with Token
