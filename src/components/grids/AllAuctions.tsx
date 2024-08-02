@@ -14,8 +14,8 @@ export default function AllAuctions() {
   }
 
   return (
-    <div className="relative  h-full pl-14 pr-16 pt-10 w-screen">
-      <div className=" grid grid-cols-4 gap-10">
+    <div className="relative  h-full lg:h-screen lg:pl-14 lg:pr-16  w-screen">
+      <div className="h-full flex flex-col items-center justify-center gap-5 w-full grid lg:grid-cols-4 lg:gap-10 ">
         {auction &&
           auction.map((auction) => (
             <Link key={auction.id} href={`/Auction/${auction.id}`}>
@@ -26,7 +26,6 @@ export default function AllAuctions() {
                 id={auction.id}
                 endTime={auction.endTime}
                 seller={`${auction.seller}`}
-                
               />
             </Link>
           ))}

@@ -1,162 +1,138 @@
 "use client";
 
-import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { useActiveAccount } from "thirdweb/react";
 import Link from "next/link";
 import SignInButton from "./buttoncomponents/SignInButton";
 import { inter } from "@/helpers/fonts";
 import { inknut_antiqua } from "@/helpers/fonts";
 import { useState } from "react";
-import { registryContract } from "@/app/contract";
-import { readContract } from "thirdweb";
+import { HiBars2 } from "react-icons/hi2";
+import { MdClose } from "react-icons/md";
 
 export default function Navbar() {
-  const [active, setActive] = useState(1);
-
+  const [active, setActive] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
   const account = useActiveAccount();
+  const address = account?.address || "";
 
-  const address = account?.address ? account.address : "";
-  // const registered = readContract({
-  //   contract: registryContract,
-  //   method: "checkRegistered",
-  //   params: [address],
-  // });
-  const addresses = ["0x1559572a045F8ec085FbAc8A80B399D23Ecfd01a", "", ""];
   const hover =
     "hover:border-b-indigo-900 hover:drop-shadow-md hover:opacity-90 border-b-2 border-transparent transition-all duration-300";
 
+  const menuItems = [
+    { name: "Home", path: "/", id: "home" },
+    { name: "Direct-Buys", path: "/Buy", id: "buy" },
+    { name: "Auctions", path: "/Auction", id: "auction" },
+    { name: "Sell", path: "/Sell", id: "sell" },
+    { name: "Tools", path: "/Tools", id: "tools" },
+  ];
+
   return (
-    <div
-      className={`${inter.className} flex w-full h-[70px] items-center text-center pr-10 p-5 justify-between space-x-5 bg-[#181934] text-white fixed z-[1000] drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
+    <nav
+      className={`${inter.className} bg-[#181934] text-white fixed w-full h-[70px] z-[1000] drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
     >
-      <div
-        className={`${inknut_antiqua.className} relative font-black text-white text-[40px]`}
-      >
-        <h1>ARTYUME</h1>
-      </div>
-      <div className="flex gap-5">
-        <div onClick={() => setActive(1)}>
-          {" "}
-          <Link href={"/"}>
-            {" "}
-            <div
-              className={`${hover} ${
-                active == 1 ? "opacity-100" : "opacity-70"
-              } relative`}
-            >
-              <p className="">Home</p>
-            </div>
-          </Link>
+      <div className="flex items-center justify-between h-full px-5 lg:px-10">
+        <div
+          className={`${inknut_antiqua.className} font-black text-white text-[40px]`}
+        >
+          <h1>ARTYUME</h1>
         </div>
-        <div onClick={() => setActive(2)} className="cursor-pointer">
-          <Link href={"/Buy"}>
-            {" "}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-white focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? (
+            <MdClose className="w-8 h-8" />
+          ) : (
+            <HiBars2 className="w-8 h-8" />
+          )}
+        </button>
+        <div className="hidden lg:flex items-center justify-center flex-1 space-x-5">
+          {menuItems.map((item) => (
             <div
-              className={`${hover} ${
-                active == 2 ? "opacity-100" : "opacity-70"
-              } relative`}
+              key={item.id}
+              onClick={() => setActive(item.id)}
+              className="cursor-pointer"
             >
-              <p className="">Direct-Buys</p>
+              <Link href={item.path}>
+                <div
+                  className={`${hover} ${
+                    active === item.id ? "opacity-100" : "opacity-70"
+                  } relative`}
+                >
+                  <p>{item.name}</p>
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
-        <div onClick={() => setActive(3)} className="cursor-pointer">
-          {" "}
-          <Link href={"/Auction"}>
-            {" "}
-            <div
-              className={`${hover} ${
-                active == 3 ? "opacity-100" : "opacity-70"
-              } relative`}
-            >
-              <p className="">Auctions</p>
-            </div>
-          </Link>
-        </div>
-        <div onClick={() => setActive(4)}>
-          <Link href={"/Sell"}>
-            {" "}
-            <div
-              className={`${hover} ${
-                active == 4 ? "opacity-100" : "opacity-70"
-              } relative`}
-            >
-              <p className="">Sell</p>
-            </div>
-          </Link>
-        </div>
-        <div onClick={() => setActive(5)}>
-          <Link href={"/Tools"}>
-            {" "}
-            <div
-              className={`${hover} ${
-                active == 5 ? "opacity-100" : "opacity-70"
-              } relative`}
-            >
-              <p className="">Tools</p>
-            </div>
-          </Link>
-        </div>
-
-        <div>
+          ))}
           {account && (
-            <div className="flex space-x-9">
-              <div className=" flex space-x-9">
-                <Link href={"/Register"}>
-                  {" "}
-                  <div className={`${hover} relative`}>
-                    <p className="">KYC</p>
-                  </div>
-                </Link>
+            <div className="flex items-center space-x-9">
+              <Link href={"/Register"}>
+                <div className={`${hover} relative`}>
+                  <p className="">KYC</p>
+                </div>
+              </Link>
 
-                <Link href={"/Profile"}>
-                  {" "}
-                  <div className={`${hover} relative`}>
-                    <p className="">Profile</p>
-                  </div>
-                </Link>
-              </div>
-
+              <Link href={"/Profile"}>
+                <div className={`${hover} relative`}>
+                  <p className="">Profile</p>
+                </div>
+              </Link>
               <div>
-                {" "}
-                {account.address.slice(0, 5)}...{account.address.slice(6, 9)}
+                {address.slice(0, 5)}...{address.slice(-4)}
               </div>
             </div>
           )}
         </div>
-      </div>
-
-      <div className="relative ">
-        <div className="relative  ">
+        <div className="hidden lg:block">
           <SignInButton />
         </div>
       </div>
-    </div>
+
+      {isOpen && (
+        <div className="lg:hidden flex flex-col bg-[#181934] px-5 pb-5 space-y-3">
+          {menuItems.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => {
+                setActive(item.id);
+                setIsOpen(false);
+              }}
+              className="cursor-pointer"
+            >
+              <Link href={item.path}>
+                <div
+                  className={`${hover} ${
+                    active === item.id ? "opacity-100" : "opacity-70"
+                  } relative`}
+                >
+                  <p>{item.name}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+          {account && (
+            <div className="flex flex-col space-y-3">
+              <Link href={"/Register"}>
+                <div className={`${hover} relative`}>
+                  <p className="">KYC</p>
+                </div>
+              </Link>
+              <Link href={"/Profile"}>
+                <div className={`${hover} relative`}>
+                  <p className="">Profile</p>
+                </div>
+              </Link>
+              <div>
+                {address.slice(0, 5)}...{address.slice(-4)}
+              </div>
+            </div>
+          )}
+          <div>
+            <SignInButton />
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
-
-// {
-//   address ? (
-//     <div>
-//       {addresses.map((theAddress, index) => {
-//         if (theAddress === address) {
-//           return (
-//             <div key={index}>
-//               <Link href={"/AdminPanel"}>
-//                 {" "}
-//                 <div className={`${hover} relative`}>
-//                   <p className="">Admin</p>
-//                 </div>
-//               </Link>
-//             </div>
-//           );
-//         }
-
-//         return null;
-//       })}
-//     </div>
-//   ) : (
-//     <div className="relative h-[30px] bottom-3 ">
-//       <SignInButton />
-//     </div>
-//   );
-// }
