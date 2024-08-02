@@ -34,8 +34,19 @@ export default function RootLayout({
       <body className={rubik.className}>
         <ThirdwebProvider>
           <AuctionModalProvider>
-            <Toaster position="top-center" />
             <Navbar />
+            <Toaster
+              position="top-center"
+              containerClassName="mt-[50px]"
+              toastOptions={{
+                className: "",
+                style: {
+                  border: "1px solid #631A86",
+                  padding: "10px",
+                  color: "#4C1036",
+                },
+              }}
+            />
             <div className="relative top-10">{children}</div>
           </AuctionModalProvider>
         </ThirdwebProvider>

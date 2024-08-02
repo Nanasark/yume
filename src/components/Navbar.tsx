@@ -15,18 +15,18 @@ export default function Navbar() {
   const account = useActiveAccount();
 
   const address = account?.address ? account.address : "";
-  const registered = readContract({
-    contract: registryContract,
-    method: "checkRegistered",
-    params: [address],
-  });
+  // const registered = readContract({
+  //   contract: registryContract,
+  //   method: "checkRegistered",
+  //   params: [address],
+  // });
   const addresses = ["0x1559572a045F8ec085FbAc8A80B399D23Ecfd01a", "", ""];
   const hover =
-    "hover:border-b-indigo-900 hover:drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hover:opacity-90 hover:border-b-2 ";
+    "hover:border-b-indigo-900 hover:drop-shadow-md hover:opacity-90 border-b-2 border-transparent transition-all duration-300";
 
   return (
     <div
-      className={`${inter.className} flex w-full h-[70px] items-center text-center pr-10 p-5 justify-between space-x-5 bg-[#181934] text-white fixed z-50 drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
+      className={`${inter.className} flex w-full h-[70px] items-center text-center pr-10 p-5 justify-between space-x-5 bg-[#181934] text-white fixed z-[1000] drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
     >
       <div
         className={`${inknut_antiqua.className} relative font-black text-white text-[40px]`}
@@ -47,7 +47,7 @@ export default function Navbar() {
             </div>
           </Link>
         </div>
-        <div onClick={() => setActive(2)}>
+        <div onClick={() => setActive(2)} className="cursor-pointer">
           <Link href={"/Buy"}>
             {" "}
             <div
@@ -59,7 +59,7 @@ export default function Navbar() {
             </div>
           </Link>
         </div>
-        <div onClick={() => setActive(3)}>
+        <div onClick={() => setActive(3)} className="cursor-pointer">
           {" "}
           <Link href={"/Auction"}>
             {" "}
