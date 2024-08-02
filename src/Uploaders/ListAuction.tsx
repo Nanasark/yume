@@ -17,6 +17,7 @@ import { useOpenAuction } from "@/helpers/AuctionContext";
 import { Roboto, Goblin_One } from "next/font/google";
 import { ErrorHandler, ErrorAlert } from "@/components/error/error";
 import SuccessHandler from "@/components/success/success";
+import toast from "react-hot-toast";
 
 type AuctionInput = {
   name: string;
@@ -92,17 +93,32 @@ export default function ListAuction() {
 
   const handleListAuction = async (data: AuctionInput) => {
     try {
+      const toastId1 = toast.loading("Listing, wait a minute...");
       const filehash = await uploadFileToIPFS(selectedFile);
+
+      // Dismiss the first toast and show the second one
+      toast.dismiss(toastId1);
+      const toastId2 = toast.loading("Listing, wait a minute...");
       const coverhash = await uploadFileToIPFS(selectedCover);
+
+      // Dismiss the second toast and show the third one
+      toast.dismiss(toastId2);
+      const toastId3 = toast.loading("Listing ...");
       const display1hash = await uploadFileToIPFS(selectedDisplay1);
+
+      // Dismiss the third toast and show the fourth one
+      toast.dismiss(toastId3);
+      const toastId4 = toast.loading("Listing ...");
       const display2hash = await uploadFileToIPFS(selectedDisplay2);
+
+      // Dismiss the fourth toast and show the fifth one
+      toast.dismiss(toastId4);
+      const toastId5 = toast.loading("Listing ...");
       const display3hash = await uploadFileToIPFS(selectedDisplay3);
 
-      console.log("filehash:", filehash);
-      console.log("coverhash:", coverhash);
-      console.log("display1hash:", display1hash);
-      console.log("display2hash:", display2hash);
-      console.log("display3hash:", display3hash);
+      // Dismiss the fifth toast and show the final toast
+      toast.dismiss(toastId5);
+      const toastId6 = toast.loading("Transaction begun ...");
 
       if (
         !filehash ||
@@ -133,6 +149,7 @@ export default function ListAuction() {
         ],
       })) as PreparedTransaction;
 
+      toast.dismiss(toastId6);
       await sendTransaction(transaction);
     } catch (error) {
       ErrorAlert(error);
