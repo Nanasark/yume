@@ -289,7 +289,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
       {isAuctionLoading
         ? "loading Auction Info..."
         : auction && (
-            <div className="flex w-full justify-between flex-col rounded-xl  bg-[#1F2045] p-5  ">
+            <div className="flex w-full justify-between flex-col rounded-xl gap-10  bg-[#1F2045] p-5  ">
               {/* MAIN TOP DIV */}
               <div className="flex w-full flex-col md:flex-row md:gap-0 gap-10 justify-between ">
                 {/* first section on left-top */}
@@ -358,9 +358,9 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
               </div>
 
               {/* MAIN BOTTOM DIV */}
-              <div className="flex flex-col md:flex-row items-center gap-3 justify-between">
+              <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
                 {/*  section on left-bottom */}
-                <div className="flex flex-col items-center justify-center w-1/2 h-[250px] bg-gray-700 rounded-lg border-[2px] border-indigo-900">
+                <div className="flex flex-col items-center justify-center w-full h-[250px] file-download rounded-lg border-[2px] border-indigo-900">
                   <h1>File will be available here</h1>
                   <AuctionDownload
                     AuctionName={auction.AuctionName}

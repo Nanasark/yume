@@ -24,7 +24,7 @@ export default function AuctionDownload({ auctionId, AuctionName }: Auction) {
   }
 
   return (
-    <div>
+    <div className=" flex items-center justify-center w-full">
       {showHash ? (
         <FileDownload uri={`ipfs://${showHash}`} name={AuctionName} />
       ) : (

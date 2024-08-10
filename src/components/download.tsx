@@ -37,8 +37,8 @@ export default function FileDownload({ uri, name }: db) {
   };
 
   return (
-    <div>
-      <button onClick={() => downloadFile()}>Download the files</button>
+    <div >
+      <button className=" rounded-lg " onClick={() => downloadFile()}>Download the files</button>
     </div>
   );
 }
