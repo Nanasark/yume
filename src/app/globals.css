@@ -256,3 +256,23 @@ input[type="number"] {
     transform: scale(1);
   }
 }
+
+.endtime {
+  background: rgb(75, 108, 192);
+  background: linear-gradient(
+    158deg,
+    rgba(75, 108, 192, 1) 0%,
+    rgba(255, 210, 254, 1) 50%,
+    rgba(163, 192, 241, 1) 100%
+  );
+}
+
+.price {
+  background: rgb(221, 189, 220);
+  background: linear-gradient(
+    18deg,
+    rgba(221, 189, 220, 1) 0%,
+    rgba(199, 199, 199, 1) 50%,
+    rgba(217, 132, 255, 1) 100%
+  );
+}

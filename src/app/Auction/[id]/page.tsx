@@ -266,13 +266,12 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
 
   const AuctionId = auction ? auction?.id : BigInt(10000000000000000);
 
-  const { data: auctionDetails, isLoading: isAuctionDetails } = useReadContract(
-    {
+  const { data: auctionDetail, isLoading: isLoadingAuctionDetail } =
+    useReadContract({
       contract: auctioncontract,
-      method: "auctionDetails",
+      method: "getAuctionDetail",
       params: [AuctionId],
-    }
-  );
+    });
 
   const { data: bids, isLoading: isBidsLoading } = useReadContract({
     contract: auctioncontract,
@@ -286,13 +285,13 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
   const endTimeString = endTimeDate.toUTCString();
 
   return (
-    <div className="flex items-center p-10 justify-center text-white bg-[#181934] h-auto">
+    <div className="flex w-screen items-center p-2 pt-10 md:p-5 justify-center text-white bg-[#181934] h-auto">
       {isAuctionLoading
         ? "loading Auction Info..."
         : auction && (
-            <div className="flex justify-between flex-col border-[3px] rounded-xl border-b-teal-900 border-t-gray-900 border-r-cyan-950 border-l-fuchsia-900 bg-[#1F2045] p-5 w-[1500px] h-[1100px] ">
+            <div className="flex w-full justify-between flex-col rounded-xl  bg-[#1F2045] p-5  ">
               {/* MAIN TOP DIV */}
-              <div className="flex justify-between ">
+              <div className="flex w-full flex-col md:flex-row md:gap-0 gap-10 justify-between ">
                 {/* first section on left-top */}
                 <div className="  flex flex-col gap-3 ">
                   {" "}
@@ -304,21 +303,34 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display3={auction.display3}
                     />
                   </div>
-                  <div className="w-[200px] h-[40px] rounded-sm bg-slate-800 border-4 border-zinc-400">
+                  <div className=" flex gap-5 w-full rounded-lg h-[100px] items-center  ">
                     {" "}
-                    <AuctionTimer
-                      TimeBoxClass="flex gap-2 items-center justify-center bg-blue w-[200px] h-[40px] rounded-lg"
-                      dayClass=""
-                      div1class=""
-                      hourClass=""
-                      minuteClass=""
-                      secondsClass=""
-                      endTime={auction.endTime}
-                    />
+                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center endtime">
+                      <AuctionTimer
+                        TimeBoxClass="flex gap-2 items-center justify-center bg-blue w-full h-[40px] rounded-lg"
+                        dayClass=""
+                        div1class=""
+                        hourClass=""
+                        minuteClass=""
+                        secondsClass=""
+                        endTime={auction.endTime}
+                      />
+                    </div>
+                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center price">
+                      {auctionDetail &&
+                      auctionDetail.currentPrice > auction.startPrice ? (
+                        <p>{toEther(auctionDetail.currentPrice).toString()}</p>
+                      ) : (
+                        <p>
+                          {toEther(auction.startPrice).toString()}
+                          ARYM
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
                 {/* section section on right-top */}
-                <div className="flex items-center justify-center w-[600px] flex-col gap-5">
+                <div className="flex items-center justify-center w-full flex-col gap-5">
                   {" "}
                   <div className="bg-sky-950 border-[2px] rounded-md flex flex-col border-slate-700 w-full h-full items-center justify-center">
                     {checkBidder?.userAddress == address ? (
@@ -346,7 +358,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
               </div>
 
               {/* MAIN BOTTOM DIV */}
-              <div className="flex items-center gap-3 justify-between">
+              <div className="flex flex-col md:flex-row items-center gap-3 justify-between">
                 {/*  section on left-bottom */}
                 <div className="flex flex-col items-center justify-center w-1/2 h-[250px] bg-gray-700 rounded-lg border-[2px] border-indigo-900">
                   <h1>File will be available here</h1>
@@ -356,14 +368,14 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   />
                 </div>
                 {/*  section on right-bottom */}
-                <div className="w-[500px] h-[400px] items-center p-10 bg-neutral-800">
+                <div className="w-full h-[400px] items-center p-10 bg-neutral-800">
                   <h1>Bids and Amounts</h1>
                   {isBidsLoading
                     ? "loading Bids"
                     : bids && (
                         <>
                           {" "}
-                          <table className="w-[400px] text-black rounded-md bg-gradient-to-r from-purple-700 to-blue-700 border border-purple-900 shadow-lg">
+                          <table className="w-full text-black rounded-md bg-gradient-to-r from-purple-700 to-blue-700 border border-purple-900 shadow-lg">
                             <thead className="bg-gradient-to-r from-pink-500 to-purple-500 text-white">
                               <tr>
                                 <th className="p-2 border-r-2 border-red-700">

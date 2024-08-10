@@ -4,7 +4,7 @@ import SignInButton from "./buttoncomponents/SignInButton";
 export default function PleaseRegister() {
   const account = useActiveAccount();
   return (
-    <div className="flex items-center justify-center rounded-lg w-[400px] h-[300px] bg-slate-700">
+    <div className="flex items-center justify-center rounded-lg w-full h-[300px] bg-slate-700">
       {account ? (
         <div className="flex flex-col gap-2 items-center justify-center">
           <div>

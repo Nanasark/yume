@@ -25,8 +25,8 @@ export default function ImageHolder({
       ? display2
       : display3;
   return (
-    <div className="W-[600px] h-[600px] flex flex-col gap-5">
-      <div className="w-[500px] h-[500px]">
+    <div className="w-full h-full flex flex-col gap-5">
+      <div className="w-full h-6/8">
         <MediaRenderer
           client={client}
           className="relative rounded-lg  w-full h-full object-cover"
