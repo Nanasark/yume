@@ -50,12 +50,12 @@ export default function AuctionModal({
     <div
       className={` ${
         isOpenAuction ? "visible" : "hidden"
-      } flex gap-5  bg-gray-800`}
+      } flex md:flex-row p-5  flex-col gap-5 relative w-full h-full`}
     >
-      <div className="flex flex-col gap-10 p-5 ring ring-slate-600 rounded-xl bg-gradient-to-r from-slate-700 to-slate-700">
+      <div className="flex flex-col items-center gap-10 p-5 ring ring-slate-600 rounded-xl bg-gradient-to-r from-slate-700 to-slate-700">
         <p>Upload File</p>
 
-        <div className="flex flex-col gap-4 w-[350px]">
+        <div className="flex flex-col gap-4 w-full">
           <label
             htmlFor="customFileInput"
             className="cursor-pointer inline-block py-2 px-4 bg-blue-500 text-white rounded-lg text-center"
@@ -103,9 +103,9 @@ export default function AuctionModal({
         </div>
       </div>
 
-      <div className="flex flex-col gap-10 p-5 ring ring-slate-600 rounded-xl bg-gradient-to-r from-slate-700 to-slate-700">
+      <div className="flex flex-col gap-10 p-5 ring ring-slate-600 w-full rounded-xl bg-gradient-to-r from-slate-700 to-slate-700">
         <label>Upload other Images or Videos below</label>
-        <div className="flex gap-5 items-center justify-center w-[350px] h-[80px]  ">
+        <div className="flex gap-5 items-center justify-center   ">
           <div className="relative">
             <div className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer">
               <div className="text-center">
@@ -135,7 +135,7 @@ export default function AuctionModal({
             />
           )}
         </div>
-        <div className="flex gap-5 items-center justify-center w-[350px] h-[80px]  ">
+        <div className="flex gap-5 items-center justify-center ">
           <div className="relative">
             <div className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer">
               <div className="text-center">
@@ -165,7 +165,7 @@ export default function AuctionModal({
             />
           )}
         </div>
-        <div className="flex gap-5 items-center justify-center w-[350px] h-[80px]  ">
+        <div className="flex gap-3 lg:gap-5 items-center justify-center w-full  ">
           <div className="relative">
             <div className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer">
               <div className="text-center">

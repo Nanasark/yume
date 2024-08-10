@@ -5,6 +5,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { prepareContractCall, toWei } from "thirdweb";
 import { PreparedTransaction } from "thirdweb";
 import { TransactionButton } from "thirdweb/react";
+import { inter } from "@/helpers/fonts";
 import {
   ConnectButton,
   useActiveAccount,
@@ -166,36 +167,57 @@ export default function ListAuction() {
   };
 
   return (
-    <div className="h-full flex flex-col items-center border-[2px] justify-center p-5 w-[800px] bg-[#1F2045] rounded-xl">
+    <div
+      className={`${inter.className} h-full font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 w-full bg-[#1F2045] rounded-xl`}
+    >
+      {" "}
       <form
         onSubmit={handleListAuctionSubmit(onSubmit)}
-        className="flex mt-10 flex-col space-y-5 text-white items-center justify-center w-[600px]"
+        className="relative flex flex-col space-y-10 items-center text-white  w-full "
       >
-        <label>Name:</label>
-        <input
-          className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          {...listAuction("name", { required: true })}
-        />
+        <div className="flex w-full items-start flex-col gap-2">
+          <label>Name</label>
+          <div className="borderGradient flex  w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+            <input
+              className=" w-full pl-5 rounded-[10px] h-[40px] bg-[#1F2045] "
+              {...listAuction("name", { required: true })}
+            />
+          </div>
+        </div>
 
-        <label>Description:</label>
-        <input
-          className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          {...listAuction("description", { required: true })}
-        />
+        <div className=" flex  w-full items-start flex-col gap-2">
+          {" "}
+          <label>Description</label>
+          <div className="borderGradient flex  w-full p-[1px] h-[117px] rounded-[11px] justify-center items-center">
+            <textarea
+              className=" pl-5 rounded-[10px] w-full h-[115px] bg-[#1F2045]"
+              // placeholder="description"
 
-        <label>Start Price (in ARYM)</label>
-        <input
-          type="number"
-          className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          {...listAuction("startPrice", { required: true, min: 0.0001 })}
-        />
-        <label>Duration in Days </label>
-        <input
-          type="number"
-          className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-          placeholder="duration in Days"
-          {...listAuction("days", { required: true, max: 120 })}
-        />
+              {...listAuction("description", { required: true })}
+            />
+          </div>
+        </div>
+        <div className="flex w-full items-start flex-col gap-2">
+          <label>Start Price (in ARYM)</label>
+          <div className="borderGradient flex  w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+            <input
+              type="number"
+              className="text-black w-full p-2 items-center h-[40px] rounded-[10px]  bg-[#1F2045] "
+              {...listAuction("startPrice", { required: true, min: 0.0001 })}
+            />
+          </div>
+        </div>
+        <div className="flex w-full items-start flex-col gap-2">
+          <label>Duration in Days </label>
+          <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+            <input
+              type="number"
+              className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+              placeholder=""
+              {...listAuction("days", { required: true, max: 120 })}
+            />
+          </div>
+        </div>
 
         <button
           className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
@@ -208,14 +230,17 @@ export default function ListAuction() {
         <div
           className={`${
             isOpenAuction ? "visible" : "hidden"
-          } flex flex-col justify-center gap-10 absolute left-3/5 bottom-1/4  right-1/4 top-[100px] z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+          } flex flex-col justify-center w-full relative  gap-5 pt-5 md:absolute items-center bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
         >
-          <button
-            className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
-            onClick={() => setIsOpenAuction(false)}
-          >
-            Done
-          </button>
+          <div>
+            {" "}
+            <button
+              className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
+              onClick={() => setIsOpenAuction(false)}
+            >
+              Done
+            </button>
+          </div>
           <AuctionModal
             coverPreviewUrl={coverPreviewUrl}
             display1PreviewUrl={display1PreviewUrl}

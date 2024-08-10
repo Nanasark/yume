@@ -92,13 +92,13 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
               />
             </div>
           ) : (
-            <div>
+            <div className="flex flex-col gap-3 items-center justify-items-center">
               <input
                 type="number"
                 value={bidAmount}
                 onChange={handleBidAmountChange}
                 placeholder="Enter bid amount"
-                className="text-black"
+                className="text-black pl-3 bg-slate-100 rounded-sm w-[120px] h-[35px]"
               />
               <TransactionButton
                 transaction={() =>

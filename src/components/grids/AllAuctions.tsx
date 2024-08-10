@@ -2,7 +2,7 @@ import { useReadContract } from "@/app/thirdweb";
 import { auctioncontract } from "@/app/contract";
 import Link from "next/link";
 import AuctionCard from "../cards/AuctionCard";
-
+import Loading from "@/app/Auction/loading";
 export default function AllAuctions() {
   const { data: auction, isLoading: isAuctionLoading } = useReadContract({
     contract: auctioncontract,
@@ -10,12 +10,16 @@ export default function AllAuctions() {
   });
 
   if (isAuctionLoading) {
-    return <div>Loading auctions...</div>;
+    return (
+      <div className="flex justify-center items-center h-full w-full">
+        <Loading />
+      </div>
+    );
   }
 
   return (
-    <div className="relative  h-full lg:h-screen lg:pl-14 lg:pr-16  w-screen">
-      <div className="h-full flex flex-col items-center justify-center gap-5 w-full grid lg:grid-cols-4 lg:gap-10 ">
+    <div className="relative  h-full lg:h-screen lg:pl-14 lg:pr-16 pt-10 lg:pt-0 w-screen">
+      <div className="h-full flex flex-col items-center justify-center gap-5 w-full lg:grid lg:grid-cols-4 lg:gap-10 ">
         {auction &&
           auction.map((auction) => (
             <Link key={auction.id} href={`/Auction/${auction.id}`}>

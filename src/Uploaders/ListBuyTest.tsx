@@ -160,29 +160,29 @@ export default function ListBuy() {
 
   return (
     <div
-      className={`${inter.className} font-thin flex flex-col items-center drop-shadow-lg justify-center p-14 w-[800px] bg-[#1F2045] rounded-xl`}
+      className={`${inter.className} h-full font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 w-full bg-[#1F2045] rounded-xl`}
     >
       <form
         onSubmit={handleListBuySubmit(onSubmit)}
-        className=" relative flex flex-col  space-y-10  text-white  w-full "
+        className=" relative flex flex-col space-y-10 items-center text-white  w-full "
       >
-        <div className="w-full flex justify-between ">
-          <div className="">
+        <div className="w-full flex md:flex-row flex-col gap-3 justify-between ">
+          <div className="w-full">
             {" "}
             <label>Product Name</label>
-            <div className="borderGradient flex  w-[402px] h-[37px] rounded-[11px] justify-center items-center">
+            <div className="borderGradient flex  w-full h-[37px] p-[1px] rounded-[11px] justify-center items-center">
               <input
-                className="pl-5 text-white w-[400px] bg-[#1F2045] h-[35px] rounded-[10px]"
+                className="pl-5 text-white w-full h-full bg-[#1F2045]  rounded-[10px]"
                 type="text"
                 {...listBuy("name", { required: true })}
               />
             </div>
           </div>
-          <div>
+          <div className="w-full">
             <label>Price</label>
-            <div className="borderGradient flex  w-[202px] h-[37px] rounded-[11px] justify-center items-center">
+            <div className="borderGradient flex w-full h-[37px] p-[1px] rounded-[11px] justify-center items-center">
               <input
-                className=" flex items-center justify-center w-[200px] pl-2 rounded-[10px] h-[35px] bg-[#1F2045] "
+                className=" flex items-center justify-center w-full h-full pl-2 rounded-[10px] bg-[#1F2045] "
                 {...listBuy("price", { required: true, min: 0.0001 })}
                 placeholder="0"
                 type="number"
@@ -193,9 +193,9 @@ export default function ListBuy() {
         <div className="w-full flex  flex-col gap-2">
           {" "}
           <label>Description</label>
-          <div className="borderGradient flex  w-full h-[117px] rounded-[11px] justify-center items-center">
+          <div className="borderGradient flex p-[1px] w-full h-[117px] rounded-[11px] justify-center items-center">
             <textarea
-              className=" pl-5 rounded-[10px] w-[684px] h-[115px] bg-[#1F2045]"
+              className="pl-2 md:pl-5 rounded-[10px] w-full h-full bg-[#1F2045]"
               // placeholder="description"
 
               {...listBuy("description", { required: true })}
@@ -203,12 +203,12 @@ export default function ListBuy() {
           </div>
         </div>
 
-        <div className="w-full flex gap-5">
-          <div className=" flex flex-col gap-2">
+        <div className="w-full flex md:flex-row flex-col gap-5">
+          <div className=" flex flex-col md:w-1/2 w-full gap-2">
             <label>Category</label>
-            <div className="borderGradient flex  w-[352px] h-[37px] rounded-[11px] justify-center items-center">
+            <div className="borderGradient flex  w-full p-[1px] h-[37px] rounded-[11px] justify-center items-center">
               <select
-                className="w-[350px] bg-[#1F2045] h-[35px] rounded-[10px]"
+                className=" bg-[#1F2045] h-full w-full rounded-[10px]"
                 {...listBuy("tag", { required: true })}
               >
                 <option value="">Select Tag</option>
@@ -222,12 +222,12 @@ export default function ListBuy() {
               </select>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col md:w-1/2 w-full gap-2">
             <label>Stock amount</label>
-            <div className="borderGradient flex  w-[302px] h-[37px] rounded-[11px] justify-center items-center">
+            <div className="borderGradient flex p-[1px]  w-full h-[37px] rounded-[11px] justify-center items-center">
               {" "}
               <input
-                className=" pl-2 w-[300px] h-[35px] rounded-[10px] bg-[#1F2045]"
+                className=" pl-2 w-full h-full rounded-[10px] bg-[#1F2045]"
                 placeholder="0"
                 type="number"
                 {...listBuy("stock", { required: true, max: 100 })}
@@ -235,7 +235,7 @@ export default function ListBuy() {
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-between gap-5">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-5">
           <div>
             {" "}
             <label>Payment Option</label>
@@ -255,7 +255,6 @@ export default function ListBuy() {
                     <span> Matic</span>
 
                     <input
-                      className="appearance-none"
                       type="radio"
                       value="false"
                       checked={field.value === false}
@@ -267,7 +266,7 @@ export default function ListBuy() {
               />
             </div>
           </div>
-          <div className="z-30">
+          <div>
             {" "}
             <button
               className="bg-purple-900 rounded-xl w-[250px] h-[50px] ring ring-red-600 text-[16px] font-semibold"
@@ -276,37 +275,45 @@ export default function ListBuy() {
               {" "}
               Upload Files
             </button>
-            <div
-              className={`${
-                isOpenAuction ? "visible" : "hidden"
-              } flex flex-col justify-center gap-10 absolute left-[100px] bottom-1/4  right-1/4 top-[100px] z-10 items-center h-5/6 w-4/6 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
-            >
-              <button
-                className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
-                onClick={() => setIsOpenAuction(false)}
-              >
-                Done
-              </button>
-              <AuctionModal
-                coverPreviewUrl={coverPreviewUrl}
-                display1PreviewUrl={display1PreviewUrl}
-                display2PreviewUrl={display2PreviewUrl}
-                display3PreviewUrl={display3PreviewUrl}
-                setDisplay2PreviewUrl={setDisplay2PreviewUrl}
-                handleFileChange={handleFileChange}
-                setselectedDisplay2={setselectedDisplay2}
-                setselectedDisplay3={setselectedDisplay3}
-                setselectedDisplay1={setselectedDisplay1}
-                selectedFile={selectedFile}
-                setCoverPreviewUrl={setCoverPreviewUrl}
-                setSelectedCover={setSelectedCover}
-                setDisplay3PreviewUrl={setDisplay3PreviewUrl}
-                setDisplay1PreviewUrl={setDisplay1PreviewUrl}
-                setPreviewUrl={setPreviewUrl}
-                setSelectedFile={setSelectedFile}
-              />
-            </div>
           </div>
+          {/* <div className="z-30 w-full">
+            {" "}
+           
+          </div> */}
+        </div>
+
+        <div
+          className={`${
+            isOpenAuction ? "visible" : "hidden"
+          } flex flex-col justify-center w-full relative  gap-5 pt-5 md:absolute items-center bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}
+        >
+          <div>
+            {" "}
+            <button
+              className="rounded-lg w-[80px] h-[40px] bg-violet-900 ring ring-gray-800"
+              onClick={() => setIsOpenAuction(false)}
+            >
+              Done
+            </button>
+          </div>
+          <AuctionModal
+            coverPreviewUrl={coverPreviewUrl}
+            display1PreviewUrl={display1PreviewUrl}
+            display2PreviewUrl={display2PreviewUrl}
+            display3PreviewUrl={display3PreviewUrl}
+            setDisplay2PreviewUrl={setDisplay2PreviewUrl}
+            handleFileChange={handleFileChange}
+            setselectedDisplay2={setselectedDisplay2}
+            setselectedDisplay3={setselectedDisplay3}
+            setselectedDisplay1={setselectedDisplay1}
+            selectedFile={selectedFile}
+            setCoverPreviewUrl={setCoverPreviewUrl}
+            setSelectedCover={setSelectedCover}
+            setDisplay3PreviewUrl={setDisplay3PreviewUrl}
+            setDisplay1PreviewUrl={setDisplay1PreviewUrl}
+            setPreviewUrl={setPreviewUrl}
+            setSelectedFile={setSelectedFile}
+          />
         </div>
 
         <SuccessHandler

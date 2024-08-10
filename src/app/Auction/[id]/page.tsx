@@ -304,7 +304,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display3={auction.display3}
                     />
                   </div>
-                  <div className="bg-black">
+                  <div className="w-[200px] h-[40px] rounded-sm bg-slate-800 border-4 border-zinc-400">
                     {" "}
                     <AuctionTimer
                       TimeBoxClass="flex gap-2 items-center justify-center bg-blue w-[200px] h-[40px] rounded-lg"

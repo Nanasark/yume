@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${inter.className} bg-[#181934] text-white fixed w-full h-[70px] z-[1000] drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
+      className={`${inter.className} bg-[#181934] text-white fixed w-screen md:w-full h-[70px] z-[1000] drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]`}
     >
       <div className="flex items-center justify-between h-full px-5 lg:px-10">
         <div

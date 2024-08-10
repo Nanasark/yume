@@ -65,7 +65,7 @@ export default function ApproveToken() {
 
   return (
     <div className="bg-black w-full text-white p-6 rounded-lg max-w-md mx-auto text-center">
-      <div>
+      <div className="w-full">
         <div>
           <label htmlFor="amount" className="block text-purple-500 mb-2">
             Amount to approve :
@@ -79,8 +79,8 @@ export default function ApproveToken() {
             className="w-full p-2 rounded border border-purple-500 bg-gray-800 text-white mb-4"
           />
         </div>
-        <div className="flex gap-4">
-          <div>
+        <div className="w-full flex gap-4">
+          <div className="w-1/2">
             {" "}
             <button
               onClick={() => setContractAddress(1)}
@@ -92,7 +92,7 @@ export default function ApproveToken() {
             </button>
           </div>
 
-          <div>
+          <div className="w-1/2">
             {" "}
             <button
               onClick={() => setContractAddress(2)}
@@ -103,7 +103,7 @@ export default function ApproveToken() {
               Buy
             </button>
           </div>
-          <div>
+          <div className="w-1/2">
             {" "}
             <button
               onClick={handleApproval}
