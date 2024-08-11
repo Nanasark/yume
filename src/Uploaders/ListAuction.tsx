@@ -165,7 +165,8 @@ export default function ListAuction() {
         ErrorHandler(error);
       }
     } else {
-      toast("User Not Registered, Complete KYC", {
+      toast("User Not Registered, Please Complete KYC", {
+        className: "text-center border-orange-700",
         icon: "⛔",
       });
     }
