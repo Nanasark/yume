@@ -3,10 +3,10 @@ import { auctioncontract } from "@/app/contract";
 import Link from "next/link";
 import AuctionCard from "../cards/AuctionCard";
 import Loading from "@/app/Auction/loading";
-export default function AllAuctions() {
+export default function EndedAuctions() {
   const { data: auction, isLoading: isAuctionLoading } = useReadContract({
     contract: auctioncontract,
-    method: "getAllAuctions",
+    method: "getEndedAuctions",
   });
 
   if (isAuctionLoading) {

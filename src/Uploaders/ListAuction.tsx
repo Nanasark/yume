@@ -1,4 +1,4 @@
-import { auctioncontract } from "@/app/contract";
+import { auctioncontract, contract, registryContract } from "@/app/contract";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
@@ -10,6 +10,7 @@ import {
   ConnectButton,
   useActiveAccount,
   useSendTransaction,
+  useReadContract,
 } from "thirdweb/react";
 import { client } from "@/app/client";
 import { amoy } from "@/app/chain";
@@ -37,6 +38,12 @@ export default function ListAuction() {
     isSuccess,
     error: errror,
   } = useSendTransaction();
+
+  const { data: isRegistered } = useReadContract({
+    contract: registryContract,
+    method: "isRegistered",
+    params: [account?.address as `0x${string}`],
+  });
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedCover, setSelectedCover] = useState<File | null>(null);
@@ -93,68 +100,74 @@ export default function ListAuction() {
   };
 
   const handleListAuction = async (data: AuctionInput) => {
-    try {
-      const toastId1 = toast.loading("Listing, wait a minute...");
-      const filehash = await uploadFileToIPFS(selectedFile);
+    if (isRegistered) {
+      try {
+        const toastId1 = toast.loading("Listing, wait a minute...");
+        const filehash = await uploadFileToIPFS(selectedFile);
 
-      // Dismiss the first toast and show the second one
-      toast.dismiss(toastId1);
-      const toastId2 = toast.loading("Listing, wait a minute...");
-      const coverhash = await uploadFileToIPFS(selectedCover);
+        // Dismiss the first toast and show the second one
+        toast.dismiss(toastId1);
+        const toastId2 = toast.loading("Listing, wait a minute...");
+        const coverhash = await uploadFileToIPFS(selectedCover);
 
-      // Dismiss the second toast and show the third one
-      toast.dismiss(toastId2);
-      const toastId3 = toast.loading("Listing ...");
-      const display1hash = await uploadFileToIPFS(selectedDisplay1);
+        // Dismiss the second toast and show the third one
+        toast.dismiss(toastId2);
+        const toastId3 = toast.loading("Listing ...");
+        const display1hash = await uploadFileToIPFS(selectedDisplay1);
 
-      // Dismiss the third toast and show the fourth one
-      toast.dismiss(toastId3);
-      const toastId4 = toast.loading("Listing ...");
-      const display2hash = await uploadFileToIPFS(selectedDisplay2);
+        // Dismiss the third toast and show the fourth one
+        toast.dismiss(toastId3);
+        const toastId4 = toast.loading("Listing ...");
+        const display2hash = await uploadFileToIPFS(selectedDisplay2);
 
-      // Dismiss the fourth toast and show the fifth one
-      toast.dismiss(toastId4);
-      const toastId5 = toast.loading("Listing ...");
-      const display3hash = await uploadFileToIPFS(selectedDisplay3);
+        // Dismiss the fourth toast and show the fifth one
+        toast.dismiss(toastId4);
+        const toastId5 = toast.loading("Listing ...");
+        const display3hash = await uploadFileToIPFS(selectedDisplay3);
 
-      // Dismiss the fifth toast and show the final toast
-      toast.dismiss(toastId5);
-      const toastId6 = toast.loading("Transaction begun ...");
+        // Dismiss the fifth toast and show the final toast
+        toast.dismiss(toastId5);
+        const toastId6 = toast.loading("Transaction begun ...");
 
-      if (
-        !filehash ||
-        !coverhash ||
-        !display1hash ||
-        !display2hash ||
-        !display3hash
-      ) {
-        console.error("Error: Some IPFS hashes are missing.");
-        return;
+        if (
+          !filehash ||
+          !coverhash ||
+          !display1hash ||
+          !display2hash ||
+          !display3hash
+        ) {
+          console.error("Error: Some IPFS hashes are missing.");
+          return;
+        }
+
+        // Convert to Unix timestamp in seconds
+
+        const transaction = (await prepareContractCall({
+          contract: auctioncontract,
+          method: "createAuction",
+          params: [
+            data.name,
+            data.description,
+            toWei(`${data.startPrice}`),
+            BigInt(data.days),
+            filehash,
+            coverhash,
+            display1hash,
+            display2hash,
+            display3hash,
+          ],
+        })) as PreparedTransaction;
+
+        toast.dismiss(toastId6);
+        await sendTransaction(transaction);
+      } catch (error) {
+        ErrorAlert(error);
+        ErrorHandler(error);
       }
-
-      // Convert to Unix timestamp in seconds
-
-      const transaction = (await prepareContractCall({
-        contract: auctioncontract,
-        method: "createAuction",
-        params: [
-          data.name,
-          data.description,
-          toWei(`${data.startPrice}`),
-          BigInt(data.days),
-          filehash,
-          coverhash,
-          display1hash,
-          display2hash,
-          display3hash,
-        ],
-      })) as PreparedTransaction;
-
-      toast.dismiss(toastId6);
-      await sendTransaction(transaction);
-    } catch (error) {
-      ErrorAlert(error);
-      ErrorHandler(error);
+    } else {
+      toast("User Not Registered, Complete KYC", {
+        icon: "⛔",
+      });
     }
   };
 
