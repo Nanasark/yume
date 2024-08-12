@@ -136,7 +136,7 @@ export default function Registry() {
 
   return (
     <div
-      className={`${inter.className} w-full h-full font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 bg-[#1F2045] rounded-xl`}
+      className={`${inter.className} w-full h-full relative pt-5  font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 bg-[#1F2045] rounded-xl`}
     >
       {" "}
       <form
@@ -263,7 +263,7 @@ export default function Registry() {
           </div>
         </div>
 
-        <div className="flex  flex-col gap-5 w-[400px] items-center justify-center rounded-lg">
+        <div className="flex  flex-col gap-5 w-full items-center justify-center rounded-lg">
           {/* <div className="flex gap-5 items-center justify-center w-[350px] h-[80px]  ">
             <div className="relative">
               <div className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer">

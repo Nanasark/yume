@@ -1,6 +1,6 @@
 "use client";
 
-import { useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, useReadContract } from "thirdweb/react";
 import Link from "next/link";
 import SignInButton from "./buttoncomponents/SignInButton";
 import { inter } from "@/helpers/fonts";
@@ -8,12 +8,19 @@ import { inknut_antiqua } from "@/helpers/fonts";
 import { useState } from "react";
 import { HiBars2 } from "react-icons/hi2";
 import { MdClose } from "react-icons/md";
+import { registryContract } from "@/app/contract";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const account = useActiveAccount();
   const address = account?.address || "";
+
+  const { data: isRegistered } = useReadContract({
+    contract: registryContract,
+    method: "isRegistered",
+    params: [account?.address as `0x${string}`],
+  });
 
   const hover =
     "hover:border-b-indigo-900 hover:drop-shadow-md hover:opacity-90 border-b-2 border-transparent transition-all duration-300";
@@ -113,19 +120,23 @@ export default function Navbar() {
           ))}
           {account && (
             <div className="flex flex-col space-y-3">
-              <Link href={"/Register"}>
-                <div className={`${hover} relative`}>
-                  <p className="">KYC</p>
-                </div>
-              </Link>
-              <Link href={"/Profile"}>
-                <div className={`${hover} relative`}>
-                  <p className="">Profile</p>
-                </div>
-              </Link>
-              <div>
+              {!isRegistered && (
+                <Link href={"/Register"}>
+                  <div className={`${hover} relative`}>
+                    <p>KYC</p>
+                  </div>
+                </Link>
+              )}
+              {isRegistered && (
+                <Link href={"/Profile"}>
+                  <div className={`${hover} relative`}>
+                    <p>Profile</p>
+                  </div>
+                </Link>
+              )}
+              {/* <div>
                 {address.slice(0, 5)}...{address.slice(-4)}
-              </div>
+              </div> */}
             </div>
           )}
           <div>
