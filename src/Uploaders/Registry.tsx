@@ -12,7 +12,7 @@ import {
 } from "thirdweb/react";
 import { client } from "@/app/client";
 import { amoy } from "@/app/chain";
-import { poppins } from "@/helpers/fonts";
+import { inter, poppins } from "@/helpers/fonts";
 import { ErrorAlert, ErrorHandler } from "@/components/error/error";
 import config from "@/Strings/config";
 import SuccessHandler from "@/components/success/success";
@@ -36,7 +36,6 @@ export default function Registry() {
     isSuccess,
     isError,
     error: errror,
-
   } = useSendTransaction();
 
   const [errorMessage, setErrorMessage] = useState("transaction error");
@@ -137,13 +136,14 @@ export default function Registry() {
 
   return (
     <div
-      className={`${poppins.className} flex text-[16px] relative bg-slate-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-15 backdrop-saturate-100 backdrop-contrast-75 flex-col items-center h-full p-10  rounded-xl`}
+      className={`${inter.className} w-full h-full font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 bg-[#1F2045] rounded-xl`}
     >
+      {" "}
       <form
         onSubmit={handleListAuctionSubmit(onSubmit)}
-        className="relative flex flex-col mt-10  gap-5 text-white  justify-center "
+        className="relative flex flex-col space-y-10 items-center justify-center text-white  w-full "
       >
-        <div className="flex gap-5 items-center justify-center w-[350px] h-[80px]  ">
+        <div className="flex gap-5 items-center justify-center w-full h-[80px]  ">
           <div className="relative">
             <div className="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer">
               <div className="text-center">
@@ -178,62 +178,88 @@ export default function Registry() {
           )}
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <label> FirstName:</label>
-            <div className="flex items-center justify-center w-[353px] h-[43px] rounded-xl bg-gradient-to-l from-purple-500 via-fuchsia-600 to-pink-700">
-              <input
-                className="text-black w-[350px] p-2 items-center h-[40px]  bg-white rounded-lg "
-                placeholder="name of product"
-                {...listAuction("firstName", { required: true })}
-              />
+        <div className="w-full flex flex-col gap-4">
+          <div className="flex flex-col gap-5 md:flex-row w-full">
+            <div className="flex w-full md:w-1/2 items-start flex-col gap-2">
+              <label>FirstName </label>
+              <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+                <input
+                  type="text"
+                  className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+                  placeholder=""
+                  {...listAuction("firstName", { required: true })}
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col">
-              <label> Second Name:</label>
-              <input
-                className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-                placeholder="name of product"
-                {...listAuction("secondName", { required: true })}
-              />
+            <div className="flex w-full md:w-1/2 items-start flex-col gap-2">
+              <label>Second Name </label>
+              <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+                <input
+                  type="text"
+                  className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+                  placeholder=""
+                  {...listAuction("secondName", { required: true })}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <label> Email:</label>
-            <input
-              className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-              placeholder="name of product"
-              {...listAuction("email", { required: true })}
-              type="email"
-            />
+          <div className="w-full flex flex-col gap-4 md:flex-row">
+            <div className="flex w-full md:w-1/3 flex-col">
+              <div className="flex w-full items-start flex-col gap-2">
+                <label>Email </label>
+                <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+                  <input
+                    type="email"
+                    className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+                    placeholder=""
+                    {...listAuction("email", { required: true })}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex w-full md:w-1/3 flex-col">
+              <div className="flex w-full items-start flex-col gap-2">
+                <label>UserName </label>
+                <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+                  <input
+                    type="text"
+                    className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+                    placeholder=""
+                    {...listAuction("userName", { required: true })}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex  w-full md:w-1/3 flex-col">
+              <div className="flex w-full items-start flex-col gap-2">
+                <label>Social Link </label>
+                <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+                  <input
+                    type="url"
+                    className="w-full  p-2 items-center h-[40px] bg-[#1F2045]  rounded-[10px] "
+                    placeholder=""
+                    {...listAuction("socialLink", { required: true })}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col">
-            <label> User Name:</label>
-            <input
-              className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-              placeholder="name of product"
-              {...listAuction("userName", { required: true })}
-            />
-          </div>
+          <div className=" flex  w-full items-start flex-col gap-2">
+            {" "}
+            <label>Bio</label>
+            <div className="borderGradient flex  w-full p-[1px] h-[117px] rounded-[11px] justify-center items-center">
+              <textarea
+                className=" pl-5 rounded-[10px] w-full h-[115px] bg-[#1F2045]"
+                // placeholder="description"
 
-          <div className="flex flex-col">
-            <label>Social Link</label>
-            <input
-              className="text-black w-[350px] p-2 items-center h-[40px] ring ring-purple-900 bg-white rounded-lg "
-              placeholder="start price"
-              {...listAuction("socialLink", { required: true, min: 0.0001 })}
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label>Bio:</label>
-            <textarea
-              className="text-black w-[350px] items-start p-2 h-[100px] ring ring-purple-900 bg-white rounded-lg "
-              placeholder="name of product"
-              {...listAuction("Bio", { required: true })}
-            />
+                {...listAuction("Bio", { required: true })}
+              />
+            </div>
           </div>
         </div>
 

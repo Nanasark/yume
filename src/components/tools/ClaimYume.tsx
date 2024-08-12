@@ -1,7 +1,7 @@
-import { useSendTransaction } from "thirdweb/react";
+import { useReadContract, useSendTransaction } from "thirdweb/react";
 import { prepareContractCall, sendTransaction } from "thirdweb";
 import { PreparedTransaction } from "thirdweb";
-import { tokencontract } from "@/app/contract";
+import { registryContract, tokencontract } from "@/app/contract";
 import config from "@/Strings/config";
 import { useActiveAccount } from "thirdweb/react";
 import { toWei } from "thirdweb";
@@ -14,7 +14,11 @@ import toast from "react-hot-toast";
 export default function ClaimYume() {
   const account = useActiveAccount();
   const address = account?.address || config.AuctionAddres;
-
+  const { data: isRegistered } = useReadContract({
+    contract: registryContract,
+    method: "isRegistered",
+    params: [account?.address as `0x${string}`],
+  });
   // const { mutate: sendTx } = useSendTransaction();
 
   // const ClaimFunction = async () => {
@@ -37,6 +41,15 @@ export default function ClaimYume() {
   //   }
   // };
 
+  const handleRegistered = () => {
+    if (!isRegistered) {
+      toast("User Not Registered, Please Complete KYC", {
+        className: "text-center border-orange-700",
+        icon: "⛔",
+      });
+    }
+  };
+
   return (
     <div className="w-1/3">
       {/* <button
@@ -47,6 +60,7 @@ export default function ClaimYume() {
       </button> */}
 
       <TransactionButton
+        onClick={() => handleRegistered()}
         transaction={() =>
           prepareContractCall({
             contract: claimcontract,
@@ -63,7 +77,6 @@ export default function ClaimYume() {
         }}
         onError={ErrorAlert}
         unstyled
-        
         className="w-250px items-center ring-1  bg-indigo-200 h-[60px] rounded-sm"
       >
         claim 1000 ARYM

@@ -7,7 +7,11 @@ import {
   toWei,
   useReadContract,
 } from "@/app/thirdweb";
-import { auctioncontract, tokencontract } from "@/app/contract";
+import {
+  auctioncontract,
+  registryContract,
+  tokencontract,
+} from "@/app/contract";
 import config from "@/Strings/config";
 import ApproveToken from "./ApproveToken";
 import { useState, useEffect } from "react";
@@ -29,6 +33,12 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
 
   const pricetoEther = toEther(price);
   const currentPrice = parseInt(pricetoEther);
+
+  const { data: isRegistered } = useReadContract({
+    contract: registryContract,
+    method: "isRegistered",
+    params: [account?.address as `0x${string}`],
+  });
 
   const CheckAllowance = async () => {
     if (!address) return;
@@ -70,6 +80,15 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
     }
   };
 
+  const handleRegistered = () => {
+    if (!isRegistered) {
+      toast("User Not Registered, Please Complete KYC", {
+        className: "text-center border-orange-700",
+        icon: "⛔",
+      });
+    }
+  };
+
   const parsedBidAmount = bidAmount !== "" ? BigInt(bidAmount) : BigInt(0);
 
   console.log("allowed", allowance);
@@ -101,6 +120,7 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
                 className="text-black pl-3 bg-slate-100 rounded-sm w-[120px] h-[35px]"
               />
               <TransactionButton
+                onClick={() => handleRegistered()}
                 transaction={() =>
                   prepareContractCall({
                     contract: auctioncontract,

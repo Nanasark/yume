@@ -6,11 +6,10 @@ export default function Register() {
   console.log(config.pinataJWT);
 
   return (
-    <div className="flex   h-full  bg-gradient-to-bl from-slate-900 via-purple-900 to-slate-900">
-      <div className="w-1/2">
+    <div className="w-full flex md:flex-row flex-col h-full p-2 md:p-20 items-center bg-[#181934]">
+      <div className=" relative top-10 md:top-0 w-full ">
         <Registry />
       </div>
-      <div className="border-gray-950 border-[2px] lg:bg-[url('/images/regbg.png')] w-1/2 bg-contain"></div>
     </div>
   );
 }
