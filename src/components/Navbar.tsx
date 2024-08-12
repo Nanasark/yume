@@ -74,20 +74,19 @@ export default function Navbar() {
           ))}
           {account && (
             <div className="flex items-center space-x-9">
-              <Link href={"/Register"}>
-                <div className={`${hover} relative`}>
-                  <p className="">KYC</p>
-                </div>
-              </Link>
-
-              <Link href={"/Profile"}>
-                <div className={`${hover} relative`}>
-                  <p className="">Profile</p>
-                </div>
-              </Link>
-              <div>
-                {address.slice(0, 5)}...{address.slice(-4)}
-              </div>
+              {!isRegistered ? (
+                <Link href={"/Register"}>
+                  <div className={`${hover} relative`}>
+                    <p>KYC</p>
+                  </div>
+                </Link>
+              ) : (
+                <Link href={"/Profile"}>
+                  <div className={`${hover} relative`}>
+                    <p>Profile</p>
+                  </div>
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -118,27 +117,22 @@ export default function Navbar() {
               </Link>
             </div>
           ))}
-          {account && (
-            <div className="flex flex-col space-y-3">
-              {!isRegistered && (
-                <Link href={"/Register"}>
-                  <div className={`${hover} relative`}>
-                    <p>KYC</p>
-                  </div>
-                </Link>
-              )}
-              {isRegistered && (
-                <Link href={"/Profile"}>
-                  <div className={`${hover} relative`}>
-                    <p>Profile</p>
-                  </div>
-                </Link>
-              )}
-              {/* <div>
-                {address.slice(0, 5)}...{address.slice(-4)}
-              </div> */}
-            </div>
-          )}
+          <div className="flex flex-col space-y-3">
+            {!isRegistered ? (
+              <Link href={"/Register"}>
+                <div className={`${hover} relative`}>
+                  <p>KYC</p>
+                </div>
+              </Link>
+            ) : (
+              <Link href={"/Profile"}>
+                <div className={`${hover} relative`}>
+                  <p>Profile</p>
+                </div>
+              </Link>
+            )}
+          </div>
+
           <div>
             <SignInButton />
           </div>
