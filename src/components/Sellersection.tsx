@@ -17,8 +17,8 @@ export default function SellerSection({
   profileLink,
 }: SellerSection) {
   return (
-    <div className=" flex items-center justify-center sellerSectionGradient w-full h-[203px] rounded-2xl ">
-      <div className=" flex flex-col gap-4 p-3 w-full h-[200px] sellerGlass rounded-lg">
+    <div className=" flex items-center justify-center bg-[#F9FBFF] p-5 text-[#181934] md:p-10 w-full h-[203px] rounded-[11px] ">
+      <div className=" flex flex-col gap-4 p-3 w-full h-full  sellerGlass rounded-[11px]">
         <div className=" flex gap-3">
           <div className="relative flex-initial rounded-full overflow-hidden">
             <MediaRenderer

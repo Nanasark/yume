@@ -332,10 +332,10 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                 {/* section section on right-top */}
                 <div className="flex items-center justify-center w-full flex-col gap-5">
                   {" "}
-                  <div className="bg-sky-950 border-[2px] rounded-md flex flex-col border-slate-700 w-full h-full items-center justify-center">
+                  <div className=" rounded-md flex flex-col  w-full h-full items-center justify-center">
                     {/* {checkBidder?.userAddress == address ? (
                       <div className="mt-10">
-                        <BidButton
+                        <BidButtons
                           id={auction.id}
                           owner={auction.seller}
                           price={auction.startPrice}
@@ -345,7 +345,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       <PleaseRegister />
                     )} */}
 
-                    <div className="mt-10">
+                    <div className="w-full ">
                       <BidButton
                         id={auction.id}
                         owner={auction.seller}

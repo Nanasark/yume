@@ -65,7 +65,7 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
 
   useEffect(() => {
     CheckAllowance();
-  }, [address, currentPrice]);
+  }, [address, currentPrice, allowance]);
 
   const handleApprovalSuccess = () => {
     CheckAllowance();
@@ -95,15 +95,18 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
   console.log("BidAmount", parsedBidAmount);
 
   return (
-    <div className="flex flex-col   w-full h-full items-center justify-center">
-      <p>Auction ID: {id.toString()}</p>
+    <div className="flex flex-col  w-full h-full items-center justify-center">
       {owner === address ? (
-        <div className="">Owner cannot Bid</div>
+        <div className="w-full text-center font-semibold text-[2rem]">
+          Owner cannot Bid
+        </div>
       ) : allowance >= currentPrice ? (
-        <div>
+        <div className="w-full">
           {allowance.toString() < bidAmount ? (
-            <div>
-              <p> you have only {allowance} approved, increasese allowance</p>
+            <div className="w-full">
+              <p className="text-center w-full  bg-inherit ">
+                you have only {allowance} approved, increasese allowance
+              </p>
               <ApproveToken
                 contractAddress={config.AuctionAddres}
                 price={price}
@@ -111,46 +114,52 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
               />
             </div>
           ) : (
-            <div className="flex flex-col gap-3 items-center justify-items-center">
-              <input
-                type="number"
-                value={bidAmount}
-                onChange={handleBidAmountChange}
-                placeholder="Enter bid amount"
-                className="text-black pl-3 bg-slate-100 rounded-sm w-[120px] h-[35px]"
-              />
-              <TransactionButton
-                onClick={() => handleRegistered()}
-                transaction={() =>
-                  prepareContractCall({
-                    contract: auctioncontract,
-                    method: "bid",
-                    params: [id, toWei(`${parsedBidAmount}`)],
-                  })
-                }
-                onTransactionSent={() =>
-                  toast.loading("transaction sent ...", {
-                    id: "transaction",
-                    icon: "🔥",
-                  })
-                }
-                onError={ErrorAlert}
-                onTransactionConfirmed={() =>
-                  toast.success("Bid successfull", {
-                    id: "transaction",
-                    icon: "✅",
-                    duration: 5000,
-                  })
-                }
-              >
-                Bid
-              </TransactionButton>
+            <div className=" flex items-center justify-center bg-[#F9FBFF] p-5 text-[#181934] md:p-10 w-full h-[203px] rounded-[11px] ">
+              <div className=" flex flex-col gap-5 justify-center p-3 pl-10 pr-10 w-full h-full  items-center sellerGlass rounded-[11px]">
+                {" "}
+                <input
+                  type="number"
+                  value={bidAmount}
+                  onChange={handleBidAmountChange}
+                  placeholder="Enter bid amount"
+                  className="text-black pl-3  border-[2px] border-[#181934] shadow-xl rounded-lg w-full h-[40px]"
+                />
+                <TransactionButton
+                  onClick={() => handleRegistered()}
+                  transaction={() =>
+                    prepareContractCall({
+                      contract: auctioncontract,
+                      method: "bid",
+                      params: [id, toWei(`${parsedBidAmount}`)],
+                    })
+                  }
+                  onTransactionSent={() =>
+                    toast.loading("transaction sent ...", {
+                      id: "transaction",
+                      icon: "🔥",
+                    })
+                  }
+                  onError={ErrorAlert}
+                  onTransactionConfirmed={() =>
+                    toast.success("Bid successfull", {
+                      id: "transaction",
+                      icon: "✅",
+                      duration: 5000,
+                    })
+                  }
+                >
+                  Bid
+                </TransactionButton>
+                
+              </div>
             </div>
           )}
         </div>
       ) : (
         <div>
-          <p>You have only approved {allowance}. Please approve more tokens.</p>
+          <p className=" w-full text-center bg-inherit">
+            You have only approved {allowance}. Please approve more tokens.
+          </p>
           <ApproveToken
             contractAddress={config.AuctionAddres}
             price={price}
