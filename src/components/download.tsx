@@ -16,7 +16,7 @@ export default function FileDownload({ uri, name }: db) {
   const downloadFile = async (defaultFilename = `${name} --ARYM`) => {
     try {
       const file = await download({ client, uri });
-      
+
       // Get the blob of the file and determine its MIME type
       const fileBlob = await file.blob();
       const fileExtension = fileBlob.type.split("/")[1] || "jpg"; // Default to jpg if unknown
@@ -37,8 +37,10 @@ export default function FileDownload({ uri, name }: db) {
   };
 
   return (
-    <div >
-      <button className=" rounded-lg " onClick={() => downloadFile()}>Download the files</button>
+    <div>
+      <button className=" rounded-lg " onClick={() => downloadFile()}>
+        Download files
+      </button>
     </div>
   );
 }

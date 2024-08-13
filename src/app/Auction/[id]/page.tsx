@@ -234,6 +234,7 @@ import ImageHolder from "@/modals/ImageChange";
 import PleaseRegister from "@/components/pleaseRegister";
 import SellerSection from "@/components/Sellersection";
 import AuctionDownload from "@/components/AuctionDownload";
+import Card from "@/components/cards/Card";
 
 export default function AuctionPage({ params }: { params: { id: bigint } }) {
   const account = useActiveAccount();
@@ -368,15 +369,14 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
               {/* MAIN BOTTOM DIV */}
               <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
                 {/*  section on left-bottom */}
-                <div className="flex flex-col items-center justify-center w-full h-[250px] file-download rounded-lg border-[2px] border-indigo-900">
-                  <h1>File will be available here</h1>
+                <Card className="h-[203px]">
                   <AuctionDownload
                     AuctionName={auction.AuctionName}
                     auctionId={auction.id}
                   />
-                </div>
+                </Card>
                 {/*  section on right-bottom */}
-                <div className="w-full h-[400px] items-center p-10 bg-neutral-800">
+                <div className="w-full h-[400px] items-center  bg-[#F9FBFF] p-5 text-[#181934] rounded-[11px]">
                   <h1>Bids and Amounts</h1>
                   {isBidsLoading
                     ? "loading Bids"

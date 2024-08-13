@@ -18,15 +18,12 @@ export default function AuctionDownload({ auctionId, AuctionName }: Auction) {
     params: [address, auctionId],
   });
 
-  console.log("showHash", showHash);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className=" flex items-center justify-center w-full">
       {showHash ? (
         <FileDownload uri={`ipfs://${showHash}`} name={AuctionName} />
+      ) : isLoading ? (
+        <p>Loding...</p>
       ) : (
         <p>Not purchased.</p>
       )}
