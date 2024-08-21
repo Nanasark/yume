@@ -62,13 +62,10 @@ export default function AuctionTimer({
   return (
     <div className={div1class}>
       {timeLeft.expired ? (
-        <p className=" text-[14px] text-white">Auction ended</p>
+        <p className=" text-[16px] ">Auction ended</p>
       ) : (
         <div className="flex flex-col">
-          <div className="text-[13px] text-white font-extralight">
-            {" "}
-            Aution ending in
-          </div>
+          <div className="text-[16px]  font-extralight"> Aution ending in</div>
           <div className={TimeBoxClass}>
             <div className={dayClass}>{timeLeft.days}d</div>
             <div className={hourClass}>{timeLeft.hours}h</div>

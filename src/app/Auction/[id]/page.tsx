@@ -286,15 +286,15 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
   const endTimeString = endTimeDate.toUTCString();
 
   return (
-    <div className="flex w-screen items-center p-2 pt-10 md:p-5 justify-center text-white bg-[#181934] h-auto">
+    <div className="flex w-screen md:w-full  items-center p-2 pt-10 md:p-5 justify-center text-white bg-[#181934] h-auto">
       {isAuctionLoading
         ? "loading Auction Info..."
         : auction && (
-            <div className="flex w-full justify-between flex-col rounded-xl gap-10  bg-[#1F2045] p-5  ">
+            <div className="flex w-full justify-between md:top-5 relative flex-col rounded-xl gap-10  bg-[#1F2045] p-5  ">
               {/* MAIN TOP DIV */}
-              <div className="flex w-full flex-col md:flex-row md:gap-0 gap-10 justify-between ">
+              <div className="flex w-full flex-col md:flex-row md:gap-5 gap-10 justify-between ">
                 {/* first section on left-top */}
-                <div className="  flex flex-col gap-3 ">
+                <div className=" md:w-1/2 flex flex-col gap-3 ">
                   {" "}
                   <div className="">
                     <ImageHolder
@@ -306,9 +306,9 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   </div>
                   <div className=" flex gap-5 w-full rounded-lg h-[100px] items-center  ">
                     {" "}
-                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center endtime">
+                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center text-[#181934] bg-[#F9FBFF]">
                       <AuctionTimer
-                        TimeBoxClass="flex gap-2 items-center justify-center bg-blue w-full h-[40px] rounded-lg"
+                        TimeBoxClass="flex gap-2 items-center justify-center  w-full h-[40px] rounded-lg"
                         dayClass=""
                         div1class=""
                         hourClass=""
@@ -317,7 +317,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                         endTime={auction.endTime}
                       />
                     </div>
-                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center price">
+                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center bg-[#F9FBFF] text-[#181934]">
                       {auctionDetail &&
                       auctionDetail.currentPrice > auction.startPrice ? (
                         <p>{toEther(auctionDetail.currentPrice).toString()}</p>
@@ -331,7 +331,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   </div>
                 </div>
                 {/* section section on right-top */}
-                <div className="flex items-center justify-center w-full flex-col gap-5">
+                <div className="flex items-center justify-center w-full md:w-1/2 flex-col gap-5">
                   {" "}
                   <div className=" rounded-md flex flex-col  w-full h-full items-center justify-center">
                     {/* {checkBidder?.userAddress == address ? (
@@ -376,15 +376,15 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   />
                 </Card>
                 {/*  section on right-bottom */}
-                <div className="w-full h-[400px] items-center  bg-[#F9FBFF] p-5 text-[#181934] rounded-[11px]">
-                  <h1>Bids and Amounts</h1>
+                <div className="w-full h-[400px] items-center  bg-[#F9FBFF] p-1 text-[#181934] rounded-[11px]">
+                  <h1 className="text-[1rem] font-bold">Bids and Amounts</h1>
                   {isBidsLoading
                     ? "loading Bids"
                     : bids && (
                         <>
                           {" "}
-                          <table className="w-full text-black rounded-md bg-gradient-to-r from-purple-700 to-blue-700 border border-purple-900 shadow-lg">
-                            <thead className="bg-gradient-to-r from-pink-500 to-purple-500 text-white">
+                          <table className="w-full text-black rounded-md   shadow-lg">
+                            <thead className=" text-[#181934]">
                               <tr>
                                 <th className="p-2 border-r-2 border-red-700">
                                   Bidder
