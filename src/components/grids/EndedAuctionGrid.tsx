@@ -18,7 +18,7 @@ export default function EndedAuctions() {
   }
 
   return (
-    <div className="relative  h-full lg:h-screen lg:pl-14 lg:pr-16 pt-10 lg:pt-0 w-full">
+    <div className="relative  h-full  lg:pl-14 lg:pr-16 pt-10 lg:pt-0 w-full">
       <div className="h-full flex flex-col items-center justify-center gap-5 w-full lg:grid lg:grid-cols-4 lg:gap-10 ">
         {auction &&
           auction.map((auction) => (

@@ -4,14 +4,11 @@ import Link from "next/link";
 
 export default function Auction() {
   return (
-    <div className=" w-full flex  items-center justify-center p-5 h-full bg-[#181934]">
-      <div className=" flex flex-col gap-4">
-        <div className=" relative top-5">
+    <div className=" w-full flex  items-center justify-center min-h-full p-5 bg-[#181934]">
+      <div className=" flex flex-col gap-5 lg:gap-10">
+        <div className=" relative left-14 top-5 w-[140px] h-[40px] rounded-[11px] flex items-center justify-center bg-gray-900">
           <Link href={"/Auction"}>
-            <div className="h-[40px] rounded-md border-[2px] border-cyan-900 bg-slate-800 text-white ">
-              {" "}
-              Active Auctions
-            </div>
+            <div className="   text-white "> Active Auctions</div>
           </Link>
         </div>
 
