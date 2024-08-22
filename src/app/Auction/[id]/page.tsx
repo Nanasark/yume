@@ -292,11 +292,11 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
         : auction && (
             <div className="flex w-full justify-between md:top-5 relative flex-col rounded-xl gap-10  bg-[#1F2045] p-5  ">
               {/* MAIN TOP DIV */}
-              <div className="flex w-full flex-col md:flex-row md:gap-5 gap-10 justify-between ">
+              <div className="flex w-full flex-col md:flex-row gap-10 justify-between ">
                 {/* first section on left-top */}
                 <div className=" md:w-1/2 flex flex-col gap-3 ">
                   {" "}
-                  <div className="">
+                  <div className=" md:w-7/8 md:h-7/8">
                     <ImageHolder
                       cover={auction.coverimage}
                       display1={auction.display1}
@@ -369,7 +369,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
               {/* MAIN BOTTOM DIV */}
               <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
                 {/*  section on left-bottom */}
-                <Card className="h-[203px]">
+                <Card className="h-[203px] lg:h-[400px]">
                   <AuctionDownload
                     AuctionName={auction.AuctionName}
                     auctionId={auction.id}
