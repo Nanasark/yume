@@ -1,702 +1,695 @@
 export const contractABI = [
   {
-    type: "constructor",
-    name: "",
-    inputs: [
+    "inputs": [
       {
-        type: "address",
-        name: "_token",
-        internalType: "contract IERC20",
-      },
+        "internalType": "contract IERC20",
+        "name": "_token",
+        "type": "address"
+      }
     ],
-    outputs: [],
-    stateMutability: "nonpayable",
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    type: "error",
-    name: "ReentrancyGuardReentrantCall",
-    inputs: [],
-    outputs: [],
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
   },
   {
-    type: "event",
-    name: "ProductAdded",
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        type: "address",
-        name: "seller",
-        indexed: true,
-        internalType: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
       },
       {
-        type: "uint256",
-        name: "productId",
-        indexed: true,
-        internalType: "uint256",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
       },
       {
-        type: "tuple",
-        name: "product",
-        components: [
+        "components": [
           {
-            type: "string",
-            name: "tag",
-            internalType: "string",
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "name",
-            internalType: "string",
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "cover",
-            internalType: "string",
+            "internalType": "string",
+            "name": "cover",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display1",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display1",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display2",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display2",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display3",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display3",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "description",
-            internalType: "string",
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
           },
           {
-            type: "uint256",
-            name: "price",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
           },
           {
-            type: "uint256",
-            name: "stock",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "stock",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isMaticPayment",
-            internalType: "bool",
+            "internalType": "bool",
+            "name": "isMaticPayment",
+            "type": "bool"
           },
           {
-            type: "address",
-            name: "seller",
-            internalType: "address payable",
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
           },
           {
-            type: "uint256",
-            name: "id",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isListed",
-            internalType: "bool",
-          },
+            "internalType": "bool",
+            "name": "isListed",
+            "type": "bool"
+          }
         ],
-        indexed: false,
-        internalType: "struct ArtYumeBuy.Product",
-      },
+        "indexed": false,
+        "internalType": "struct ArtYumeBuy.Product",
+        "name": "product",
+        "type": "tuple"
+      }
     ],
-    outputs: [],
-    anonymous: false,
+    "name": "ProductAdded",
+    "type": "event"
   },
   {
-    type: "event",
-    name: "ProductDelisted",
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        type: "address",
-        name: "seller",
-        indexed: true,
-        internalType: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
       },
       {
-        type: "uint256",
-        name: "productId",
-        indexed: true,
-        internalType: "uint256",
-      },
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
+      }
     ],
-    outputs: [],
-    anonymous: false,
+    "name": "ProductDelisted",
+    "type": "event"
   },
   {
-    type: "event",
-    name: "ProductListed",
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        type: "address",
-        name: "seller",
-        indexed: true,
-        internalType: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
       },
       {
-        type: "uint256",
-        name: "productId",
-        indexed: true,
-        internalType: "uint256",
-      },
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
+      }
     ],
-    outputs: [],
-    anonymous: false,
+    "name": "ProductListed",
+    "type": "event"
   },
   {
-    type: "event",
-    name: "ProductPurchased",
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        type: "address",
-        name: "buyer",
-        indexed: true,
-        internalType: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
       },
       {
-        type: "uint256",
-        name: "productId",
-        indexed: true,
-        internalType: "uint256",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
       },
       {
-        type: "uint256",
-        name: "price",
-        indexed: false,
-        internalType: "uint256",
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
       },
       {
-        type: "string",
-        name: "hash",
-        indexed: false,
-        internalType: "string",
-      },
+        "indexed": false,
+        "internalType": "string",
+        "name": "hash",
+        "type": "string"
+      }
     ],
-    outputs: [],
-    anonymous: false,
+    "name": "ProductPurchased",
+    "type": "event"
   },
   {
-    type: "function",
-    name: "addProduct",
-    inputs: [
+    "inputs": [
       {
-        type: "string",
-        name: "cover",
-        internalType: "string",
+        "internalType": "string",
+        "name": "cover",
+        "type": "string"
       },
       {
-        type: "string",
-        name: "name",
-        internalType: "string",
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
       },
       {
-        type: "uint256",
-        name: "price",
-        internalType: "uint256",
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
       },
       {
-        type: "bool",
-        name: "isMaticPayment",
-        internalType: "bool",
+        "internalType": "bool",
+        "name": "isMaticPayment",
+        "type": "bool"
       },
       {
-        type: "string",
-        name: "tag",
-        internalType: "string",
+        "internalType": "string",
+        "name": "tag",
+        "type": "string"
       },
       {
-        type: "string",
-        name: "description",
-        internalType: "string",
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
       },
       {
-        type: "string",
-        name: "display1",
-        internalType: "string",
+        "internalType": "string",
+        "name": "display1",
+        "type": "string"
       },
       {
-        type: "string",
-        name: "display2",
-        internalType: "string",
+        "internalType": "string",
+        "name": "display2",
+        "type": "string"
       },
       {
-        type: "string",
-        name: "display3",
-        internalType: "string",
+        "internalType": "string",
+        "name": "display3",
+        "type": "string"
       },
       {
-        type: "uint256",
-        name: "stock",
-        internalType: "uint256",
+        "internalType": "uint256",
+        "name": "stock",
+        "type": "uint256"
       },
       {
-        type: "string",
-        name: "hash",
-        internalType: "string",
-      },
+        "internalType": "string",
+        "name": "hash",
+        "type": "string"
+      }
     ],
-    outputs: [],
-    stateMutability: "nonpayable",
+    "name": "addProduct",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "buyProduct",
-    inputs: [
+    "inputs": [
       {
-        type: "uint256",
-        name: "productId",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
+      }
     ],
-    outputs: [],
-    stateMutability: "payable",
+    "name": "buyProduct",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "buyerHistory",
-    inputs: [
+    "inputs": [
       {
-        type: "address",
-        name: "",
-        internalType: "address",
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       },
       {
-        type: "uint256",
-        name: "",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    outputs: [
+    "name": "buyerHistory",
+    "outputs": [
       {
-        type: "uint256",
-        name: "productId",
-        internalType: "uint256",
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
       },
       {
-        type: "uint256",
-        name: "price",
-        internalType: "uint256",
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
       },
       {
-        type: "string",
-        name: "hash",
-        internalType: "string",
+        "internalType": "string",
+        "name": "hash",
+        "type": "string"
       },
       {
-        type: "uint256",
-        name: "timestamp",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "getAllProducts",
-    inputs: [],
-    outputs: [
+    "inputs": [],
+    "name": "getAllProducts",
+    "outputs": [
       {
-        type: "tuple[]",
-        name: "",
-        components: [
+        "components": [
           {
-            type: "string",
-            name: "tag",
-            internalType: "string",
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "name",
-            internalType: "string",
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "cover",
-            internalType: "string",
+            "internalType": "string",
+            "name": "cover",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display1",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display1",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display2",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display2",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display3",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display3",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "description",
-            internalType: "string",
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
           },
           {
-            type: "uint256",
-            name: "price",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
           },
           {
-            type: "uint256",
-            name: "stock",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "stock",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isMaticPayment",
-            internalType: "bool",
+            "internalType": "bool",
+            "name": "isMaticPayment",
+            "type": "bool"
           },
           {
-            type: "address",
-            name: "seller",
-            internalType: "address payable",
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
           },
           {
-            type: "uint256",
-            name: "id",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isListed",
-            internalType: "bool",
-          },
+            "internalType": "bool",
+            "name": "isListed",
+            "type": "bool"
+          }
         ],
-        internalType: "struct ArtYumeBuy.Product[]",
-      },
+        "internalType": "struct ArtYumeBuy.Product[]",
+        "name": "",
+        "type": "tuple[]"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "getFee",
-    inputs: [],
-    outputs: [
+    "inputs": [],
+    "name": "getFee",
+    "outputs": [
       {
-        type: "uint256",
-        name: "",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "getProductById",
-    inputs: [
+    "inputs": [
       {
-        type: "uint256",
-        name: "id",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      }
     ],
-    outputs: [
+    "name": "getProductById",
+    "outputs": [
       {
-        type: "tuple",
-        name: "",
-        components: [
+        "components": [
           {
-            type: "string",
-            name: "tag",
-            internalType: "string",
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "name",
-            internalType: "string",
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "cover",
-            internalType: "string",
+            "internalType": "string",
+            "name": "cover",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display1",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display1",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display2",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display2",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display3",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display3",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "description",
-            internalType: "string",
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
           },
           {
-            type: "uint256",
-            name: "price",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
           },
           {
-            type: "uint256",
-            name: "stock",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "stock",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isMaticPayment",
-            internalType: "bool",
+            "internalType": "bool",
+            "name": "isMaticPayment",
+            "type": "bool"
           },
           {
-            type: "address",
-            name: "seller",
-            internalType: "address payable",
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
           },
           {
-            type: "uint256",
-            name: "id",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isListed",
-            internalType: "bool",
-          },
+            "internalType": "bool",
+            "name": "isListed",
+            "type": "bool"
+          }
         ],
-        internalType: "struct ArtYumeBuy.Product",
-      },
+        "internalType": "struct ArtYumeBuy.Product",
+        "name": "",
+        "type": "tuple"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "getProductHash",
-    inputs: [
+    "inputs": [
       {
-        type: "uint256",
-        name: "productId",
-        internalType: "uint256",
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
       },
       {
-        type: "address",
-        name: "buyer",
-        internalType: "address",
-      },
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      }
     ],
-    outputs: [
+    "name": "getProductHash",
+    "outputs": [
       {
-        type: "string",
-        name: "",
-        internalType: "string",
-      },
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "getProducts",
-    inputs: [
+    "inputs": [
       {
-        type: "address",
-        name: "seller",
-        internalType: "address",
-      },
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
     ],
-    outputs: [
+    "name": "getProducts",
+    "outputs": [
       {
-        type: "tuple[]",
-        name: "",
-        components: [
+        "components": [
           {
-            type: "string",
-            name: "tag",
-            internalType: "string",
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "name",
-            internalType: "string",
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "cover",
-            internalType: "string",
+            "internalType": "string",
+            "name": "cover",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display1",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display1",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display2",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display2",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display3",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display3",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "description",
-            internalType: "string",
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
           },
           {
-            type: "uint256",
-            name: "price",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
           },
           {
-            type: "uint256",
-            name: "stock",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "stock",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isMaticPayment",
-            internalType: "bool",
+            "internalType": "bool",
+            "name": "isMaticPayment",
+            "type": "bool"
           },
           {
-            type: "address",
-            name: "seller",
-            internalType: "address payable",
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
           },
           {
-            type: "uint256",
-            name: "id",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isListed",
-            internalType: "bool",
-          },
+            "internalType": "bool",
+            "name": "isListed",
+            "type": "bool"
+          }
         ],
-        internalType: "struct ArtYumeBuy.Product[]",
-      },
+        "internalType": "struct ArtYumeBuy.Product[]",
+        "name": "",
+        "type": "tuple[]"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "productbytag",
-    inputs: [
+    "inputs": [
       {
-        type: "string",
-        name: "tag",
-        internalType: "string",
-      },
+        "internalType": "string",
+        "name": "tag",
+        "type": "string"
+      }
     ],
-    outputs: [
+    "name": "productbytag",
+    "outputs": [
       {
-        type: "tuple[]",
-        name: "",
-        components: [
+        "components": [
           {
-            type: "string",
-            name: "tag",
-            internalType: "string",
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "name",
-            internalType: "string",
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "cover",
-            internalType: "string",
+            "internalType": "string",
+            "name": "cover",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display1",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display1",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display2",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display2",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "display3",
-            internalType: "string",
+            "internalType": "string",
+            "name": "display3",
+            "type": "string"
           },
           {
-            type: "string",
-            name: "description",
-            internalType: "string",
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
           },
           {
-            type: "uint256",
-            name: "price",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
           },
           {
-            type: "uint256",
-            name: "stock",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "stock",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isMaticPayment",
-            internalType: "bool",
+            "internalType": "bool",
+            "name": "isMaticPayment",
+            "type": "bool"
           },
           {
-            type: "address",
-            name: "seller",
-            internalType: "address payable",
+            "internalType": "address payable",
+            "name": "seller",
+            "type": "address"
           },
           {
-            type: "uint256",
-            name: "id",
-            internalType: "uint256",
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
           },
           {
-            type: "bool",
-            name: "isListed",
-            internalType: "bool",
-          },
+            "internalType": "bool",
+            "name": "isListed",
+            "type": "bool"
+          }
         ],
-        internalType: "struct ArtYumeBuy.Product[]",
-      },
+        "internalType": "struct ArtYumeBuy.Product[]",
+        "name": "",
+        "type": "tuple[]"
+      }
     ],
-    stateMutability: "view",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "toggleProductListing",
-    inputs: [
+    "inputs": [
       {
-        type: "uint256",
-        name: "productId",
-        internalType: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "productId",
+        "type": "uint256"
+      }
     ],
-    outputs: [],
-    stateMutability: "nonpayable",
+    "name": "toggleProductListing",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    type: "function",
-    name: "token",
-    inputs: [],
-    outputs: [
+    "inputs": [],
+    "name": "token",
+    "outputs": [
       {
-        type: "address",
-        name: "",
-        internalType: "contract IERC20",
-      },
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-  },
+    "stateMutability": "view",
+    "type": "function"
+  }
 ] as const;
