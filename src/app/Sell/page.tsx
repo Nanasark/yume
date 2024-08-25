@@ -12,18 +12,36 @@ export default function Sell() {
   return (
     <div className="flex w-screen md:w-full h-full flex-col items-center pt-20 justify-center p-5 bg-[#181934]">
       <div className=" w-1/2 h-full p-2 lg:p-10 flex gap-10 items-center justify-center ">
-        <button
-          className="rounded-lg border-radius-[2px] w-[120px] bg-yellow-400 text-black "
-          onClick={() => setAuction(false)}
+        <div
+          className={`${
+            auction == false ? "buttonGradient " : " bg-transparent"
+          } p-[1px]  rounded-[11px] flex justify-center h-[48px] w-[148px] items-center `}
         >
-          ListBuy
-        </button>
-        <button
-          className="rounded-lg border-radius-[2px] w-[120px] bg-yellow-400 text-black "
-          onClick={() => setAuction(true)}
+          <button
+            className={`${
+              auction == false ? "bg-[#181934]" : "buttonbg"
+            } relative rounded-[10px] w-full h-full text-stone-50
+           `}
+            onClick={() => setAuction(false)}
+          >
+            ListBuy
+          </button>
+        </div>
+        <div
+          className={`${
+            auction == true ? "borderGradient " : "bg-transparent "
+          } p-[1px] rounded-[11px] flex justify-center h-[48px] w-[148px] items-center `}
         >
-          ListAuction
-        </button>
+          <button
+            className={`${
+              auction == true ? "bg-[#181934]" : "buttonbg"
+            } rounded-[10px] w-full h-full text-stone-50
+           `}
+            onClick={() => setAuction(true)}
+          >
+            ListAuction
+          </button>
+        </div>
       </div>
 
       <div className=" flex h-full w-full lg:w-3/4 justify-center text-white items-center ">

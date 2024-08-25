@@ -286,3 +286,13 @@ input[type="number"] {
     rgba(128, 0, 255, 0.45702030812324934) 100%
   );
 }
+
+.buttonbg {
+  background: rgb(75, 108, 192);
+  background: linear-gradient(
+    -72deg,
+    rgba(83, 11, 120, 1) 0%,
+    rgba(194, 98, 193, 1) 50%,
+    rgba(75, 108, 192, 1) 100%
+  );
+}

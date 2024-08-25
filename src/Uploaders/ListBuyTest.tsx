@@ -1,5 +1,5 @@
 "use client";
-import { contract } from "@/app/contract";
+import { contract, registryContract } from "@/app/contract";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
@@ -8,6 +8,7 @@ import { PreparedTransaction } from "thirdweb";
 import {
   ConnectButton,
   useActiveAccount,
+  useReadContract,
   useSendTransaction,
 } from "thirdweb/react";
 import { client } from "@/app/client";
@@ -16,6 +17,8 @@ import AuctionModal from "../modals/AuctionModal";
 import { useOpenAuction } from "@/helpers/AuctionContext";
 import { inter } from "@/helpers/fonts";
 import SuccessHandler from "@/components/success/success";
+import toast from "react-hot-toast";
+import { ErrorAlert, ErrorHandler } from "@/components/error/error";
 enum TagEnum {
   ThreeD = "ThreeD",
   TwoD = "TwoD",
@@ -43,6 +46,12 @@ export default function ListBuy() {
     isSuccess,
     error: errror,
   } = useSendTransaction();
+
+  const { data: isRegistered } = useReadContract({
+    contract: registryContract,
+    method: "isRegistered",
+    params: [account?.address as `0x${string}`],
+  });
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedCover, setSelectedCover] = useState<File | null>(null);
@@ -99,51 +108,70 @@ export default function ListBuy() {
   };
 
   const handleListBuy = async (data: ProductInput) => {
-    try {
-      const filehash = await uploadFileToIPFS(selectedFile);
-      const coverhash = await uploadFileToIPFS(selectedCover);
-      const display1hash = await uploadFileToIPFS(selectedDisplay1);
-      const display2hash = await uploadFileToIPFS(selectedDisplay2);
-      const display3hash = await uploadFileToIPFS(selectedDisplay3);
+    if (isRegistered) {
+      try {
+        const toastId1 = toast.loading("Listing, wait a minute...");
+        const filehash = await uploadFileToIPFS(selectedFile);
 
-      console.log("filehash:", filehash);
-      console.log("coverhash:", coverhash);
-      console.log("display1hash:", display1hash);
-      console.log("display2hash:", display2hash);
-      console.log("display3hash:", display3hash);
+        toast.dismiss(toastId1);
+        const toastId2 = toast.loading("Listing, wait a minute...");
+        const coverhash = await uploadFileToIPFS(selectedCover);
 
-      if (
-        !filehash ||
-        !coverhash ||
-        !display1hash ||
-        !display2hash ||
-        !display3hash
-      ) {
-        console.error("Error: Some IPFS hashes are missing.");
-        return;
+        toast.dismiss(toastId2);
+        const toastId3 = toast.loading("Listing ...");
+        const display1hash = await uploadFileToIPFS(selectedDisplay1);
+
+        toast.dismiss(toastId3);
+        const toastId4 = toast.loading("Listing ...");
+        const display2hash = await uploadFileToIPFS(selectedDisplay2);
+
+        toast.dismiss(toastId4);
+        const toastId5 = toast.loading("Listing ...");
+        const display3hash = await uploadFileToIPFS(selectedDisplay3);
+
+        toast.dismiss(toastId5);
+        const toastId6 = toast.loading("Transaction begun ...");
+
+        if (
+          !filehash ||
+          !coverhash ||
+          !display1hash ||
+          !display2hash ||
+          !display3hash
+        ) {
+          console.error("Error: Some IPFS hashes are missing.");
+          return;
+        }
+
+        const transaction = (await prepareContractCall({
+          contract: contract,
+          method: "addProduct",
+          params: [
+            coverhash,
+            data.name,
+            toWei(`${data.price}`),
+            data.isMaticPayment,
+            data.tag,
+            data.description,
+            display1hash,
+            display2hash,
+            display3hash,
+            BigInt(data.stock),
+            filehash,
+          ],
+        })) as PreparedTransaction;
+
+        toast.dismiss(toastId6);
+        await sendTransaction(transaction);
+      } catch (error) {
+        ErrorAlert(error);
+        ErrorHandler(error);
       }
-
-      const transaction = (await prepareContractCall({
-        contract: contract,
-        method: "addProduct",
-        params: [
-          coverhash,
-          data.name,
-          toWei(`${data.price}`),
-          data.isMaticPayment,
-          data.tag,
-          data.description,
-          display1hash,
-          display2hash,
-          display3hash,
-          BigInt(data.stock),
-          filehash,
-        ],
-      })) as PreparedTransaction;
-
-      await sendTransaction(transaction);
-    } catch (error) {
-      console.error("Failed to List Product:", error);
+    } else {
+      toast("User Not Registered, Please Complete KYC", {
+        className: "text-center border-orange-700",
+        icon: "⛔",
+      });
     }
   };
 
@@ -330,15 +358,25 @@ export default function ListBuy() {
 
         <div>
           {account ? (
-            <input
+            <button
               type="submit"
-              value="List Product"
-              className="cursor-pointer rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black "
+              className="buttonbg rounded-[10px] h-[47px] w-[148px]"
               onClick={() => handleListSubmission()}
               onLoad={() => {
                 return "Loading";
               }}
-            />
+            >
+              {/* <input
+                type="submit"
+                value="List Product"
+                className="buttonbg hover:cursor-auto rounded-[10px] h-[47px] w-[148px]"
+                onClick={() => handleListSubmission()}
+                onLoad={() => {
+                  return "Loading";
+                }}
+              /> */}
+              List Product
+            </button>
           ) : (
             <ConnectButton client={client} chain={amoy} />
           )}
