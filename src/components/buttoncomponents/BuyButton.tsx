@@ -115,7 +115,7 @@ export default function BuyButton({
           }
           onError={ErrorAlert}
           onTransactionConfirmed={() =>
-            toast.success("Bid successfull", {
+            toast.success("Bought successfull, download now", {
               id: "transaction",
               icon: "✅",
               duration: 5000,
