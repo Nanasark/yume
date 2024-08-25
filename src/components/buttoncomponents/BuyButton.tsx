@@ -107,8 +107,20 @@ export default function BuyButton({
               params: [id],
             })
           }
+          onTransactionSent={() =>
+            toast.loading("transaction sent ...", {
+              id: "transaction",
+              icon: "🔥",
+            })
+          }
           onError={ErrorAlert}
-          onTransactionSent={() => alert("Successfully bought")}
+          onTransactionConfirmed={() =>
+            toast.success("Bid successfull", {
+              id: "transaction",
+              icon: "✅",
+              duration: 5000,
+            })
+          }
         >
           Buy Item with Token
         </TransactionButton>

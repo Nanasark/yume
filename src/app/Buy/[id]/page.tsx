@@ -55,6 +55,9 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
     price = toEther(product.price);
   }
 
+  if (product) {
+    console.log("seller:", product.seller);
+  }
   let payment;
   if (product) {
     if (product.isMaticPayment == true) {

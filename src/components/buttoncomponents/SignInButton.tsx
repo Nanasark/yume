@@ -21,7 +21,6 @@ export default function SignInButton() {
         supportedTokens={ForAmoyNetWork}
         theme="dark"
         autoConnect={true}
-        
         accountAbstraction={{ chain: amoy, sponsorGas: true }}
       />
     </div>
