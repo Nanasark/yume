@@ -353,7 +353,9 @@ export default function ListBuy() {
           Error={`${errror?.name
             .replace(/contract:\s*[\S]+/g, "")
             .replace(/chainId:\s*\d+/g, "")
-            .trim()}`}
+            .trim()}`
+          
+          }
         />
 
         <div>

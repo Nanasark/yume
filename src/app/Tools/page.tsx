@@ -4,6 +4,9 @@ import ApproveToken from "@/components/tools/ApproveToken";
 import { BuyAllowance } from "@/components/tools/ApproveToken";
 import { AuctionAllowawnce } from "@/components/tools/ApproveToken";
 import ClaimYume from "@/components/tools/ClaimYume";
+import { PayEmbed } from "thirdweb/react";
+import { client } from "../client";
+import { amoy } from "../chain";
 
 export default function Tools() {
   return (
@@ -39,7 +42,27 @@ export default function Tools() {
               <ApproveToken />
             </div>
           </div>
-          <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900"></div>
+          <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900">
+            <PayEmbed
+              client={client}
+              payOptions={{
+             
+                buyWithCrypto: false,
+                buyWithFiat: {
+                  testMode: true,
+                },
+
+                prefillBuy: {
+                  chain: amoy,
+                  allowEdits: {
+                    amount: true, // allow editing buy amount
+                    token: false, // disable selecting buy token
+                    chain: false, // disable selecting buy chain
+                  },
+                },
+              }}
+            />
+          </div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900 flex justify-center items-center">
             {" "}
             <ClaimYume />
