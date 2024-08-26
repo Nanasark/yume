@@ -7,7 +7,10 @@ import {
   Elements,
 } from "@stripe/react-stripe-js";
 
+import { useActiveAccount } from "thirdweb/react";
 export default function FiatPay() {
+  const account = useActiveAccount();
+  const address = account ? account.address : "";
   const [clientSecret, setClientSecret] = useState<string>("");
 
   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
@@ -17,6 +20,19 @@ export default function FiatPay() {
   const stripe = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
   );
+
+  const onClick = async () => {
+    const res = await fetch("api/stripe-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ buyerWalletAddress: address }),
+    });
+
+    if (res.ok) {
+      const json = await res.json();
+      setClientSecret(json.clientSecret);
+    }
+  };
 
   return (
     <div>
