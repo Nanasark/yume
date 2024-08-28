@@ -7,6 +7,7 @@ import ClaimYume from "@/components/tools/ClaimYume";
 import { PayEmbed } from "thirdweb/react";
 import { client } from "../client";
 import { amoy } from "../chain";
+import Link from "next/link";
 
 export default function Tools() {
   return (
@@ -43,25 +44,11 @@ export default function Tools() {
             </div>
           </div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900">
-            <PayEmbed
-              client={client}
-              payOptions={{
-             
-                buyWithCrypto: false,
-                buyWithFiat: {
-                  testMode: true,
-                },
-
-                prefillBuy: {
-                  chain: amoy,
-                  allowEdits: {
-                    amount: true, // allow editing buy amount
-                    token: false, // disable selecting buy token
-                    chain: false, // disable selecting buy chain
-                  },
-                },
-              }}
-            />
+            <Link href={`/Fiat`}>
+              <button className="w-[150px] h-[50px] items-center text-center bg-black text-white rounded-md ">
+                Buy ARYM With Credit Card
+              </button>
+            </Link>
           </div>
           <div className="w-full h-[300px] bg-slate-600 rounded-lg border-[2px] border-emerald-900 flex justify-center items-center">
             {" "}

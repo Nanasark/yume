@@ -57,21 +57,30 @@ export default function FiatPay() {
   };
 
   return (
-    <div>
-      <div>
+    <div
+      className="w-full h-full flex p-5 lg:p-10 justify-center
+    items-center bg-black border-[1px] shadow-xl rounded-md"
+    >
+      <div className="w-full h-full flex justify-center items-center">
         {!clientSecret ? (
-          <div>
-            <label htmlFor="tokenAmount">Enter token amount:</label>
-            <input
-              id="tokenAmount"
-              type="number"
-              value={buyingToken}
-              onChange={handleChange}
-            />
+          <div className=" items-center w-[400px] h-[300px] rounded-md fiatform border-[1px] border-stone-200">
+            <div className="flex flex-col">
+              <label htmlFor="tokenAmount">Enter token amount:</label>
+              <input
+                id="tokenAmount"
+                type="number"
+                value={buyingToken}
+                onChange={handleChange}
+              />
+            </div>
             <p>Buying Token Amount: {buyingToken}</p>
 
             <p>Pay ${dollarAmount.toFixed(2)} dollars</p>
-            <button onClick={onClick} disabled={!account}>
+            <button
+              onClick={onClick}
+              disabled={!account}
+              className="w-[200px] h-[50px] bg-blue-600 text-center text-white"
+            >
               Buy Token With Credit Card
             </button>
           </div>
@@ -129,12 +138,16 @@ const CreditCardForm = () => {
     }
   };
   return (
-    <>
+    <div className="flex flex-col gap-5 justify-center items-center">
       <PaymentElement />
-      <button onClick={onClick} disabled={isComplete || isLoading || !elements}>
+      <button
+        onClick={onClick}
+        disabled={isComplete || isLoading || !elements}
+        className="w-[200px] h-[50px] rounded-sm bg-blue-600 text-center text-white"
+      >
         {" "}
         {isComplete ? "Payment Complete" : isLoading ? "Loading..." : "Pay Now"}
       </button>
-    </>
+    </div>
   );
 };

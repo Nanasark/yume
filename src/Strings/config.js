@@ -18,6 +18,7 @@ const config = {
   EndAuctionkey: String(process.env.NEXT_PUBLIC_END_AUCTION_KEY),
   claimAddress: String(process.env.NEXT_PUBLIC_CLAIM_CONTRACT_ADDRESS),
   defaultProfile: String(process.env.NEXT_PUBLIC_DEFAULT_PROFILE),
+  buyARYMwithFiat: String(process.env.NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS),
 };
 
 export default config;

@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { amoy } from "@/app/chain";
+import { toWei } from "thirdweb";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2024-06-20",
@@ -56,7 +57,9 @@ const handleChargeSucceeded = async (charge: Stripe.Charge) => {
 
   const pricePerToken = 0.01;
   const amount = Math.floor(parseFloat(dollarAmount) / pricePerToken);
+  const sendingAmount = toWei(`${amount}`);
 
+  console.log(amount);
   try {
     const tx = await fetch(
       `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS}/write`,
@@ -69,12 +72,13 @@ const handleChargeSucceeded = async (charge: Stripe.Charge) => {
           "x-backend-wallet-address": BACKEND_WALLET_ADDRESS,
         },
         body: JSON.stringify({
-          functionName: "claim",
-          args: [`${buyerWalletAddress}`, amount],
+          functionName: "send",
+          args: [`${buyerWalletAddress}`, sendingAmount.toString()],
         }),
       }
     );
 
+    console.log("contract:", NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS);
     if (!tx.ok) {
       throw "purchase failed";
     }

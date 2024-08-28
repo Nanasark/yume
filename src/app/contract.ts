@@ -7,6 +7,7 @@ import { contractABI } from "./contractabi/contractABI";
 import { tokenABI } from "./contractabi/tokenABI";
 import { auctionABI } from "./contractabi/auctionABI";
 import { claimABI } from "./contractabi/claimABI";
+import { BuyARYMWithFiatABI } from "./contractabi/buyARYMwithFiatAbi";
 
 export const contract = getContract({
   client: client,
@@ -41,4 +42,11 @@ export const claimcontract = getContract({
   chain: amoy,
   address: config.claimAddress as `0x${string}`,
   abi: claimABI,
+});
+
+export const BuyARYMFiatContract = getContract({
+  client: client,
+  chain: amoy,
+  address: config.buyARYMwithFiat,
+  abi: BuyARYMWithFiatABI,
 });
