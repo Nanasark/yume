@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   if (!STRIPE_SECRET_KEY) {
     throw "Stripe secret key not found";
   }
-  const { buyerWalletAddress } = await req.json();
+  const { buyerWalletAddress, dollarAmount } = await req.json();
   //   const { amount } = await req.json();
 
   if (!buyerWalletAddress) {
@@ -22,12 +22,14 @@ export async function POST(req: Request) {
   //     throw " no amount given";
   //   }
 
+  const amountInCents = dollarAmount * 100;
+
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 10_00,
+    amount: amountInCents,
     currency: "usd",
     description: " buying crypto with credit card",
     payment_method_types: ["card"],
-    metadata: { buyerWalletAddress },
+    metadata: { buyerWalletAddress, dollarAmount },
   });
 
   return NextResponse.json({
