@@ -58,29 +58,40 @@ export default function FiatPay() {
   return (
     <div
       className="w-full h-full flex p-5 lg:p-10 justify-center
-    items-center bg-black border-[1px] shadow-xl rounded-md"
+    items-center bg-black border-[2px]  border-[#262830] shadow-xl rounded-[11px]"
     >
-      <div className="w-full h-full bg-[#2c3e50] flex justify-center items-center">
+      <div className="w-full h-full flex justify-center items-center">
         {!clientSecret ? (
-          <div className=" items-center w-[400px] h-[300px] rounded-md fiatform ">
-            <div className="flex flex-col">
+          <div className=" text-[#D6D6D6] gap-4 flex flex-col justify-center items-center w-[400px] h-[300px] bg-transparent ">
+            <div className="flex flex-col border-[1px] border-[#262830]  rounded-[10px] w-full p-5 gap-2">
               <label htmlFor="tokenAmount">Enter token amount:</label>
-              <input
-                id="tokenAmount"
-                type="number"
-                value={buyingToken}
-                onChange={handleChange}
-              />
+              <div className=" text-[#D6D6D6] h-[47px]  bg-transparent flex items-center justify-center rounded-[11px] p-[1px] buttonHover">
+                <input
+                  id="tokenAmount"
+                  type="number"
+                  value={buyingToken}
+                  className="flex pl-2 items-center justify-center gap-2 w-full bg-transparent rounded-[10px] border-[1px] border-[#262830]  hover:border-[0px] hover:bg-[#1B1C22] h-full"
+                  onChange={handleChange}
+                  placeholder="0"
+                />
+              </div>
             </div>
-            <p>Buying Token Amount: {buyingToken}</p>
+            <div className="w-full h-[60px] flex gap-2">
+              <div className="flex items-center justify-center gap-2 w-full rounded-[10px] border-[1px] border-[#262830]  hover:border-[0px] hover:bg-[#1B1C22] h-full">
+                {" "}
+                <p> {buyingToken} Tokens</p>
+              </div>
+              <div className="flex items-center justify-center gap-2 w-full rounded-[10px] border-[1px] border-[#262830]  hover:border-[0px] hover:bg-[#1B1C22] h-full">
+                <p>Pay ${dollarAmount.toFixed(2)} </p>
+              </div>
+            </div>
 
-            <p>Pay ${dollarAmount.toFixed(2)} dollars</p>
             <button
               onClick={onClick}
               disabled={!account}
               className="w-[200px] h-[50px] bg-blue-600 text-center text-white"
             >
-              Buy Token With Credit Card
+              Pay With Credit Card
             </button>
           </div>
         ) : (
