@@ -298,11 +298,24 @@ input[type="number"] {
 }
 
 .fiatform {
- 
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(255, 255, 255, 0.1); /* More transparent */
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
-  border: 1px solid rgba(0, 0, 0, 0.41);
+  backdrop-filter: blur(10px); /* Increase blur for stronger effect */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  color: white;
+  width: 300px;
+  position: relative;
+}
+
+.buttonHover:hover{
+   background: rgb(75, 108, 192);
+  background: linear-gradient(
+    158deg,
+    rgba(75, 108, 192, 1) 0%,
+    rgba(194, 98, 193, 1) 50%,
+    rgba(83, 11, 120, 1) 100%
+  );
 }

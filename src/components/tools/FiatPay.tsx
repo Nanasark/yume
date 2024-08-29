@@ -8,7 +8,6 @@ import {
 } from "@stripe/react-stripe-js";
 
 import { useActiveAccount } from "thirdweb/react";
-import { Input } from "postcss";
 export default function FiatPay() {
   const account = useActiveAccount();
   const address = account ? account.address : "";
@@ -61,9 +60,9 @@ export default function FiatPay() {
       className="w-full h-full flex p-5 lg:p-10 justify-center
     items-center bg-black border-[1px] shadow-xl rounded-md"
     >
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full h-full bg-[#2c3e50] flex justify-center items-center">
         {!clientSecret ? (
-          <div className=" items-center w-[400px] h-[300px] rounded-md fiatform border-[1px] border-stone-200">
+          <div className=" items-center w-[400px] h-[300px] rounded-md fiatform ">
             <div className="flex flex-col">
               <label htmlFor="tokenAmount">Enter token amount:</label>
               <input
