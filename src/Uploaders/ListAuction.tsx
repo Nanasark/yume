@@ -191,6 +191,9 @@ export default function ListAuction() {
       className={`${inter.className} h-full font-thin flex flex-col items-center drop-shadow-lg justify-center p-2 lg:p-14 w-full bg-[#1F2045] rounded-xl`}
     >
       {" "}
+      <h1 className="mt-[-5px] text-[16px] lg:text-[2rem] font-semibold">
+        You are currently Listing for Auction
+      </h1>
       <form
         onSubmit={handleListAuctionSubmit(onSubmit)}
         className="relative flex flex-col space-y-10 items-center text-white  w-full "
