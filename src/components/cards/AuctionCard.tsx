@@ -25,6 +25,11 @@ export default function AuctionCard({
   const SellerString = String(seller);
   console.log(seller);
 
+  const { data: bidIncrement } = useReadContract({
+    contract: auctioncontract,
+    method: "getBidIncrement",
+    params: [id],
+  });
   const { data: registry, isLoading: isRegistryLoading } = useReadContract({
     contract: registryContract,
     method: "getUserDetails",
@@ -93,9 +98,14 @@ export default function AuctionCard({
             <p className="text-white font-extralight">
               Current Bid <br />{" "}
               <span className="font-semibold">
-                {auctionDetail && auctionDetail.currentPrice > startPrice
-                  ? toEther(auctionDetail.currentPrice).toString()
-                  : toEther(startPrice).toString()}{" "}
+                {auctionDetail &&
+                bidIncrement &&
+                auctionDetail.currentPrice > startPrice + bidIncrement
+                  ? toEther(
+                      auctionDetail.currentPrice + bidIncrement
+                    ).toString()
+                  : bidIncrement &&
+                    toEther(startPrice + bidIncrement).toString()}{" "}
                 ARYM
               </span>
             </p>

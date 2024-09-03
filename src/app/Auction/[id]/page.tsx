@@ -251,21 +251,18 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
     method: "getAuctionHash",
     params: [address, params.id],
   });
-
+  const AuctionId = auction ? auction?.id : BigInt(10000000000000000);
   const { data: registry, isLoading: isRegistryLoading } = useReadContract({
     contract: registryContract,
     method: "getUserDetails",
     params: [auction?.seller as `0x${string}`],
   });
 
-  const { data: checkBidder, isLoading: isCheckBidderLoading } =
-    useReadContract({
-      contract: registryContract,
-      method: "getUserDetails",
-      params: [address as `0x${string}`],
-    });
-
-  const AuctionId = auction ? auction?.id : BigInt(10000000000000000);
+  const { data: bidIncrement } = useReadContract({
+    contract: auctioncontract,
+    method: "getBidIncrement",
+    params: [AuctionId],
+  });
 
   const { data: auctionDetail, isLoading: isLoadingAuctionDetail } =
     useReadContract({
@@ -317,13 +314,13 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                         endTime={auction.endTime}
                       />
                     </div>
-                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center bg-[#F9FBFF] text-[#181934]">
-                      {auctionDetail &&
-                      auctionDetail.currentPrice > auction.startPrice ? (
-                        <p>{toEther(auctionDetail.currentPrice).toString()}</p>
-                      ) : (
+                    <div className="w-1/2 h-full rounded-lg flex flex-col items-center justify-center bg-[#F9FBFF] text-[#181934]">
+                      <h1>Bid Going for</h1>
+                      {auctionDetail && bidIncrement && (
                         <p>
-                          {toEther(auction.startPrice).toString()}
+                          {toEther(
+                            auctionDetail.currentPrice + bidIncrement
+                          ).toString()}{" "}
                           ARYM
                         </p>
                       )}

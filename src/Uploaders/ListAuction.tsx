@@ -24,13 +24,15 @@ import toast from "react-hot-toast";
 type AuctionInput = {
   name: string;
   description: string;
-  startPrice: bigint;
-  days: bigint; // Use string to handle datetime-local input
+  startPrice: string;
+  days: bigint;
+  bidIncrement: bigint; // Use string to handle datetime-local input
 };
 
 export default function ListAuction() {
   const { isOpenAuction, setIsOpenAuction } = useOpenAuction();
   const account = useActiveAccount();
+  const bidIncrement: number = 5;
   const {
     mutate: sendTransaction,
     isPending,
@@ -142,13 +144,17 @@ export default function ListAuction() {
 
         // Convert to Unix timestamp in seconds
 
+        console.log("type of startprice", typeof data.startPrice);
+        console.log("type of bidIncrement", typeof bidIncrement);
+        const price = parseInt(data.startPrice);
+        const startPrice = price - bidIncrement;
         const transaction = (await prepareContractCall({
           contract: auctioncontract,
           method: "createAuction",
           params: [
             data.name,
             data.description,
-            toWei(`${data.startPrice}`),
+            toWei(`${startPrice}`),
             BigInt(data.days),
             filehash,
             coverhash,
@@ -216,8 +222,8 @@ export default function ListAuction() {
           <div className="borderGradient flex  w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
             <input
               type="number"
-              className="text-black w-full p-2 items-center h-[40px] rounded-[10px]  bg-[#1F2045] "
-              {...listAuction("startPrice", { required: true, min: 0.0001 })}
+              className="text-white w-full p-2 items-center h-[40px] rounded-[10px]  bg-[#1F2045] "
+              {...listAuction("startPrice", { required: true, min: 10 })}
             />
           </div>
         </div>
