@@ -297,7 +297,7 @@ export default function ListAuction() {
           <input
             type="submit"
             value="List Auction"
-            className=" cursor-pointer rounded-lg border-radius-[2px] w-[120px] bg-indigo-700 text-black"
+            className=" cursor-pointer rounded-[11px] border-radius-[2px] w-[120px] h-[40px] buttonGradient"
             onClick={() => handleAuctionSubmission()}
             onLoad={() => {
               return "Loading";
