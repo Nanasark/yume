@@ -12,15 +12,15 @@ const {
 } = process.env;
 
 export async function POST(req: NextRequest) {
-    const handleEnded = async (auctionId: bigint) => {
-      if (
-        !ENGINE_URL ||
-        !ENGINE_ACCESS_TOKEN ||
-        !NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS ||
-        !BACKEND_WALLET_ADDRESS
-      ) {
-        throw "server misconfigured check your env file";
-      }
+  const handleEnded = async (auctionId: bigint) => {
+    if (
+      !ENGINE_URL ||
+      !ENGINE_ACCESS_TOKEN ||
+      !NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS ||
+      !BACKEND_WALLET_ADDRESS
+    ) {
+      throw "server misconfigured check your env file";
+    }
     try {
       const tx = await fetch(
         `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/write`,
@@ -49,15 +49,12 @@ export async function POST(req: NextRequest) {
   };
 
   // Fetch all auctions
-  const { data: auctions, isLoading: isProductLoading } = useReadContract({
+  const auctions = await readContract({
     contract: auctioncontract,
     method: "getAllAuctions",
   });
 
   // Check if data is still loading
-  if (isProductLoading) {
-    return new Response("Auctions are still loading", { status: 400 });
-  }
 
   // Process each auction
   if (auctions) {
