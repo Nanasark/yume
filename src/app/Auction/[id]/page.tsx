@@ -411,11 +411,11 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       )}
                 </div>
 
-                <EndAuction
+                {/* <EndAuction
                   endTime={auction.endTime}
                   id={auction.id}
                   seller={auction.seller}
-                />
+                /> */}
               </div>
             </div>
           )}
