@@ -1,7 +1,5 @@
 import { NextRequest } from "next/server";
-import {auctioncontract} from "../../contract"
 import { amoy } from "@/app/chain";
-import { readContract } from "thirdweb";
 
 const {
   ENGINE_URL,
@@ -48,10 +46,20 @@ export async function POST(req: NextRequest) {
   };
 
   // Fetch all auctions
-  const auctions = await readContract({
-    contract: auctioncontract,
-    method: "getAllAuctions",
-  });
+
+  const resp = await fetch(
+    `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read`,
+    {
+      headers: {
+        Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify({
+        functionName: "getAllAuctions",
+      }),
+    }
+  );
+
+  const { auctions } = await resp.json();
 
   // Check if data is still loading
 
@@ -59,11 +67,18 @@ export async function POST(req: NextRequest) {
   if (auctions) {
     for (const auction of auctions) {
       try {
-        const ended = await readContract({
-          contract: auctioncontract,
-          method: "hasAuctionEnded",
-          params: [auction.id],
-        });
+        const ended = await fetch(
+          `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read`,
+          {
+            headers: {
+              Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
+            },
+            body: JSON.stringify({
+              functionName: "hasAuctionEnded",
+              args: [`${auction.id}`],
+            }),
+          }
+        );
 
         if (ended) {
           await handleEnded(auction.id);
