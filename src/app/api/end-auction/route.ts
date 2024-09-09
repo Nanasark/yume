@@ -1,8 +1,7 @@
 import { NextRequest } from "next/server";
-import { auctioncontract } from "@/app/contract";
-import { readContract } from "thirdweb";
-import { useReadContract } from "thirdweb/react";
+import {auctioncontract} from "../../contract"
 import { amoy } from "@/app/chain";
+import { readContract } from "thirdweb";
 
 const {
   ENGINE_URL,

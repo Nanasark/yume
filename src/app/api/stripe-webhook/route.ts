@@ -1,4 +1,3 @@
-import { NextApiRequest } from "next";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -17,6 +16,7 @@ const {
   BACKEND_WALLET_ADDRESS,
   CHAIN_ID,
 } = process.env;
+
 export async function POST(req: NextRequest) {
   if (!WEBHOOK_SECRET_KEY) {
     throw 'Did you forget to add ".env.local" file';
