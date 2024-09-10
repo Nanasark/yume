@@ -10,7 +10,7 @@ const config = {
   ),
   appwriteNftBuctketId: String(process.env.NEXT_APP_APPWRITE_NFT_BUCKET_ID),
   thirdwebClientId: String(process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID),
-  pinataJWT: String(process.env.NEXT_PUBLIC_PINATA_JWT),
+  pinataJWT: String(process.env.PINATA_JWT),
   ContractAddress: String(process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT_ADDRESS),
   TokenAddress: String(process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS),
   AuctionAddres: String(process.env.NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS),
@@ -18,7 +18,7 @@ const config = {
   EndAuctionkey: String(process.env.NEXT_PUBLIC_END_AUCTION_KEY),
   claimAddress: String(process.env.NEXT_PUBLIC_CLAIM_CONTRACT_ADDRESS),
   defaultProfile: String(process.env.NEXT_PUBLIC_DEFAULT_PROFILE),
-  buyARYMwithFiat: String(process.env.NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS),
+  buyARYMwithFiat: String(process.env.BUYARYMWITHFIAT_CONTRACT_ADDRESS),
 };
 
 export default config;

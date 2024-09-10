@@ -229,7 +229,7 @@ import SignInButton from "@/components/buttoncomponents/SignInButton";
 // import DownloadButton from "@/pages/DownloadButton";
 // import ThirdwebDownloader from "@/components/download";
 import FileDownload from "@/components/download";
-import EndAuction from "@/components/EndAuction";
+// import EndAuction from "@/components/EndAuction";
 import ImageHolder from "@/modals/ImageChange";
 import PleaseRegister from "@/components/pleaseRegister";
 import SellerSection from "@/components/Sellersection";

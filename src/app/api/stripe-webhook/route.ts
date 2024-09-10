@@ -12,7 +12,7 @@ const {
   WEBHOOK_SECRET_KEY,
   ENGINE_URL,
   ENGINE_ACCESS_TOKEN,
-  NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS,
+  BUYARYMWITHFIAT_CONTRACT_ADDRESS,
   BACKEND_WALLET_ADDRESS,
   CHAIN_ID,
 } = process.env;
@@ -44,7 +44,7 @@ const handleChargeSucceeded = async (charge: Stripe.Charge) => {
   if (
     !ENGINE_URL ||
     !ENGINE_ACCESS_TOKEN ||
-    !NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS ||
+    !BUYARYMWITHFIAT_CONTRACT_ADDRESS ||
     !BACKEND_WALLET_ADDRESS
   ) {
     throw "server misconfigured check your env file";
@@ -62,7 +62,7 @@ const handleChargeSucceeded = async (charge: Stripe.Charge) => {
   console.log(amount);
   try {
     const tx = await fetch(
-      `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS}/write`,
+      `${ENGINE_URL}/contract/${amoy.id}/${BUYARYMWITHFIAT_CONTRACT_ADDRESS}/write`,
 
       {
         method: "POST",
@@ -78,7 +78,7 @@ const handleChargeSucceeded = async (charge: Stripe.Charge) => {
       }
     );
 
-    console.log("contract:", NEXT_PUBLIC_BUYARYMWITHFIAT_CONTRACT_ADDRESS);
+    console.log("contract:", BUYARYMWITHFIAT_CONTRACT_ADDRESS);
     if (!tx.ok) {
       throw "purchase failed";
     }
