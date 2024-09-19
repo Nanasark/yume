@@ -1,4 +1,4 @@
-This is an decentralized platform for digital artists to put their distinguished items up for sale or auctions.
+This is a decentralized platform for digital artists to put their distinguished items up for sale or auctions.
 Highest bidder gets to download the file of any type at the end of auction, same but instantly for a buyer.
 
 
