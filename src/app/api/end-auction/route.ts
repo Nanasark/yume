@@ -48,14 +48,11 @@ export async function POST(req: NextRequest) {
   // Fetch all auctions
 
   const resp = await fetch(
-    `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read`,
+    `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read?functionName=getAllAuctions`,
     {
       headers: {
         Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
       },
-      body: JSON.stringify({
-        functionName: "getAllAuctions",
-      }),
     }
   );
 
