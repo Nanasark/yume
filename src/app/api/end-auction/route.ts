@@ -67,19 +67,15 @@ export async function POST(req: NextRequest) {
   if (auctions) {
     for (const auction of auctions) {
       try {
-        const ended = await fetch(
-          `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read`,
+        const resp = await fetch(
+          `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read?functionName=hasAuctionEnded&args=${auction.id}`,
           {
             headers: {
               Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
             },
-            body: JSON.stringify({
-              functionName: "hasAuctionEnded",
-              args: [`${auction.id}`],
-            }),
           }
         );
-
+        const { ended } = await resp.json();
         if (ended) {
           await handleEnded(auction.id);
         }
