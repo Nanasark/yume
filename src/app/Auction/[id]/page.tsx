@@ -314,16 +314,18 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                         endTime={auction.endTime}
                       />
                     </div>
-                    <div className="w-1/2 h-full rounded-lg flex flex-col items-center justify-center text-[#55567a] bg-[#0e131d]">
-                      <h1>Bid Going for</h1>
-                      {auctionDetail && bidIncrement && (
-                        <p>
-                          {toEther(
-                            auctionDetail.currentPrice + bidIncrement
-                          ).toString()}{" "}
-                          ARYM
-                        </p>
-                      )}
+                    <div className="w-1/2 h-full rounded-[11px] p-[1px] flex items-center justify-center text-[#55567a] borderGradient">
+                      <div className="w-full h-full bg-[#0e131d] rounded-[10px] flex flex-col items-center justify-center">
+                        <h1>Bid Going for</h1>
+                        {auctionDetail && bidIncrement && (
+                          <p>
+                            {toEther(
+                              auctionDetail.currentPrice + bidIncrement
+                            ).toString()}{" "}
+                            ARYM
+                          </p>
+                        )}{" "}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -373,42 +375,47 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   />
                 </Card>
                 {/*  section on right-bottom */}
-                <div className="w-full h-[400px] items-center  p-1 text-[#55567a] bg-[#0e131d] rounded-[11px]">
-                  <h1 className="text-[1rem] font-bold">Bids and Amounts</h1>
-                  {isBidsLoading
-                    ? "loading Bids"
-                    : bids && (
-                        <>
-                          {" "}
-                          <table className="w-full text-black rounded-md   shadow-lg">
-                            <thead className=" text-[#181934]">
-                              <tr>
-                                <th className="p-2 border-r-2 border-red-700">
-                                  Bidder
-                                </th>
-                                <th className="p-2 border-l-2 border-red-700">
-                                  Amount
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="bg-white">
-                              {bids[0].toReversed().map((bidder, index) => (
-                                <tr
-                                  key={index}
-                                  className="border-b-2 border-purple-900"
-                                >
-                                  <td className="p-2 border-r-2 border-purple-900">
-                                    {bidder.slice(0, 5)}...{bidder.slice(-8)}
-                                  </td>
-                                  <td className="p-2 border-l-2 border-purple-900">
-                                    {toEther(bids[1].toReversed()[index])} ARYM
-                                  </td>
+                <div className="w-full h-[400px] items-center flex justify-center p-[1px] text-[#55567a] borderGradient  rounded-[11px]">
+                  <div className="w-full h-full bg-[#0e131d] items-center rounded-[10px]">
+                    <h1 className=" relative left-2 text-[1rem] font-bold">
+                      Bids and Amounts
+                    </h1>
+                    {isBidsLoading
+                      ? "loading Bids"
+                      : bids && (
+                          <>
+                            {" "}
+                            <table className="w-full text-black rounded-md   shadow-lg">
+                              <thead className=" text-[#31325f]">
+                                <tr>
+                                  <th className="p-2 border-r-2 border-red-700">
+                                    Bidder
+                                  </th>
+                                  <th className="p-2 border-l-2 border-blue-700">
+                                    Amount
+                                  </th>
                                 </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </>
-                      )}
+                              </thead>
+                              <tbody className="bg-white">
+                                {bids[0].toReversed().map((bidder, index) => (
+                                  <tr
+                                    key={index}
+                                    className="border-b-2 border-purple-900"
+                                  >
+                                    <td className="p-2 border-r-2 border-purple-900">
+                                      {bidder.slice(0, 5)}...{bidder.slice(-8)}
+                                    </td>
+                                    <td className="p-2 border-l-2 border-purple-900">
+                                      {toEther(bids[1].toReversed()[index])}{" "}
+                                      ARYM
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </>
+                        )}
+                  </div>
                 </div>
 
                 {/* <EndAuction
