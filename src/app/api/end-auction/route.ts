@@ -92,7 +92,7 @@ async function handleAuctionProcessing() {
 
       console.log("Processed auctions:", auctions);
 
-      // Process each auction
+      
       for (const auction of auctions) {
         try {
           const endedResp = await fetch(
