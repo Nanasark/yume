@@ -25,7 +25,7 @@ export default function ImageHolder({
       ? display2
       : display3;
   return (
-    <div className="w-full h-full flex flex-col gap-5">
+    <div className="w-full h-full flex gap-5">
       <div className="w-full h-6/8">
         <MediaRenderer
           client={client}
@@ -35,7 +35,7 @@ export default function ImageHolder({
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-4">
         <div
           className={`${
             photo == 0 ? "ring-2 rounded-lg ring-amber-600" : "ring-0"

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "decentralized auction platform",
     "auctions on blockchain",
     "all file types",
-    "dapp for downloadable digital auctions",
+    "`dapp for downloadable digital auctions`",
     "bid buy download",
   ],
 };

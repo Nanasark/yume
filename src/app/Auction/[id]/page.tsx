@@ -293,7 +293,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                 {/* first section on left-top */}
                 <div className=" md:w-1/2 flex flex-col gap-3 ">
                   {" "}
-                  <div className=" md:w-7/8 md:h-7/8">
+                  <div className=" md:w-10/12 md:h-full">
                     <ImageHolder
                       cover={auction.coverimage}
                       display1={auction.display1}
@@ -301,20 +301,20 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display3={auction.display3}
                     />
                   </div>
-                  <div className=" flex gap-5 w-full rounded-lg h-[100px] items-center  ">
+                  <div className=" md:w-3/8 md:h-3/8 flex gap-5 w-full rounded-lg h-[100px] items-center  ">
                     {" "}
-                    <div className="w-1/2 h-full rounded-lg flex items-center justify-center text-[#181934] bg-[#F9FBFF]">
+                    <div className="w-1/2 h-full rounded-[11px] flex items-center  justify-center borderGradient p-[1px] text-[#55567a] ">
                       <AuctionTimer
                         TimeBoxClass="flex gap-2 items-center justify-center  w-full h-[40px] rounded-lg"
                         dayClass=""
-                        div1class=""
+                        div1class="w-full h-full items-center flex justify-center bg-[#0e131d] rounded-[10px]"
                         hourClass=""
                         minuteClass=""
                         secondsClass=""
                         endTime={auction.endTime}
                       />
                     </div>
-                    <div className="w-1/2 h-full rounded-lg flex flex-col items-center justify-center bg-[#F9FBFF] text-[#181934]">
+                    <div className="w-1/2 h-full rounded-lg flex flex-col items-center justify-center text-[#55567a] bg-[#0e131d]">
                       <h1>Bid Going for</h1>
                       {auctionDetail && bidIncrement && (
                         <p>
@@ -373,7 +373,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                   />
                 </Card>
                 {/*  section on right-bottom */}
-                <div className="w-full h-[400px] items-center  bg-[#F9FBFF] p-1 text-[#181934] rounded-[11px]">
+                <div className="w-full h-[400px] items-center  p-1 text-[#55567a] bg-[#0e131d] rounded-[11px]">
                   <h1 className="text-[1rem] font-bold">Bids and Amounts</h1>
                   {isBidsLoading
                     ? "loading Bids"
