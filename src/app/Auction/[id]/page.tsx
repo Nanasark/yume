@@ -344,7 +344,16 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                     ) : (
                       <PleaseRegister />
                     )} */}
-
+                    <div className="w-full">
+                      {registry && (
+                        <SellerSection
+                          image={registry.profileImage}
+                          auctionName={auction.AuctionName}
+                          auctionId={auction.id}
+                          userName={registry.userName}
+                        />
+                      )}
+                    </div>
                     <div className="w-full ">
                       <BidButton
                         id={auction.id}
@@ -352,16 +361,6 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                         price={auction.startPrice}
                       />
                     </div>
-                  </div>
-                  <div className="w-full">
-                    {registry && (
-                      <SellerSection
-                        image={registry.profileImage}
-                        auctionName={auction.AuctionName}
-                        auctionId={auction.id}
-                        userName={registry.userName}
-                      />
-                    )}
                   </div>
                 </div>
               </div>
