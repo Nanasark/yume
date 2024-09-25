@@ -95,7 +95,7 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
   console.log("BidAmount", parsedBidAmount);
 
   return (
-    <div className="flex flex-col  w-full h-full items-center justify-center">
+    <div className=" flex flex-col  w-full h-full items-center justify-center">
       {owner === address ? (
         <div className="w-full text-center font-semibold text-[2rem]">
           Owner cannot Bid
@@ -114,15 +114,15 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
               />
             </div>
           ) : (
-            <div className=" flex items-center justify-center bg-[#F9FBFF] p-5 text-[#181934] md:p-10 w-full h-[203px] rounded-[11px] ">
-              <div className=" flex flex-col gap-5 justify-center p-3 pl-10 pr-10 w-full h-full  items-center sellerGlass rounded-[11px]">
+            <div className="items-center flex justify-center p-[1px] text-[#55567a] borderGradient  w-full h-[203px] rounded-[11px] ">
+              <div className="bg-[#0e131d] flex flex-col gap-5 justify-center p-3 pl-10 pr-10 w-full h-full  items-center  rounded-[10px]">
                 {" "}
                 <input
                   type="number"
                   value={bidAmount}
                   onChange={handleBidAmountChange}
                   placeholder="Enter bid amount"
-                  className="text-black pl-3  border-[2px] border-[#181934] shadow-xl rounded-lg w-full h-[40px]"
+                  className="text-black pl-3 bg-[#373849]  border-[2px] border-[#181934] shadow-xl rounded-lg w-full h-[40px]"
                 />
                 <TransactionButton
                   onClick={() => handleRegistered()}
@@ -150,7 +150,6 @@ export default function BidButton({ id, price, owner }: BidButtonProps) {
                 >
                   Bid
                 </TransactionButton>
-                
               </div>
             </div>
           )}

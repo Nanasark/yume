@@ -12,7 +12,7 @@ import GetHash from "@/components/GetHash";
 // import ThirdwebDownloader from "@/components/download";
 import FileDownload from "@/components/download";
 import PleaseRegister from "@/components/pleaseRegister";
-import SellerSection from "@/components/Sellersection";
+import SellerSection from "@/components/AuctionDetail";
 import ImageHolder from "@/modals/ImageChange";
 import Card from "@/components/cards/Card";
 
@@ -133,7 +133,6 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
             {/*  section on right-bottom */}
             <div className="w-full h-[400px] items-center bg-[#F9FBFF] p-1 text-[#181934] rounded-[11px]">
               <h1 className="text-[1rem] font-bold">Product Details</h1>
-             
             </div>
           </div>
         </div>

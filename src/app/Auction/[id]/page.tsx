@@ -232,7 +232,7 @@ import FileDownload from "@/components/download";
 // import EndAuction from "@/components/EndAuction";
 import ImageHolder from "@/modals/ImageChange";
 import PleaseRegister from "@/components/pleaseRegister";
-import SellerSection from "@/components/Sellersection";
+import SellerSection from "@/components/AuctionDetail";
 import AuctionDownload from "@/components/AuctionDownload";
 import Card from "@/components/cards/Card";
 
@@ -357,7 +357,8 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                     {registry && (
                       <SellerSection
                         image={registry.profileImage}
-                        profileLink={registry.socialLink}
+                        auctionName={auction.AuctionName}
+                        auctionId={auction.id}
                         userName={registry.userName}
                       />
                     )}
