@@ -113,8 +113,9 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
                 {registry && (
                   <SellerSection
                     image={registry.profileImage}
-                    profileLink={registry.socialLink}
                     userName={registry.userName}
+                    productName={product.name}
+                    productId={product.id}
                   />
                 )}
               </div>

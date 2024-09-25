@@ -4,8 +4,10 @@ import { client } from "@/app/client";
 type AuctionDetail = {
   image: string;
   userName?: string;
-  auctionName: string;
-  auctionId: bigint;
+  auctionName?: string;
+  auctionId?: bigint;
+  productName?: string;
+  productId?: bigint;
 };
 
 export default function SellerSection({
@@ -13,14 +15,26 @@ export default function SellerSection({
   auctionName,
   auctionId,
   userName,
+  productId,
+  productName,
 }: AuctionDetail) {
   return (
     <div className="flex items-center justify-center p-[1px] text-[#55567a] borderGradient w-full h-[203px] rounded-[11px] buttonHover">
       <div className="flex flex-col gap-4 p-3 w-full bg-[#0e131d] h-full rounded-[10px]">
         <div className="flex gap-5 items-center ">
-          {" "}
-          <p className="font-bold text-2xl"> {auctionName}</p>
-          <p className="text-xl"> #{auctionId.toString()}</p>
+          {auctionId ||
+            (productId && (
+              <>
+                <p className="font-bold text-2xl">
+                  {" "}
+                  {auctionName || productName}
+                </p>
+                <p className="text-xl">
+                  {" "}
+                  #{auctionId?.toString() || productId.toString()}
+                </p>
+              </>
+            ))}
         </div>
         {/* User Info Section
         <div className="w-full h-[55px] bg-transparent flex items-center justify-center rounded-[11px] p-[1px] buttonHover">
