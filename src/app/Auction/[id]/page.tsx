@@ -397,7 +397,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                                   </th>
                                 </tr>
                               </thead>
-                              <tbody className="bg-white">
+                              <tbody className="bg-[#0e131d]">
                                 {bids[0].toReversed().map((bidder, index) => (
                                   <tr
                                     key={index}
