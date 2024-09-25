@@ -287,13 +287,13 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
       {isAuctionLoading
         ? "loading Auction Info..."
         : auction && (
-            <div className="flex w-full justify-between md:top-5 relative flex-col rounded-xl gap-10  bg-[#1F2045] p-5  ">
-              {/* MAIN TOP DIV */}
-              <div className="flex w-full flex-col md:flex-row gap-10 justify-between ">
+            <div className="flex w-full justify-between md:top-5 relative flex-col rounded-xl gap-10 bg-[#0e131d]  p-5  ">
+              {/* MAIN TOP DIV bg-[#1F2045] */}
+              <div className="flex w-full flex-col  md:flex-row gap-10 justify-between ">
                 {/* first section on left-top */}
                 <div className=" md:w-1/2 flex flex-col gap-3 ">
                   {" "}
-                  <div className=" md:w-10/12 md:h-full">
+                  <div className=" md:w-10/12 md:h-[460px]">
                     <ImageHolder
                       cover={auction.coverimage}
                       display1={auction.display1}
@@ -301,38 +301,11 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display3={auction.display3}
                     />
                   </div>
-                  <div className=" md:w-3/8 md:h-3/8 flex gap-5 w-full rounded-lg h-[100px] items-center  ">
-                    {" "}
-                    <div className="w-1/2 h-full rounded-[11px] flex items-center  justify-center borderGradient p-[1px] text-[#55567a] ">
-                      <AuctionTimer
-                        TimeBoxClass="flex gap-2 items-center justify-center  w-full h-[40px] rounded-lg"
-                        dayClass=""
-                        div1class="w-full h-full items-center flex justify-center bg-[#0e131d] rounded-[10px]"
-                        hourClass=""
-                        minuteClass=""
-                        secondsClass=""
-                        endTime={auction.endTime}
-                      />
-                    </div>
-                    <div className="w-1/2 h-full rounded-[11px] p-[1px] flex items-center justify-center text-[#55567a] borderGradient">
-                      <div className="w-full h-full bg-[#0e131d] rounded-[10px] flex flex-col items-center justify-center">
-                        <h1>Bid Going for</h1>
-                        {auctionDetail && bidIncrement && (
-                          <p>
-                            {toEther(
-                              auctionDetail.currentPrice + bidIncrement
-                            ).toString()}{" "}
-                            ARYM
-                          </p>
-                        )}{" "}
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 {/* section section on right-top */}
-                <div className="flex items-center justify-center w-full md:w-1/2 flex-col gap-5">
+                <div className="flex  w-full md:w-1/2 flex-col gap-5 p-t-5">
                   {" "}
-                  <div className=" rounded-md flex flex-col  w-full h-full items-center justify-center">
+                  <div className=" rounded-md flex flex-col gap-5  w-full h-full  ">
                     {/* {checkBidder?.userAddress == address ? (
                       <div className="mt-10">
                         <BidButtons
@@ -353,6 +326,33 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                           userName={registry.userName}
                         />
                       )}
+                    </div>
+                    <div className=" md:w-3/8 md:h-3/8 flex gap-5 w-full rounded-lg h-[100px] items-center  ">
+                      {" "}
+                      <div className="w-1/2 h-full rounded-[11px] flex items-center  justify-center borderGradient p-[1px] text-[#55567a] ">
+                        <AuctionTimer
+                          TimeBoxClass="flex gap-2 items-center justify-center  w-full h-[40px] rounded-lg"
+                          dayClass=""
+                          div1class="w-full h-full items-center flex justify-center bg-[#0e131d] rounded-[10px]"
+                          hourClass=""
+                          minuteClass=""
+                          secondsClass=""
+                          endTime={auction.endTime}
+                        />
+                      </div>
+                      <div className="w-1/2 h-full rounded-[11px] p-[1px] flex items-center justify-center text-[#55567a] borderGradient">
+                        <div className="w-full h-full bg-[#0e131d] rounded-[10px] flex flex-col items-center justify-center">
+                          <h1>Last Price</h1>
+                          {auctionDetail && bidIncrement && (
+                            <p>
+                              {toEther(
+                                auctionDetail.currentPrice + bidIncrement
+                              ).toString()}{" "}
+                              ARYM
+                            </p>
+                          )}{" "}
+                        </div>
+                      </div>
                     </div>
                     <div className="w-full ">
                       <BidButton
