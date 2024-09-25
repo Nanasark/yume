@@ -389,7 +389,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                             <table className="w-full text-black rounded-md   shadow-lg">
                               <thead className=" text-[#31325f]">
                                 <tr>
-                                  <th className="p-2 border-r-2 border-red-700">
+                                  <th className="p-2 border-r-2 border-purple-700">
                                     Bidder
                                   </th>
                                   <th className="p-2 border-l-2 border-blue-700">
