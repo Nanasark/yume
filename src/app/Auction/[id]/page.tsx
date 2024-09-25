@@ -300,7 +300,9 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display2={auction.display2}
                       display3={auction.display3}
                     />
-                  </div>
+                </div>
+                
+                
                 </div>
                 {/* section section on right-top */}
                 <div className="flex  w-full md:w-1/2 flex-col gap-5 p-t-5">

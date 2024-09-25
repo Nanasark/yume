@@ -30,17 +30,20 @@ export default function SellerSection({
         </div>
 
         <div className="w-full h-full flex flex-col items-center p-5  rounded-[10px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#08040f]">
-          Listed By
-          <div className="rounded-full p-[2px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#1B1C22]">
-            <MediaRenderer
-              client={client}
-              className="rounded-full"
-              src={`ipfs://${image}`}
-              height="45px"
-              width="45px"
-            />
+          <p className="text-bold"> Listed By</p>
+          <div className="flex">
+            {" "}
+            <div className="rounded-full p-[2px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#1B1C22]">
+              <MediaRenderer
+                client={client}
+                className="rounded-full"
+                src={`ipfs://${image}`}
+                height="45px"
+                width="45px"
+              />
+            </div>
+            <p className="ml-3">{userName}</p>
           </div>
-          <p className="ml-3">{userName}</p>
         </div>
 
         {/* Profile Link Section */}
