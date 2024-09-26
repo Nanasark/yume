@@ -29,7 +29,7 @@ export default function Navbar() {
     { name: "Home", path: "/", id: "home" },
     { name: "Direct-Buys", path: "/Buy", id: "buy" },
     { name: "Auctions", path: "/Auction", id: "auction" },
-    { name: "Sell", path: "/Sell", id: "sell" },
+    { name: "List", path: "/Sell", id: "sell" },
     { name: "Tools", path: "/Tools", id: "tools" },
   ];
 
