@@ -19,7 +19,7 @@ export default function GetHash({ productId, productName }: Product) {
   });
   console.log("showHash", showHash);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading ...</div>;
   }
 
   return (
@@ -28,7 +28,7 @@ export default function GetHash({ productId, productName }: Product) {
       {showHash ? (
         <FileDownload uri={`ipfs://${showHash}`} name={productName} />
       ) : (
-        <p>Not purchased.</p>
+        <p>Not purchased. Buy or bid to download</p>
       )}
     </div>
   );

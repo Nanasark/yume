@@ -88,9 +88,19 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
 
             {/* section on right-top */}
             <div className="flex items-center justify-center w-full md:w-1/2 flex-col gap-5">
-              <Card className="h-[203px] lg:h-[200px]">
-                <div className="flex flex-col items-center justify-center w-1/2 h-[120px]">
-                  <div className="w-full flex flex-col items-center justify-center">
+              <div className="w-full">
+                {registry && (
+                  <SellerSection
+                    image={registry.profileImage}
+                    userName={registry.userName}
+                    productName={product.name}
+                    productId={product.id}
+                  />
+                )}
+              </div>
+              <Card className="  h-[203px] flex items-center justify-center  lg:h-[200px]">
+                <div className="flex items-center w-full justify-center gap-5 h-[120px]">
+                  <div className=" flex flex-col items-center justify-center">
                     {account ? (
                       <BuyButton
                         id={product.id}
@@ -106,16 +116,6 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
                   <GetHash productId={product.id} productName={product.name} />
                 </div>
               </Card>
-              <div className="w-full">
-                {registry && (
-                  <SellerSection
-                    image={registry.profileImage}
-                    userName={registry.userName}
-                    productName={product.name}
-                    productId={product.id}
-                  />
-                )}
-              </div>
             </div>
           </div>
 

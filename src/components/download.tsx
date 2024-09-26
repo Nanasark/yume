@@ -38,12 +38,13 @@ export default function FileDownload({ uri, name }: db) {
 
   return (
     <div>
-      <div className=" text-[#D6D6D6] w-[150px] h-[45px]  bg-transparent flex items-center justify-center rounded-[11px] p-[1px] buttonHover">
+      File Purchased
+      <div className=" text-[#D6D6D6] w-[150px] h-[45px]  bg-transparent flex  flex-col gap-2 items-center justify-center rounded-[11px] p-[1px] buttonHover">
         <button
           className="w-full rounded-[10px] border-[1px] border-[#262830]  hover:border-[0px] hover:bg-[#1B1C22] h-full "
           onClick={() => downloadFile()}
         >
-          Download files
+          Download Now
         </button>
       </div>
     </div>
