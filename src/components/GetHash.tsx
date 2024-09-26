@@ -28,7 +28,7 @@ export default function GetHash({ productId, productName }: Product) {
       {showHash ? (
         <FileDownload uri={`ipfs://${showHash}`} name={productName} />
       ) : (
-        <p>Not purchased. Buy or bid to download</p>
+        <p>Not purchased. Buy to download</p>
       )}
     </div>
   );

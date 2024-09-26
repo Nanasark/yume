@@ -300,9 +300,7 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
                       display2={auction.display2}
                       display3={auction.display3}
                     />
-                </div>
-                
-                
+                  </div>
                 </div>
                 {/* section section on right-top */}
                 <div className="flex  w-full md:w-1/2 flex-col gap-5 p-t-5">
@@ -370,7 +368,9 @@ export default function AuctionPage({ params }: { params: { id: bigint } }) {
               {/* MAIN BOTTOM DIV */}
               <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
                 {/*  section on left-bottom */}
-                <Card className="h-[203px] lg:h-[400px]">
+
+                <Card className="flex flex-col h-[203px] lg:h-[400px]">
+                 
                   <AuctionDownload
                     AuctionName={auction.AuctionName}
                     auctionId={auction.id}

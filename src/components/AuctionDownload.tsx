@@ -25,7 +25,7 @@ export default function AuctionDownload({ auctionId, AuctionName }: Auction) {
       ) : isLoading ? (
         <p>Loding...</p>
       ) : (
-        <p>Not purchased.</p>
+        <p>You can download after you win an auction</p>
       )}
     </div>
   );

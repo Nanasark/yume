@@ -101,6 +101,9 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
               <Card className="  h-[203px] flex items-center justify-center  lg:h-[200px]">
                 <div className="flex items-center w-full justify-center gap-5 h-[120px]">
                   <div className=" flex flex-col items-center justify-center">
+                    <div>
+                      Price: {price} {payment}
+                    </div>
                     {account ? (
                       <BuyButton
                         id={product.id}
