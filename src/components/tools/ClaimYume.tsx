@@ -51,7 +51,7 @@ export default function ClaimYume() {
   };
 
   return (
-    <div className="w-1/3">
+    <div className="text-[#D6D6D6] w-[150px] h-[45px]  bg-transparent flex  flex-col gap-2 items-center justify-center rounded-[11px] p-[1px] buttonHover">
       {/* <button
         onClick={ClaimFunction}
         className="w-200px ring-black bg-green-600 h-[60px] rounded-sm"
@@ -77,7 +77,7 @@ export default function ClaimYume() {
         }}
         onError={ErrorAlert}
         unstyled
-        className="w-250px items-center ring-1  bg-indigo-200 h-[60px] rounded-sm"
+        className="w-full rounded-[10px] border-[1px] border-[#262830]  hover:border-[0px] hover:bg-[#1B1C22] h-full "
       >
         claim 1000 ARYM
       </TransactionButton>
