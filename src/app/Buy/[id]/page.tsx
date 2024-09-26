@@ -84,31 +84,28 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
                   display3={product.display3}
                 />
               </div>
-              <div className="bg-[#F9FBFF] text-[#181934] p-3 rounded-lg">
-                <h1>Name: {product.name}</h1>
-                <p>ID: {product.id.toString()}</p>
-                <p>{product.description}</p>
-                <p>
-                  {price} {payment}
-                </p>
-              </div>
             </div>
 
             {/* section on right-top */}
             <div className="flex items-center justify-center w-full md:w-1/2 flex-col gap-5">
-              <div className="w-full flex flex-col items-center justify-center">
-                {account ? (
-                  <BuyButton
-                    id={product.id}
-                    price={product.price}
-                    isMaticPayment={product.isMaticPayment}
-                    isListed={product.isListed}
-                    owner={product.seller}
-                  />
-                ) : (
-                  <SignInButton />
-                )}
-              </div>
+              <Card className="h-[203px] lg:h-[200px]">
+                <div className="flex flex-col items-center justify-center w-1/2 h-[120px]">
+                  <div className="w-full flex flex-col items-center justify-center">
+                    {account ? (
+                      <BuyButton
+                        id={product.id}
+                        price={product.price}
+                        isMaticPayment={product.isMaticPayment}
+                        isListed={product.isListed}
+                        owner={product.seller}
+                      />
+                    ) : (
+                      <SignInButton />
+                    )}
+                  </div>
+                  <GetHash productId={product.id} productName={product.name} />
+                </div>
+              </Card>
               <div className="w-full">
                 {registry && (
                   <SellerSection
@@ -123,19 +120,6 @@ export default function ProductPage({ params }: { params: { id: bigint } }) {
           </div>
 
           {/* MAIN BOTTOM DIV */}
-          <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
-            {/*  section on left-bottom */}
-            <Card className="h-[203px] lg:h-[400px]">
-              <div className="flex flex-col items-center justify-center w-1/2 h-[250px] bg-gray-700 rounded-lg border-[2px] border-indigo-900">
-                <GetHash productId={product.id} productName={product.name} />
-              </div>
-            </Card>
-
-            {/*  section on right-bottom */}
-            <div className="w-full h-[400px] items-center bg-[#F9FBFF] p-1 text-[#181934] rounded-[11px]">
-              <h1 className="text-[1rem] font-bold">Product Details</h1>
-            </div>
-          </div>
         </div>
       )}
     </div>

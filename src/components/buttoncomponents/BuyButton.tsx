@@ -68,7 +68,6 @@ export default function BuyButton({
 
   return (
     <div>
-      <p>Product ID: {id.toString()}</p>
       {owner === address ? (
         <ToggleList id={id} status={isListed} />
       ) : isMaticPayment ? (

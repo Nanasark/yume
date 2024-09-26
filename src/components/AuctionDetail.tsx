@@ -29,9 +29,9 @@ export default function SellerSection({
           </p>
         </div>
 
-        <div className="w-full h-full flex flex-col items-center p-5  rounded-[10px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#08040f]">
-          <p className="text-bold"> Listed By</p>
-          <div className="flex">
+        <div className="w-full h-full flex flex-col  p-5  rounded-[10px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#08040f]">
+          <p className="text-bold text-[18px]"> Listed By</p>
+          <div className="flex  items-center w-1/4">
             {" "}
             <div className="rounded-full p-[2px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#1B1C22]">
               <MediaRenderer
