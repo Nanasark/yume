@@ -256,7 +256,15 @@ export default function ListAuction() {
           </div>
         </div>
         <div className="flex w-full items-start flex-col gap-2">
-          <label>Duration in Days </label>
+          <div className="flex">
+            {" "}
+            <label>Duration in Days </label>
+            {errors.days?.type === "max" && (
+              <p className="text-red-800 font-semibold " role="alert">
+                Maximum period is 120 days
+              </p>
+            )}
+          </div>
           <div className="borderGradient flex w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
             <input
               type="number"
@@ -265,11 +273,6 @@ export default function ListAuction() {
               {...listAuction("days", { required: true, max: 120 })}
             />
           </div>
-          {errors.days?.type === "max" && (
-            <p className="text-red-800 font-semibold " role="alert">
-              Maximum period is 120 days
-            </p>
-          )}
         </div>
 
         <button

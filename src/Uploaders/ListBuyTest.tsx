@@ -195,6 +195,7 @@ export default function ListBuy() {
   const {
     register: listBuy,
     control,
+    formState: { errors },
     handleSubmit: handleListBuySubmit,
   } = useForm<ProductInput>();
   const onSubmit: SubmitHandler<ProductInput> = (data) => console.log(data);
@@ -271,7 +272,15 @@ export default function ListBuy() {
             </div>
           </div>
           <div className="flex flex-col md:w-1/2 w-full gap-2">
-            <label>Stock amount</label>
+            <div className="flex gap-10">
+              {" "}
+              <label>Stock amount</label>
+              {errors.stock?.type === "max" && (
+                <p className="text-red-800 font-semibold " role="alert">
+                  Maximum stock is 100
+                </p>
+              )}
+            </div>
             <div className="borderGradient flex p-[1px]  w-full h-[37px] rounded-[11px] justify-center items-center">
               {" "}
               <input
