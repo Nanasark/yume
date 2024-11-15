@@ -59,14 +59,12 @@ async function handleAuctionProcessing() {
     const resp = await fetch(
       `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read?functionName=getAllAuctions`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
-        },
+        headers: { Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}` },
       }
     );
 
     if (!resp.ok) {
+      console.log(resp);
       throw new Error("Failed to fetch auctions");
     }
 
@@ -75,9 +73,18 @@ async function handleAuctionProcessing() {
 
     if (rawData && Array.isArray(rawData.result)) {
       const auctions = rawData.result.map((item: any[]) => {
-        const id = item[0]?.toNumber
-          ? item[0].toNumber()
-          : parseInt(item[0]?.hex, 16);
+        let id = null;
+
+        if (item[0]) {
+          id = item[0]?.toNumber
+            ? item[0].toNumber()
+            : parseInt(item[0]?.hex || item[0], 16);
+        }
+
+        if (isNaN(id)) {
+          console.error("Invalid auction ID:", item[0]);
+          id = null; // Default to null or handle gracefully
+        }
 
         return {
           id,
