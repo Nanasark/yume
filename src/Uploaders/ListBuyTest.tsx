@@ -145,8 +145,6 @@ export default function ListBuy() {
         const display3hash = await uploadFileToIPFS(selectedDisplay3);
 
         toast.dismiss(toastId5);
-        const toastId6 = toast.loading("Transaction begun ...");
-
         if (
           !filehash ||
           !coverhash ||
@@ -154,9 +152,13 @@ export default function ListBuy() {
           !display2hash ||
           !display3hash
         ) {
-          console.error("Error: Some IPFS hashes are missing.");
+          toast.error(
+            "File Upload failed, please try again. contact support if it persists"
+          );
+          console.error("Error: Some files are missing.");
           return;
         }
+        const toastId6 = toast.loading("Transaction begun ...");
 
         const transaction = (await prepareContractCall({
           contract: contract,
