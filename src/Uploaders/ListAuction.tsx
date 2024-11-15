@@ -1,10 +1,9 @@
-import { auctioncontract, contract, registryContract } from "@/app/contract";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { auctioncontract, registryContract } from "@/app/contract";
+import React, { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { prepareContractCall, toWei } from "thirdweb";
 import { PreparedTransaction } from "thirdweb";
-import { TransactionButton } from "thirdweb/react";
+import usePinataUpload from "@/helpers/usePinataUpload";
 import { inter } from "@/helpers/fonts";
 import {
   ConnectButton,
@@ -31,6 +30,7 @@ type AuctionInput = {
 
 export default function ListAuction() {
   const { isOpenAuction, setIsOpenAuction } = useOpenAuction();
+  const { uploadFile } = usePinataUpload();
   const account = useActiveAccount();
   const bidIncrement: number = 5;
   const {
@@ -85,21 +85,33 @@ export default function ListAuction() {
   const uploadFileToIPFS = async (file: File | null) => {
     if (!file) return null;
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const response = await fetch("/api/pinata/pinata", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await response.json();
-      return result?.data?.IpfsHash;
+      const result = await uploadFile(file);
+      return result?.IpfsHash;
     } catch (error) {
       console.error("Error uploading file:", error);
       return null;
     }
   };
+
+  // const uploadFileToIPFS = async (file: File | null) => {
+  //   if (!file) return null;
+
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+
+  //   try {
+  //     const response = await fetch("/api/pinata/pinata", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+  //     const result = await response.json();
+  //     return result?.data?.IpfsHash;
+  //   } catch (error) {
+  //     console.error("Error uploading file:", error);
+  //     return null;
+  //   }
+  // };
 
   const handleListAuction = async (data: AuctionInput) => {
     if (isRegistered) {
@@ -137,7 +149,7 @@ export default function ListAuction() {
           !display3hash
         ) {
           toast.error(
-            "File Upload failed, please try again or contact support"
+            "File Upload failed, please try again. contact support if it persists"
           );
           console.error("Error: Some files are missing.");
           return;
