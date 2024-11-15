@@ -56,7 +56,7 @@ export default function RootLayout({
                 },
               }}
             />
-            <div className="relative top-10  ">{children}</div>
+            <div className="relative  ">{children}</div>
           </AuctionModalProvider>
         </ThirdwebProvider>
       </body>

@@ -1,7 +1,6 @@
 "use client";
 import { contract, registryContract } from "@/app/contract";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { prepareContractCall, toWei } from "thirdweb";
 import { PreparedTransaction } from "thirdweb";
@@ -19,6 +18,7 @@ import { inter } from "@/helpers/fonts";
 import SuccessHandler from "@/components/success/success";
 import toast from "react-hot-toast";
 import { ErrorAlert, ErrorHandler } from "@/components/error/error";
+import usePinataUpload from "@/helpers/usePinataUpload";
 enum TagEnum {
   ThreeD = "ThreeD",
   TwoD = "TwoD",
@@ -38,6 +38,8 @@ type ProductInput = {
 };
 export default function ListBuy() {
   const { isOpenAuction, setIsOpenAuction } = useOpenAuction();
+
+  const { uploadFile, uploadStatus, isUploading } = usePinataUpload();
   const account = useActiveAccount();
   const {
     mutate: sendTransaction,
@@ -91,21 +93,34 @@ export default function ListBuy() {
   const uploadFileToIPFS = async (file: File | null) => {
     if (!file) return null;
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const response = await fetch("/api/pinata/pinata", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await response.json();
-      return result?.data?.IpfsHash;
+      const result = await uploadFile(file);
+
+      return result?.IpfsHash;
     } catch (error) {
       console.error("Error uploading file:", error);
       return null;
     }
   };
+
+  // const uploadFileToIPFS = async (file: File | null) => {
+  //   if (!file) return null;
+
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+
+  //   try {
+  //     const response = await fetch("/api/pinata/pinata", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+  //     const result = await response.json();
+  //     return result?.data?.IpfsHash;
+  //   } catch (error) {
+  //     console.error("Error uploading file:", error);
+  //     return null;
+  //   }
+  // };
 
   const handleListBuy = async (data: ProductInput) => {
     if (isRegistered) {

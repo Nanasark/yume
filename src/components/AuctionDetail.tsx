@@ -46,12 +46,7 @@ export default function SellerSection({
           </div>
         </div>
 
-        {/* Profile Link Section */}
-        {/* <div className="w-full h-[55px] bg-transparent flex items-center justify-center rounded-[11px] p-[1px] buttonHover">
-          <div className="w-full h-full flex items-center justify-center rounded-[10px] border-[1px] border-[#262830] hover:border-[0px] hover:bg-[#1B1C22]">
-            
-          </div>
-        </div> */}
+      
       </div>
     </div>
   );
