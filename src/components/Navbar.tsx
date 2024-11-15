@@ -52,7 +52,7 @@ export default function Navbar() {
             <HiBars2 className="w-8 h-8" />
           )}
         </button>
-        <div className="hidden lg:flex items-center justify-center flex-1 space-x-5">
+        <div className="hidden text-white lg:flex items-center justify-center flex-1 space-x-5">
           {menuItems.map((item) => (
             <div
               key={item.id}

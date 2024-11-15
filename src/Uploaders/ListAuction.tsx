@@ -129,8 +129,6 @@ export default function ListAuction() {
 
         // Dismiss the fifth toast and show the final toast
         toast.dismiss(toastId5);
-        const toastId6 = toast.loading("Transaction begun ...");
-
         if (
           !filehash ||
           !coverhash ||
@@ -138,9 +136,13 @@ export default function ListAuction() {
           !display2hash ||
           !display3hash
         ) {
-          console.error("Error: Some IPFS hashes are missing.");
+          toast.error(
+            "File Upload failed, please try again or contact support"
+          );
+          console.error("Error: Some files are missing.");
           return;
         }
+        const toastId6 = toast.loading("Transaction begun ...");
 
         // Convert to Unix timestamp in seconds
 
