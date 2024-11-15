@@ -192,8 +192,11 @@ export default function ListAuction() {
     }
   };
 
-  const { register: listAuction, handleSubmit: handleListAuctionSubmit } =
-    useForm<AuctionInput>();
+  const {
+    register: listAuction,
+    formState: { errors },
+    handleSubmit: handleListAuctionSubmit,
+  } = useForm<AuctionInput>();
   const onSubmit: SubmitHandler<AuctionInput> = (data) => console.log(data);
 
   const handleAuctionSubmission = async () => {
@@ -235,8 +238,16 @@ export default function ListAuction() {
           </div>
         </div>
         <div className="flex w-full items-start flex-col gap-2">
-          <label>Start Price (in ARYM)</label>
-          <div className="borderGradient flex  w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
+          <div className="flex gap-10">
+            {" "}
+            <label>Start Price (in ARYM)</label>{" "}
+            {errors.startPrice?.type === "min" && (
+              <p className="text-red-800 font-semibold " role="alert">
+                minimum StartPrice is 10
+              </p>
+            )}
+          </div>
+          <div className="borderGradient flex flex-col w-full p-[1px] h-[42px] rounded-[11px] justify-center items-center">
             <input
               type="number"
               className="text-white w-full p-2 items-center h-[40px] rounded-[10px]  bg-[#1F2045] "
@@ -254,6 +265,11 @@ export default function ListAuction() {
               {...listAuction("days", { required: true, max: 120 })}
             />
           </div>
+          {errors.days?.type === "max" && (
+            <p className="text-red-800 font-semibold " role="alert">
+              Maximum period is 120 days
+            </p>
+          )}
         </div>
 
         <button
