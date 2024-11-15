@@ -60,6 +60,7 @@ async function handleAuctionProcessing() {
       `${ENGINE_URL}/contract/${amoy.id}/${NEXT_PUBLIC_AUCTION_CONTRACT_ADDRESS}/read?functionName=getAllAuctions`,
       {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${ENGINE_ACCESS_TOKEN}`,
         },
       }
@@ -72,10 +73,8 @@ async function handleAuctionProcessing() {
     const rawData = await resp.json();
     console.log("Raw response data:", rawData);
 
-    // Process the auctions
     if (rawData && Array.isArray(rawData.result)) {
       const auctions = rawData.result.map((item: any[]) => {
-        // Convert BigNumber to Number if possible
         const id = item[0]?.toNumber
           ? item[0].toNumber()
           : parseInt(item[0]?.hex, 16);
@@ -86,13 +85,11 @@ async function handleAuctionProcessing() {
           image: item[2],
           description: item[3],
           coverImage: item[4],
-          // Map other properties as needed
         };
       });
 
       console.log("Processed auctions:", auctions);
 
-      
       for (const auction of auctions) {
         try {
           const endedResp = await fetch(
